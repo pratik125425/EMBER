@@ -163,4 +163,5 @@ TIER_NO_CONDITIONS = "no_conditions"  # none known → D carries no information
 
 # UI palette for the "why" bars (one hue per distance dimension; validated colorblind-safe).
 WHY_BAR_COLORS: dict[str, str] = {"x_o2": "#2a78d6", "p_kpa": "#eb6834", "u_cms": "#1baf7a"}
-SCENARIO_ACCENT: str = "#6250d6"
+SCENARIO_ACCENT: str = "#c4501c"  # ember: the one colour reserved for the scenario
+TARGET_ACCENT: str = "#8a6a1c"  # gold: NASA target atmospheres

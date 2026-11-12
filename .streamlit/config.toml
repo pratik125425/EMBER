@@ -1,44 +1,62 @@
-# Formal scientific look: warm off-white (or near-black) surface, hairline borders, one accent
-# (the scenario violet), serif headings over a sans body. Every font is one Streamlit already
-# bundles (Source Serif / Source Sans / Source Code), so nothing is fetched from the network.
-# Light and dark are both defined; the viewer picks one under ⋮ → Settings → Theme.
+# Atlas-plate world: a deep navy plate, ivory engraving ink, steel-blue graticule hairlines and one
+# ember-orange mark reserved for the scenario (sliders, reticle, primary action). Libre Caslon sets
+# the plate titling, Libre Franklin the margin text and controls. Both are bundled under
+# app/static/fonts (SIL OFL) and served by Streamlit itself, so nothing is fetched from the network.
+# The plate is the default; Streamlit's built-in Light theme (⋮ → Settings) gives a white-sky print.
 [theme]
-font = "sans-serif"
-headingFont = "serif"
+base = "dark"
+primaryColor = "#ff8a4c"
+backgroundColor = "#12213f"
+secondaryBackgroundColor = "#192b52"
+textColor = "#efe9da"
+linkColor = "#a9c6ff"
+borderColor = "#2c406c"
+dataframeHeaderBackgroundColor = "#0d1830"
+chartCategoricalColors = ["#86b1f2", "#e7a0b4", "#6fd0a8", "#e3c46e", "#c9a3e8", "#b7d77a", "#a99cf0", "#ff8f8f"]
+font = "Libre Franklin"
+headingFont = "Libre Caslon Text"
 codeFont = "monospace"
-headingFontWeights = [600, 600, 600, 600, 600, 600]
-headingFontSizes = ["2.35rem", "1.55rem", "1.2rem", "1.05rem", "1rem", "0.9rem"]
+headingFontWeights = [500, 500, 500, 600, 600, 600]
+headingFontSizes = ["2.6rem", "1.6rem", "1.25rem", "1.05rem", "1rem", "0.9rem"]
 baseFontSize = 15
-metricValueFontWeight = 600
+metricValueFontWeight = 500
 showWidgetBorder = true
-baseRadius = "small"
-buttonRadius = "small"
+baseRadius = "2px"
+buttonRadius = "2px"
 
-[theme.light]
-primaryColor = "#6250d6"
-backgroundColor = "#fcfcfb"
-secondaryBackgroundColor = "#f3f2ee"
-textColor = "#0b0b0b"
-linkColor = "#4a3aa7"
-borderColor = "#e1e0d9"
-dataframeHeaderBackgroundColor = "#f3f2ee"
-chartCategoricalColors = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#6250d6", "#e34948"]
+[[theme.fontFaces]]
+family = "Libre Franklin"
+url = "app/static/fonts/LibreFranklin-VF.ttf"
+weight = "100 900"
+style = "normal"
 
-[theme.light.sidebar]
-backgroundColor = "#f6f5f1"
+[[theme.fontFaces]]
+family = "Libre Franklin"
+url = "app/static/fonts/LibreFranklin-Italic-VF.ttf"
+weight = "100 900"
+style = "italic"
 
-[theme.dark]
-primaryColor = "#9085e9"
-backgroundColor = "#1a1a19"
-secondaryBackgroundColor = "#242423"
-textColor = "#f0efec"
-linkColor = "#b3abf2"
-borderColor = "#383835"
-dataframeHeaderBackgroundColor = "#242423"
-chartCategoricalColors = ["#3987e5", "#d95926", "#199e70", "#c98500", "#d55181", "#008300", "#9085e9", "#e66767"]
+[[theme.fontFaces]]
+family = "Libre Caslon Text"
+url = "app/static/fonts/LibreCaslonText-VF.ttf"
+weight = "400 700"
+style = "normal"
 
-[theme.dark.sidebar]
-backgroundColor = "#161615"
+[[theme.fontFaces]]
+family = "Libre Caslon Text"
+url = "app/static/fonts/LibreCaslonText-Italic-VF.ttf"
+weight = "400 700"
+style = "italic"
+
+[[theme.fontFaces]]
+family = "Libre Caslon Display"
+url = "app/static/fonts/LibreCaslonDisplay-Regular.ttf"
+weight = "400"
+style = "normal"
+
+[theme.sidebar]
+backgroundColor = "#0d1830"
+secondaryBackgroundColor = "#152447"
 
 [client]
 toolbarMode = "minimal"
@@ -48,3 +66,4 @@ gatherUsageStats = false
 
 [server]
 headless = true
+enableStaticServing = true

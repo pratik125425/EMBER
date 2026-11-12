@@ -1,10 +1,10 @@
-"""One Plotly template for every chart (dataviz reference palette: recessive grid and axes, ink
-tokens for text, series colours only on marks), in a light and a dark variant.
+"""One Plotly template for every chart, in the atlas-plate world: recessive graticule and axes, ink
+tokens for text, series colours only on marks, ember reserved for the scenario.
 
-Chart code is written once against the LIGHT tokens. ``show_chart`` renders with the template and,
-when the viewer has picked the dark theme, swaps every light token for its dark step in one pass
-(same hues stepped for the dark surface, not a different palette; sequential ramps run
-surface→bright so "more" still reads as "stronger")."""
+Chart code is written once against the LIGHT ("white-sky print") tokens. ``show_chart`` renders
+with the template and, on the default navy plate (Streamlit's dark base), swaps every light token
+for its plate step in one pass (sequential ramps run plate→bright so "more" still reads as
+"stronger")."""
 
 from __future__ import annotations
 
@@ -20,8 +20,8 @@ INK_2 = "#52514e"
 MUTED = "#6b6964"
 GRID = "#e1e0d9"
 AXIS = "#c3c2b7"
-FONT = '"Source Sans", "Source Sans Pro", "Source Sans 3", system-ui, -apple-system, sans-serif'
-SERIF = '"Source Serif", "Source Serif 4", "Source Serif Pro", Georgia, serif'
+FONT = '"Libre Franklin", system-ui, -apple-system, sans-serif'
+SERIF = '"Libre Caslon Text", Georgia, serif'
 
 CATEGORICAL = [
     "#2a78d6",
@@ -34,38 +34,44 @@ CATEGORICAL = [
     "#e34948",
 ]
 CATEGORICAL_DARK = [
-    "#3987e5",
-    "#d95926",
-    "#199e70",
-    "#c98500",
-    "#d55181",
-    "#008300",
-    "#9085e9",
-    "#e66767",
+    "#86b1f2",
+    "#e7a0b4",
+    "#6fd0a8",
+    "#e3c46e",
+    "#c9a3e8",
+    "#b7d77a",
+    "#a99cf0",
+    "#ff8f8f",
 ]
+SCENARIO_LIGHT = "#c4501c"
+SCENARIO_PLATE = "#ff8a4c"
 
-# Light token → dark token. Matched case-insensitively in a single regex pass, so a dark value
-# that equals another light key (e.g. INK_2 dark = AXIS light) is never re-mapped.
+# Light token → plate token. Matched case-insensitively in a single regex pass, so a plate value
+# that equals another light key is never re-mapped.
 DARK_MAP: dict[str, str] = {
-    SURFACE: "#1a1a19",
-    "#ffffff": "#242423",
-    '"white"': '"#242423"',  # quoted: only the bare colour value, never inside words
-    INK: "#f0efec",
-    INK_2: "#c3c2b7",
-    MUTED: "#9a9890",
-    GRID: "#383835",
-    AXIS: "#5a5953",
-    "#b9b7b1": "#6b6a65",
-    "rgba(82,81,78,0.07)": "rgba(240,239,236,0.06)",
-    "rgba(255,255,255,0.9)": "rgba(26,26,25,0.92)",
-    "rgba(98,80,214,0.1)": "rgba(144,133,233,0.16)",
-    # Sequential ramps (Gaps heatmaps): low end sits near the surface in both modes.
-    "#f4f7fc": "#1f2733",
-    "#86b3e8": "#2a5a96",
-    "#0f3f7a": "#5b93da",
-    "#fdf4ef": "#2e221c",
-    "#f3a37f": "#8f4220",
-    "#8a2f0e": "#e07a4a",
+    SURFACE: "#12213f",
+    "#ffffff": "#192b52",
+    '"white"': '"#12213f"',  # quoted: only the bare colour value, never inside words
+    INK: "#efe9da",
+    INK_2: "#b9c3dc",
+    MUTED: "#8d9bbd",
+    GRID: "#22355c",
+    AXIS: "#4a5f8f",
+    "#b9b7b1": "#3b5080",
+    "rgba(82,81,78,0.07)": "rgba(239,233,218,0.05)",
+    "rgba(255,255,255,0.9)": "rgba(18,33,63,0.92)",
+    "rgba(98,80,214,0.1)": "rgba(255,138,76,0.14)",
+    "rgba(196,80,28,0.1)": "rgba(255,138,76,0.12)",
+    SCENARIO_LIGHT: SCENARIO_PLATE,
+    "#8a6a1c": "#e3c46e",  # target gold
+    "rgba(138,106,28,0.1)": "rgba(227,196,110,0.1)",
+    # Sequential ramps (Gaps heatmaps): low end sits on the plate, high end is bright ink.
+    "#f4f7fc": "#17284b",
+    "#86b3e8": "#3d64a8",
+    "#0f3f7a": "#b4cdfa",
+    "#fdf4ef": "#1b2645",
+    "#f3a37f": "#8a5a3a",
+    "#8a2f0e": "#f0b45a",
     **dict(zip(CATEGORICAL, CATEGORICAL_DARK, strict=True)),
 }
 _DARK_RE = re.compile(

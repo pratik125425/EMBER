@@ -1,0 +1,587 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-12T03:34:31+00:00",
+  "title": "Design System: EMBER",
+  "extensions": {
+    "colorMeta": {
+      "plate": {
+        "role": "neutral",
+        "displayName": "Navy Plate",
+        "canonical": "#12213f",
+        "tonalRamp": [
+          "#1a2233",
+          "#283a5d",
+          "#32508b",
+          "#3864bd",
+          "#6385ca",
+          "#92a8d3",
+          "#c1cce1",
+          "#eff1f6"
+        ]
+      },
+      "plate-raised": {
+        "role": "neutral",
+        "displayName": "Raised Plate",
+        "canonical": "#192b52",
+        "tonalRamp": [
+          "#1a2232",
+          "#29395b",
+          "#344f89",
+          "#3b63ba",
+          "#6584c8",
+          "#94a7d1",
+          "#c2cce0",
+          "#eff1f5"
+        ]
+      },
+      "plate-card": {
+        "role": "neutral",
+        "displayName": "Plate Card",
+        "canonical": "#152649",
+        "tonalRamp": [
+          "#1a2233",
+          "#28395c",
+          "#324f8a",
+          "#3864bc",
+          "#6385ca",
+          "#92a7d3",
+          "#c1cce1",
+          "#eff1f5"
+        ]
+      },
+      "plate-deep": {
+        "role": "neutral",
+        "displayName": "Deep Plate",
+        "canonical": "#0d1830",
+        "tonalRamp": [
+          "#1a2233",
+          "#27385d",
+          "#314d8c",
+          "#3661bf",
+          "#6183cc",
+          "#91a6d4",
+          "#c1cbe1",
+          "#eff1f6"
+        ]
+      },
+      "ivory-ink": {
+        "role": "neutral",
+        "displayName": "Ivory Ink",
+        "canonical": "#efe9da",
+        "tonalRamp": [
+          "#2f2a1d",
+          "#554a30",
+          "#7e6c3f",
+          "#aa8f4b",
+          "#bba671",
+          "#cabc9b",
+          "#dcd6c6",
+          "#f5f3f0"
+        ]
+      },
+      "ink-secondary": {
+        "role": "neutral",
+        "displayName": "Secondary Ink",
+        "canonical": "#b9c3dc",
+        "tonalRamp": [
+          "#1f232e",
+          "#333c52",
+          "#445379",
+          "#5369a2",
+          "#7789b6",
+          "#9faac6",
+          "#c8cddb",
+          "#f0f1f4"
+        ]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "canonical": "#8d9bbd",
+        "tonalRamp": [
+          "#20242c",
+          "#363d4f",
+          "#495674",
+          "#5b6d9a",
+          "#7e8caf",
+          "#a3acc2",
+          "#caced9",
+          "#f1f2f4"
+        ]
+      },
+      "steel-hairline": {
+        "role": "neutral",
+        "displayName": "Steel Hairline",
+        "canonical": "#2c406c",
+        "tonalRamp": [
+          "#1d2330",
+          "#2e3b56",
+          "#3d5280",
+          "#4868ad",
+          "#6f88be",
+          "#9aa9cb",
+          "#c5cddd",
+          "#f0f1f5"
+        ]
+      },
+      "graticule": {
+        "role": "neutral",
+        "displayName": "Graticule",
+        "canonical": "#22355c",
+        "tonalRamp": [
+          "#1c2330",
+          "#2d3b58",
+          "#3a5283",
+          "#4367b1",
+          "#6c88c1",
+          "#98a9cd",
+          "#c4cdde",
+          "#f0f1f5"
+        ]
+      },
+      "axis-rule": {
+        "role": "neutral",
+        "displayName": "Axis Rule",
+        "canonical": "#4a5f8f",
+        "tonalRamp": [
+          "#1f232d",
+          "#333c51",
+          "#455478",
+          "#546ca0",
+          "#798bb4",
+          "#a0abc5",
+          "#c8ceda",
+          "#f0f2f4"
+        ]
+      },
+      "star-link": {
+        "role": "neutral",
+        "displayName": "Star Link",
+        "canonical": "#a9c6ff",
+        "tonalRamp": [
+          "#101f3c",
+          "#133372",
+          "#0f44ae",
+          "#0354f2",
+          "#3978f4",
+          "#78a0ed",
+          "#b5c8ed",
+          "#ecf0f8"
+        ]
+      },
+      "ember": {
+        "role": "primary",
+        "displayName": "Ember",
+        "canonical": "#ff8a4c",
+        "tonalRamp": [
+          "#3c1f10",
+          "#723413",
+          "#ae460f",
+          "#f25603",
+          "#f47a39",
+          "#eda178",
+          "#edc8b5",
+          "#f8f0ec"
+        ]
+      },
+      "ember-wash": {
+        "role": "primary",
+        "displayName": "Ember Wash",
+        "canonical": "#5a3424",
+        "tonalRamp": [
+          "#30221d",
+          "#573a2e",
+          "#80503c",
+          "#ae6647",
+          "#be866e",
+          "#cba89a",
+          "#ddccc5",
+          "#f5f1f0"
+        ]
+      },
+      "target-gold": {
+        "role": "secondary",
+        "displayName": "Target Gold",
+        "canonical": "#e3c46e",
+        "tonalRamp": [
+          "#352d17",
+          "#625122",
+          "#947828",
+          "#cba02a",
+          "#d6b457",
+          "#dac58b",
+          "#e4dabe",
+          "#f6f4ee"
+        ]
+      },
+      "print-sky": {
+        "role": "neutral",
+        "displayName": "Print Sky",
+        "canonical": "#f7f8fb",
+        "tonalRamp": [
+          "#1f232e",
+          "#333a52",
+          "#445179",
+          "#5366a2",
+          "#7787b6",
+          "#9fa9c6",
+          "#c8ccdb",
+          "#f0f1f4"
+        ]
+      },
+      "print-ink": {
+        "role": "neutral",
+        "displayName": "Print Ink",
+        "canonical": "#13234a",
+        "tonalRamp": [
+          "#192133",
+          "#26375e",
+          "#2f4b8d",
+          "#345dc1",
+          "#5f7fce",
+          "#90a4d5",
+          "#c0cae2",
+          "#eff1f6"
+        ]
+      },
+      "print-ink-secondary": {
+        "role": "neutral",
+        "displayName": "Print Secondary Ink",
+        "canonical": "#3b4a6b",
+        "tonalRamp": [
+          "#20242d",
+          "#353d50",
+          "#475675",
+          "#586d9d",
+          "#7b8cb1",
+          "#a2acc3",
+          "#c9ced9",
+          "#f1f2f4"
+        ]
+      },
+      "print-muted": {
+        "role": "neutral",
+        "displayName": "Print Muted Ink",
+        "canonical": "#56627f",
+        "tonalRamp": [
+          "#22242b",
+          "#393f4b",
+          "#4f586e",
+          "#637191",
+          "#848fa8",
+          "#a7aebe",
+          "#cccfd7",
+          "#f1f2f3"
+        ]
+      },
+      "print-hairline": {
+        "role": "neutral",
+        "displayName": "Print Hairline",
+        "canonical": "#c9d1e2",
+        "tonalRamp": [
+          "#20242d",
+          "#343d51",
+          "#465676",
+          "#566d9e",
+          "#7a8cb3",
+          "#a1acc4",
+          "#c9ceda",
+          "#f0f2f4"
+        ]
+      },
+      "print-wash": {
+        "role": "neutral",
+        "displayName": "Print Wash",
+        "canonical": "#eef1f7",
+        "tonalRamp": [
+          "#1e242e",
+          "#313d53",
+          "#42557b",
+          "#4f6ca5",
+          "#758bb8",
+          "#9eacc7",
+          "#c7cedb",
+          "#f0f2f4"
+        ]
+      },
+      "print-ember": {
+        "role": "primary",
+        "displayName": "Print Ember",
+        "canonical": "#c4501c",
+        "tonalRamp": [
+          "#372016",
+          "#66351f",
+          "#9a4823",
+          "#d45821",
+          "#dc7c51",
+          "#dea287",
+          "#e6c9bc",
+          "#f7f1ee"
+        ]
+      },
+      "print-ember-wash": {
+        "role": "primary",
+        "displayName": "Print Ember Wash",
+        "canonical": "#fbe2d4",
+        "tonalRamp": [
+          "#392114",
+          "#69371b",
+          "#a04c1c",
+          "#de5e17",
+          "#e48149",
+          "#e3a582",
+          "#e9caba",
+          "#f7f1ed"
+        ]
+      },
+      "print-gold": {
+        "role": "secondary",
+        "displayName": "Print Gold",
+        "canonical": "#8a6a1c",
+        "tonalRamp": [
+          "#352c18",
+          "#624f23",
+          "#93742a",
+          "#ca9c2b",
+          "#d4b059",
+          "#d9c38c",
+          "#e4d9be",
+          "#f6f4ee"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "EMBER title block in the plate margin; step numerals at 2rem."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Page titles."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Section headings."
+      },
+      "annotation": {
+        "displayName": "Engraved Annotation",
+        "purpose": "Caslon italic plate labels, axis titles, target labels, vector note, index questions, caveats."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "One-sentence purpose line under each page title."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Margin text and controls."
+      },
+      "readout": {
+        "displayName": "Readout",
+        "purpose": "Live scenario coordinates; O2 and kPa values in ember."
+      },
+      "metric": {
+        "displayName": "Metric",
+        "purpose": "Metric entry values."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Metric labels and small margin text."
+      },
+      "tick": {
+        "displayName": "Tick",
+        "purpose": "Plate ticks and isoline labels in muted ink."
+      }
+    },
+    "shadows": [
+      {
+        "name": "plate-tooltip",
+        "value": "0 6px 18px rgba(0, 0, 0, .28)",
+        "purpose": "Only shadow in the system: the transient plate tooltip."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-plate",
+        "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "Every transition and the vector draw-on."
+      },
+      {
+        "name": "vector-draw",
+        "value": "460ms",
+        "purpose": "Stroke-dashoffset draw-on of the scenario vector; its note fades in over 220ms after 260ms."
+      },
+      {
+        "name": "reticle-glide",
+        "value": "260ms",
+        "purpose": "Reticle transform when moved by a sidebar control."
+      },
+      {
+        "name": "press",
+        "value": "160ms scale(0.97)",
+        "purpose": "Buttons and page links settle under the pointer; index cells use 0.98."
+      },
+      {
+        "name": "highlight",
+        "value": "180ms",
+        "purpose": "Opacity dim of non-highlighted stars and constellations; expander reveal."
+      },
+      {
+        "name": "tooltip",
+        "value": "120ms",
+        "purpose": "Tooltip opacity and 2px rise."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce",
+        "purpose": "All transitions, glides and the draw-on are removed."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "phone",
+        "value": "520px"
+      },
+      {
+        "name": "compact",
+        "value": "640px"
+      },
+      {
+        "name": "atlas-stack",
+        "value": "900px"
+      },
+      {
+        "name": "steps-two",
+        "value": "1180px"
+      },
+      {
+        "name": "frame-max",
+        "value": "1360px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one primary action; ember fill with a plate-navy label.",
+      "html": "<button class=\"ds-btn-primary\">Open the guided demo</button>",
+      "css": ":host{--e-ink:#efe9da;--e-ink2:#b9c3dc;--e-muted:#8d9bbd;--e-line:#2c406c;--e-wash:#0d1830;--e-plate:#12213f;--e-accent:#ff8a4c;--e-gold:#e3c46e;--e-ease:cubic-bezier(0.23,1,0.32,1);} .ds-btn-primary{background:var(--e-accent);color:var(--e-plate);font:600 15px 'Libre Franklin',system-ui,sans-serif;padding:8px 16px;border:1px solid var(--e-accent);border-radius:2px;cursor:pointer;transition:transform 160ms var(--e-ease),background-color 160ms var(--e-ease);} .ds-btn-primary:active{transform:scale(0.97);} .ds-btn-primary:focus-visible{outline:2px solid var(--e-accent);outline-offset:2px;} @media (prefers-reduced-motion:reduce){.ds-btn-primary{transition:none;}}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Default control on the plate: hairline border, ivory label.",
+      "html": "<button class=\"ds-btn-secondary\">Download gap report</button>",
+      "css": ":host{--e-ink:#efe9da;--e-ink2:#b9c3dc;--e-muted:#8d9bbd;--e-line:#2c406c;--e-wash:#0d1830;--e-plate:#12213f;--e-accent:#ff8a4c;--e-gold:#e3c46e;--e-ease:cubic-bezier(0.23,1,0.32,1);} .ds-btn-secondary{background:var(--e-plate);color:var(--e-ink);font:400 15px 'Libre Franklin',system-ui,sans-serif;padding:8px 16px;border:1px solid var(--e-line);border-radius:2px;cursor:pointer;transition:transform 160ms var(--e-ease);} .ds-btn-secondary:hover{border-color:var(--e-ink2);} .ds-btn-secondary:active{transform:scale(0.97);} .ds-btn-secondary:focus-visible{outline:2px solid var(--e-accent);outline-offset:2px;}"
+    },
+    {
+      "name": "Metric Entry",
+      "kind": "card",
+      "refersTo": "metric-entry",
+      "description": "A plate-margin entry: top hairline, label above, tabular value below.",
+      "html": "<div class=\"ds-metric\"><div class=\"ds-metric-l\">Transfer distance</div><div class=\"ds-metric-v\">D ≥ 0.42</div></div>",
+      "css": ":host{--e-ink:#efe9da;--e-ink2:#b9c3dc;--e-muted:#8d9bbd;--e-line:#2c406c;--e-wash:#0d1830;--e-plate:#12213f;--e-accent:#ff8a4c;--e-gold:#e3c46e;--e-ease:cubic-bezier(0.23,1,0.32,1);} .ds-metric{border-top:1px solid var(--e-line);padding:.7rem 0 .2rem;background:transparent;font-family:'Libre Franklin',system-ui,sans-serif;} .ds-metric-l{color:var(--e-ink2);font-size:.8rem;} .ds-metric-v{color:var(--e-ink);font-size:1.7rem;font-weight:500;line-height:1.15;letter-spacing:-0.01em;font-variant-numeric:tabular-nums;}"
+    },
+    {
+      "name": "Margin Note",
+      "kind": "custom",
+      "refersTo": "margin-note",
+      "description": "Alerts as margin notes: deep wash, one secondary-ink rule; errors take the ember rule.",
+      "html": "<div class=\"ds-note\">No PSI test exists at this gravity; results bracket it from µg and 1-g.</div><div class=\"ds-note ds-note-error\">This record could not be parsed.</div>",
+      "css": ":host{--e-ink:#efe9da;--e-ink2:#b9c3dc;--e-muted:#8d9bbd;--e-line:#2c406c;--e-wash:#0d1830;--e-plate:#12213f;--e-accent:#ff8a4c;--e-gold:#e3c46e;--e-ease:cubic-bezier(0.23,1,0.32,1);} .ds-note{background:var(--e-wash);color:var(--e-ink);border-left:2px solid var(--e-ink2);border-radius:0;padding:12px 16px;margin:0 0 8px;font:400 15px/1.6 'Libre Franklin',system-ui,sans-serif;} .ds-note-error{border-left-color:var(--e-accent);}"
+    },
+    {
+      "name": "Index Row",
+      "kind": "nav",
+      "refersTo": "index-cell",
+      "description": "Index of plates: ruled row, italic Caslon question, description, page link.",
+      "html": "<div class=\"ds-index\"><div><p class=\"ds-index-q\">What has nobody tested yet?</p><p class=\"ds-index-d\">Coverage per gravity regime and NASA target atmospheres.</p></div><a class=\"ds-index-a\" href=\"#\">Gaps</a></div>",
+      "css": ":host{--e-ink:#efe9da;--e-ink2:#b9c3dc;--e-muted:#8d9bbd;--e-line:#2c406c;--e-wash:#0d1830;--e-plate:#12213f;--e-accent:#ff8a4c;--e-gold:#e3c46e;--e-ease:cubic-bezier(0.23,1,0.32,1);} .ds-index{display:flex;justify-content:space-between;align-items:center;gap:24px;border-top:1px solid var(--e-line);padding:6px 0;} .ds-index-q{font:italic 400 1.12rem/1.4 'Libre Caslon Text',Georgia,serif;color:var(--e-ink);margin:.15rem 0 0;} .ds-index-d{font:400 .88rem/1.5 'Libre Franklin',system-ui,sans-serif;color:var(--e-ink2);margin:.1rem 0 .5rem;} .ds-index-a{font:600 1rem 'Libre Franklin',system-ui,sans-serif;color:var(--e-ink);text-decoration:none;transition:transform 160ms var(--e-ease);} .ds-index-a:hover{color:var(--e-accent);} .ds-index-a:active{transform:scale(0.97);} .ds-index-a:focus-visible{outline:2px solid var(--e-accent);outline-offset:2px;border-radius:2px;}"
+    },
+    {
+      "name": "Ruled Step",
+      "kind": "custom",
+      "description": "Numbered ruled step with a Caslon Display numeral.",
+      "html": "<ol class=\"ds-steps\"><li><div class=\"ds-t\">Measure the distance</div><div class=\"ds-d\">Every record gets a transfer distance D from your scenario.</div></li></ol>",
+      "css": ":host{--e-ink:#efe9da;--e-ink2:#b9c3dc;--e-muted:#8d9bbd;--e-line:#2c406c;--e-wash:#0d1830;--e-plate:#12213f;--e-accent:#ff8a4c;--e-gold:#e3c46e;--e-ease:cubic-bezier(0.23,1,0.32,1);} .ds-steps{list-style:none;counter-reset:step;margin:0;padding:0;font-family:'Libre Franklin',system-ui,sans-serif;} .ds-steps li{border-top:1px solid var(--e-line);padding:.7rem 0 0;max-width:260px;} .ds-steps li::before{counter-increment:step;content:counter(step);display:block;font:400 2rem/1 'Libre Caslon Display','Libre Caslon Text',Georgia,serif;color:var(--e-ink2);margin-bottom:.45rem;} .ds-t{font-weight:600;color:var(--e-ink);margin:0 0 .2rem;} .ds-d{font-size:.9rem;color:var(--e-ink2);line-height:1.5;}"
+    },
+    {
+      "name": "Scenario Readout",
+      "kind": "custom",
+      "description": "Live readout: italic label, tabular coordinates with scenario values in ember, italic caveat.",
+      "html": "<div class=\"ds-readout\"><div class=\"ds-rl\">Your scenario</div><div class=\"ds-rc\"><span>34.0%</span> O₂ · <span>56.5</span> kPa</div><div class=\"ds-rs\">8.19 psia · ppO₂ 19.2 kPa · microgravity</div><div class=\"ds-rb\">Best-ranked evidence: <b>BASS-II</b>, D ≥ <b>0.42</b>. <i>Beyond the tested envelope (above 2.7×).</i></div></div>",
+      "css": ":host{--e-ink:#efe9da;--e-ink2:#b9c3dc;--e-muted:#8d9bbd;--e-line:#2c406c;--e-wash:#0d1830;--e-plate:#12213f;--e-accent:#ff8a4c;--e-gold:#e3c46e;--e-ease:cubic-bezier(0.23,1,0.32,1);} .ds-readout{border-top:1px solid var(--e-line);padding-top:12px;font-family:'Libre Franklin',system-ui,sans-serif;font-variant-numeric:tabular-nums;max-width:300px;} .ds-rl{font:italic 14px 'Libre Caslon Text',Georgia,serif;color:var(--e-ink2);margin-bottom:4px;} .ds-rc{font-size:24px;font-weight:500;letter-spacing:-0.01em;color:var(--e-ink);line-height:1.25;} .ds-rc span{color:var(--e-accent);} .ds-rs{font-size:12.5px;color:var(--e-ink2);margin-top:3px;} .ds-rb{font-size:13.5px;color:var(--e-ink);margin-top:10px;line-height:1.5;} .ds-rb b{font-weight:600;} .ds-rb i{color:var(--e-ink2);}"
+    },
+    {
+      "name": "Plate Marks",
+      "kind": "custom",
+      "description": "Star with plate knock-out, gold target, ember reticle and vector with engraved note.",
+      "html": "<svg class=\"ds-plate\" viewBox=\"0 0 260 120\" width=\"260\" height=\"120\"><rect x=\"6\" y=\"6\" width=\"248\" height=\"108\" fill=\"none\" stroke=\"#b9c3dc\" opacity=\".55\"/><rect x=\"2\" y=\"2\" width=\"256\" height=\"116\" fill=\"none\" stroke=\"#2c406c\"/><path d=\"M20 100 Q120 40 240 20\" fill=\"none\" stroke=\"#b9c3dc\" stroke-width=\".8\" stroke-dasharray=\"1 4\" opacity=\".7\"/><circle cx=\"190\" cy=\"40\" r=\"5.2\" fill=\"#12213f\"/><circle cx=\"190\" cy=\"40\" r=\"4\" fill=\"#efe9da\"/><circle cx=\"100\" cy=\"88\" r=\"6\" fill=\"none\" stroke=\"#e3c46e\"/><path d=\"M100 77V81M100 95V99M89 88H93M107 88H111\" stroke=\"#e3c46e\"/><g transform=\"translate(70 50)\"><circle r=\"13\" fill=\"none\" stroke=\"#ff8a4c\" stroke-width=\"1.6\"/><path d=\"M0 -22V-16M0 16V22M-22 0H-16M16 0H22\" stroke=\"#ff8a4c\" stroke-width=\"1.6\"/><circle r=\"2\" fill=\"#ff8a4c\"/></g><line class=\"ds-vec\" x1=\"86\" y1=\"48\" x2=\"180\" y2=\"41\" stroke=\"#ff8a4c\" stroke-width=\"1.6\"/><circle cx=\"190\" cy=\"40\" r=\"10\" fill=\"none\" stroke=\"#ff8a4c\" stroke-width=\"1.4\"/><text x=\"132\" y=\"32\" text-anchor=\"middle\" class=\"ds-vl\">D ≥ 0.42 · 1.52×</text></svg>",
+      "css": ":host{--e-ink:#efe9da;--e-ink2:#b9c3dc;--e-muted:#8d9bbd;--e-line:#2c406c;--e-wash:#0d1830;--e-plate:#12213f;--e-accent:#ff8a4c;--e-gold:#e3c46e;--e-ease:cubic-bezier(0.23,1,0.32,1);} .ds-plate{background:var(--e-plate);display:block;} .ds-vl{font:italic 600 12px 'Libre Caslon Text',Georgia,serif;fill:var(--e-accent);paint-order:stroke;stroke:var(--e-plate);stroke-width:4px;stroke-linejoin:round;} .ds-vec{stroke-dasharray:100;animation:ds-draw 460ms var(--e-ease);} @keyframes ds-draw{from{stroke-dashoffset:100;}to{stroke-dashoffset:0;}} @media (prefers-reduced-motion:reduce){.ds-vec{animation:none;}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Evidence Sky Atlas",
+    "overview": "EMBER is a printed star-atlas plate. Every NASA fire test with a known oxygen level and total pressure is a star on an oxygen-pressure sky (O₂ % across, pressure on a log scale up); the visitor's habitat is an ember reticle they aim, and the engine draws one committed vector from it to the best-ranked test. The plate is engraved, not rendered: navy ground, ivory ink, steel-blue hairlines, a double-rule frame, graticule ticks, dotted ppO₂ isolines running like ecliptic curves, magnitude-scaled stars over a faint haze where tests exist and plain dark sky where none do.\n\nEverything around the plate reads as plate margin. Metrics are margin entries under a hairline, callouts are margin notes with one rule, steps and the index of plates are ruled rows. There are no card fills and no ambient shadows on the page; depth comes from the plate's own layering (haze, graticule, constellations, stars, labels, reticle). Libre Caslon sets titling and italic engraved annotations; Libre Franklin sets margin text, numbers and controls. All faces are bundled under `app/static/fonts` (SIL OFL) and served by Streamlit, so the system works fully offline.\n\nThe navy plate is the default (Streamlit dark base). Streamlit's Light theme gives a \"white-sky print\" with the same roles mapped to print values. Honesty is part of the visual grammar: what the plate draws is exactly what the evidence supports.",
+    "keyCharacteristics": [
+      "Navy plate ground, ivory engraving ink, steel-blue hairlines; flat, ruled, no card fills.",
+      "One ember-orange mark for the scenario; gold only for NASA target atmospheres.",
+      "Caslon italic for every engraved note and caveat; Franklin with tabular figures for every number.",
+      "Stars sized by test count; haze for tested sky, dark sky for untested.",
+      "2px hairline radius or square; nothing rounder.",
+      "Motion is a 460ms draw-on of the vector and quiet 160 to 260ms settles, all off under reduced motion."
+    ],
+    "rules": [
+      {
+        "name": "The One Ember Rule",
+        "body": "Ember belongs to the visitor's scenario: reticle, vector, readout values, scenario controls and the user's own focus. It never marks evidence, a category or decoration.",
+        "section": "colors"
+      },
+      {
+        "name": "The Gold Is NASA's Rule",
+        "body": "Gold marks NASA target atmospheres and nothing else. A gold mark that is not a target is a lie on the plate.",
+        "section": "colors"
+      },
+      {
+        "name": "The Caveat Voice Rule",
+        "body": "Caveats (beyond the tested envelope, no test at this gravity, pressure not reported) are set in secondary ink, italic. They are never alarm-coloured.",
+        "section": "colors"
+      },
+      {
+        "name": "The Engraved Note Rule",
+        "body": "Anything that annotates the plate (names, targets, the D note, caveats) is Caslon italic. Anything you read as a quantity is Franklin with tabular figures.",
+        "section": "typography"
+      },
+      {
+        "name": "The Halo Rule",
+        "body": "Every label set over the plate carries a 4px plate-colour stroke (paint-order: stroke) so it reads cleanly over lines and stars.",
+        "section": "typography"
+      },
+      {
+        "name": "The Printed Depth Rule",
+        "body": "Depth on the plate comes from print layering and opacity, never from shadows or glows on page surfaces.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** draw a star only when both O₂ and total pressure are reported. Nothing is placed at a guessed value.",
+      "**Do** draw an O₂-only record as a meridian (a dashed vertical line or band at its oxygen range across every pressure), labelled \"pressure not reported\".",
+      "**Do** write a lower bound as \"D ≥\" whenever an unknown condition makes D a lower bound, and say so in the readout.",
+      "**Do** leave untested sky dark and count the uncharted records in the tally.",
+      "**Do** reserve ember (#ff8a4c / #c4501c) for the scenario and gold (#e3c46e / #8a6a1c) for NASA target atmospheres.",
+      "**Do** set caveats in secondary ink italic and every number in tabular figures.",
+      "**Do** give every plate label a 4px plate-colour halo and a clear, non-overlapping position.",
+      "**Do** keep motion on transform, opacity and stroke-dashoffset, using cubic-bezier(0.23, 1, 0.32, 1), and drop all of it under prefers-reduced-motion.",
+      "**Do** keep page surfaces flat and ruled: hairline top rules, transparent containers, 0 or 2px corners."
+    ],
+    "donts": [
+      "**Don't** call a material or atmosphere \"safe\", in copy, labels or colour.",
+      "**Don't** interpolate gravity; partial-gravity scenarios are flagged brackets from µg and 1-g.",
+      "**Don't** use ember for evidence, categories or decoration, or gold for anything but NASA targets.",
+      "**Don't** fill cards or add shadows to page surfaces; the plate tooltip is the only shadow.",
+      "**Don't** fetch fonts or assets from the network; faces ship under app/static/fonts."
+    ]
+  }
+}

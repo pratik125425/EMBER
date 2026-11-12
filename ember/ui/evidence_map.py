@@ -182,8 +182,8 @@ def evidence_map(
                 y1=p + dp,
                 row=1,
                 col=1,
-                line=dict(color=config.SCENARIO_ACCENT, width=1.5),
-                fillcolor=_hex_to_rgba(config.SCENARIO_ACCENT, 0.10),
+                line=dict(color=config.TARGET_ACCENT, width=1.5),
+                fillcolor=_hex_to_rgba(config.TARGET_ACCENT, 0.10),
                 layer="below",
             )
             fig.add_annotation(
@@ -196,7 +196,7 @@ def evidence_map(
                 xanchor="left",
                 yanchor="bottom",
                 xshift=4,
-                font=dict(size=11, color=config.SCENARIO_ACCENT),
+                font=dict(size=11, color=config.TARGET_ACCENT),
             )
 
     # ---- ppO₂ isolines ------------------------------------------------------------------------

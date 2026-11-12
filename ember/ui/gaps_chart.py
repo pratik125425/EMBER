@@ -149,19 +149,21 @@ def gap_panels(
                     y1=tp + dp,
                     row=row,
                     col=col,
-                    line=dict(color=config.SCENARIO_ACCENT, width=1.5),
+                    line=dict(color=config.TARGET_ACCENT, width=1.5),
                 )
                 fig.add_annotation(
-                    x=tx,
-                    y=math.log10(tp + dp),
+                    # Beside the box, not above it: targets stack in pressure and the
+                    # top one would clip at the panel edge.
+                    x=tx + dx,
+                    y=math.log10(tp),
                     xref=f"x{idx + 1}",
                     yref=f"y{idx + 1}",
                     text=SHORT_TARGET.get(name, name),
                     showarrow=False,
-                    xanchor="center",
-                    yanchor="bottom",
-                    yshift=2,
-                    font=dict(size=10, color=config.SCENARIO_ACCENT),
+                    xanchor="left",
+                    yanchor="middle",
+                    xshift=4,
+                    font=dict(size=10, color=config.TARGET_ACCENT),
                 )
         if (
             scenario
