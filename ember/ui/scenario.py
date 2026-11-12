@@ -77,14 +77,36 @@ def scenario_sidebar() -> Scenario:
     if preset:
         sb.caption(f"Source: {preset['source']}")
 
-    x_pct = sb.slider("Oxygen, % (mole fraction × 100)", 10.0, 60.0, step=0.5, key="x_o2_pct")
+    x_pct = sb.slider(
+        "Oxygen, % (mole fraction × 100)",
+        10.0,
+        60.0,
+        step=0.5,
+        key="x_o2_pct",
+        help="Share of the air that is oxygen. Earth air is about 21%; NASA's Exploration "
+        "Atmosphere is 34%.",
+    )
 
     unit = sb.radio("Pressure unit", ["kPa", "psia"], horizontal=True, key="p_unit")
     if unit == "kPa":
-        p_kpa = sb.slider("Total pressure, kPa", 20.0, 210.0, step=0.5, key="p_kpa")
+        p_kpa = sb.slider(
+            "Total pressure, kPa",
+            20.0,
+            210.0,
+            step=0.5,
+            key="p_kpa",
+            help="Sea level is 101.3 kPa. NASA's Exploration Atmosphere is 56.5 kPa.",
+        )
         st.session_state["p_psi"] = round(kpa_to_psi(p_kpa), 2)
     else:
-        p_psi = sb.slider("Total pressure, psia", 3.0, 30.0, step=0.1, key="p_psi")
+        p_psi = sb.slider(
+            "Total pressure, psia",
+            3.0,
+            30.0,
+            step=0.1,
+            key="p_psi",
+            help="Sea level is 14.7 psia. NASA's Exploration Atmosphere is 8.2 psia.",
+        )
         p_kpa = psi_to_kpa(p_psi)
         st.session_state["p_kpa"] = round(p_kpa, 2)
     sb.caption(
@@ -94,21 +116,38 @@ def scenario_sidebar() -> Scenario:
     u_specified = sb.checkbox(
         "Airflow specified",
         key="u_specified",
-        help="Leave unchecked if unknown. EMBER never guesses airflow.",
+        help="Air moving past the material, e.g. from fans. Without gravity this flow is what feeds a "
+        "flame oxygen. Leave unchecked if unknown. EMBER never guesses airflow.",
     )
     u_cms = (
         sb.slider("Imposed flow, cm/s", 0.0, 50.0, step=0.5, key="u_cms") if u_specified else None
     )
 
-    g_label = sb.selectbox("Gravity", list(GRAVITY_OPTIONS), key="gravity_label")
+    g_label = sb.selectbox(
+        "Gravity",
+        list(GRAVITY_OPTIONS),
+        key="gravity_label",
+        help="NASA's PSI archive has no fire tests at Moon or Mars gravity; those scenarios are "
+        "bracketed by microgravity and Earth results and flagged.",
+    )
     gravity = GRAVITY_OPTIONS[g_label]
 
     phen = sb.selectbox(
-        "Phenomenon", list(PHENOMENON_LABELS), format_func=PHENOMENON_LABELS.get, key="phenomenon"
+        "Phenomenon",
+        list(PHENOMENON_LABELS),
+        format_func=PHENOMENON_LABELS.get,
+        key="phenomenon",
+        help="What you want to know about the fire: how fast it spreads, whether it ignites, "
+        "when it goes out, and so on.",
     )
     fuel_opts = ["any", *[f.value for f in FuelClass]]
     fuel_class = sb.selectbox(
-        "Fuel class", fuel_opts, format_func=lambda v: v.replace("_", " "), key="fuel_class"
+        "Fuel class",
+        fuel_opts,
+        format_func=lambda v: v.replace("_", " "),
+        key="fuel_class",
+        help="The kind of material burning: thin sheets like fabric or paper, thick solids like "
+        "plastic blocks, liquid droplets, gas jets and so on.",
     )
     fuel_name = sb.text_input(
         "Fuel / material (optional)", key="fuel_name", placeholder="e.g. PMMA, SIBAL, Nomex"

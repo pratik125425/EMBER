@@ -17,7 +17,7 @@ import streamlit as st
 SURFACE = "#fcfcfb"
 INK = "#0b0b0b"
 INK_2 = "#52514e"
-MUTED = "#898781"
+MUTED = "#6b6964"
 GRID = "#e1e0d9"
 AXIS = "#c3c2b7"
 FONT = '"Source Sans", "Source Sans Pro", "Source Sans 3", system-ui, -apple-system, sans-serif'

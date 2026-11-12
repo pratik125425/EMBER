@@ -28,9 +28,9 @@ sidebar_legend()
 st.markdown(
     f"""
 <div class="ember-hero">
-  <div class="kicker">NASA Space Apps Challenge 2026 · Flame in Freefall</div>
   <h1 class="title">EMBER</h1>
-  <div class="expansion">Evidence-Mapped Bounds for Exploration fire Risk</div>
+  <div class="expansion">Evidence-Mapped Bounds for Exploration fire Risk. Built for the NASA Space
+  Apps Challenge 2026, Flame in Freefall.</div>
   <p class="pitch">Give EMBER a habitat's oxygen, pressure and airflow. It shows which NASA fire
   experiments apply, how far you are extrapolating from them, and what nobody has tested yet.</p>
   <div class="facts">
@@ -53,6 +53,28 @@ with st.container(border=True):
         "the gap map and the honest answer. About three minutes."
     )
     b.page_link("pages/0_Demo.py", label="Open the guided demo", icon=":material/arrow_forward:")
+
+st.subheader("New to fire safety in space?")
+st.markdown(
+    """
+<div class="ember-primer">
+  <p><b>Flames behave differently without gravity.</b> On Earth, hot gas rises and pulls fresh air
+  into a fire. In orbit hot gas doesn't rise, so a flame only gets oxygen from airflow such as ventilation
+  fans. That changes how materials catch fire, spread and go out.</p>
+  <p><b>Future habitats plan to use more oxygen at lower pressure.</b> NASA's Exploration Atmosphere
+  is 34% oxygen at 56.5 kPa (8.2 psia), against about 21% at 101.3 kPa on Earth. More oxygen
+  generally makes materials easier to ignite and faster to burn.</p>
+  <p><b>Not every condition has been tested.</b> NASA's fire experiments covered some atmospheres
+  and not others, and its PSI archive has none at Moon or Mars gravity. EMBER shows which tests are
+  closest to your habitat, how far you would be extrapolating, and where the gaps are.</p>
+</div>
+""",
+    unsafe_allow_html=True,
+)
+st.caption(
+    "Unfamiliar term? The **Glossary** at the bottom of the sidebar explains every one in plain "
+    "language, and each page has a **How to read this page** guide under its title."
+)
 
 st.subheader("How it works")
 st.markdown(
@@ -77,6 +99,7 @@ cards = [
         "pages/1_Ask.py",
         "Ask",
         "search",
+        "Has NASA tested anything like my habitat?",
         "Ask in plain language or set the sliders. Get the ranked NASA "
         "evidence, the transfer distance D and why each record ranks where it does.",
     ),
@@ -84,6 +107,7 @@ cards = [
         "pages/2_Evidence_Map.py",
         "Evidence map",
         "scatter_plot",
+        "Where do the tests sit next to my scenario?",
         "Every test in oxygen–pressure space, with your "
         "scenario on top. Click a test to see its conditions.",
     ),
@@ -91,37 +115,42 @@ cards = [
         "pages/3_Compare.py",
         "Compare",
         "compare_arrows",
+        "Can these two results be compared fairly?",
         "Can two results be put side by side? A rule-gated verdict with the confounders listed.",
     ),
     (
         "pages/4_Gaps.py",
         "Gaps",
         "grid_off",
+        "What has nobody tested yet?",
         "What nobody has tested: coverage per gravity regime, NASA target "
         "atmospheres and a downloadable gap report.",
     ),
 ]
 cols = st.columns(4)
-for col, (path, title, icon, text) in zip(cols, cards, strict=True):
+for col, (path, title, icon, question, text) in zip(cols, cards, strict=True):
     with col.container(border=True, height="stretch"):
         st.page_link(path, label=title, icon=f":material/{icon}:")
+        st.markdown(f'<p class="ember-card-q">{question}</p>', unsafe_allow_html=True)
         st.caption(text)
 
 st.subheader("Data and trust")
 cols = st.columns(3)
-for col, (path, title, icon, text) in zip(
+for col, (path, title, icon, question, text) in zip(
     cols,
     [
         (
             "pages/5_Registry.py",
             "Registry",
             "table_view",
+            "What data does EMBER use?",
             "All evidence with units and provenance. Export CSV/Parquet with a data dictionary.",
         ),
         (
             "pages/7_Sources.py",
             "Sources",
             "menu_book",
+            "Where does each number come from?",
             "Every NASA source: DOI, PSI status, mirrored files "
             "with checksums, and the records citing it.",
         ),
@@ -129,6 +158,7 @@ for col, (path, title, icon, text) in zip(
             "pages/6_Validation.py",
             "Validation",
             "fact_check",
+            "How well does EMBER work?",
             "Retrieval benchmark, rank stability and the "
             "adversarial prompt suite. Measured numbers only.",
         ),
@@ -137,6 +167,7 @@ for col, (path, title, icon, text) in zip(
 ):
     with col.container(border=True, height="stretch"):
         st.page_link(path, label=title, icon=f":material/{icon}:")
+        st.markdown(f'<p class="ember-card-q">{question}</p>', unsafe_allow_html=True)
         st.caption(text)
 
 left, right = st.columns(2)

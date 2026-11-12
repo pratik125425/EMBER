@@ -4,6 +4,7 @@ from pathlib import Path
 
 import streamlit as st
 
+from ember.ui.guide import next_steps, sidebar_glossary
 from ember.ui.layout import footer, inject_css, persist_scenario
 
 HERE = Path(__file__).parent
@@ -39,4 +40,6 @@ nav = st.navigation(
     }
 )
 nav.run()
+next_steps(nav.url_path)
+sidebar_glossary()
 footer()
