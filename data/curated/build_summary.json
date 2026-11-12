@@ -1,0 +1,14 @@
+{
+  "counts": {
+    "sources": 19,
+    "evidence": 982,
+    "measurements": 421,
+    "claims": 10,
+    "relations": 4
+  },
+  "known_ranges": 1726,
+  "review_todos": 19,
+  "evidence_from_seed": 14,
+  "evidence_from_tables": 968,
+  "out_dir": "/Users/pratikbhatti/Library/Application Support/Claude/scratch-workspaces/763d8e6a-3c70-4de2-babe-4189473e5bd3/99132b49-3316-4317-91a6-a901aac05ff4/scratch-2026-11-11-6406a8/data/curated"
+}

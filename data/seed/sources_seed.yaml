@@ -1,0 +1,117 @@
+# Every source_id referenced anywhere in the seed registry. URLs follow spec §4/§19.
+# sha256/retrieved_at are filled by the manifest-driven downloader (T11).
+- source_id: PSI-25
+  kind: psi_record
+  title: "BASS-II (Burning and Suppression of Solids II) — PSI investigation record"
+  url: https://psi.nasa.gov/physci/repo/data/investigations/PSI-25
+  doi: 10.60555/4qc4-de67
+  in_psi: true
+- source_id: PSI-26
+  kind: psi_record
+  title: "BASS (Burning and Suppression of Solids) — PSI investigation record"
+  url: https://psi.nasa.gov/physci/repo/data/investigations/PSI-26
+  doi: 10.60555/58h4-dy80
+  in_psi: true
+- source_id: PSI-98
+  kind: psi_record
+  title: "Saffire-I — PSI investigation record"
+  url: https://psi.nasa.gov/physci/repo/data/investigations/PSI-98
+  doi: 10.60555/0t15-1z43
+  in_psi: true
+- source_id: PSI-100
+  kind: psi_record
+  title: "Saffire-III — PSI investigation record"
+  url: https://psi.nasa.gov/physci/repo/data/investigations/PSI-100
+  doi: 10.60555/040q-4h36
+  in_psi: true
+- source_id: PSI-159
+  kind: psi_record
+  title: "ACME CFI-G (Cool Flames Investigation with Gases) — PSI investigation record"
+  url: https://psi.nasa.gov/physci/repo/data/investigations/PSI-159
+  doi: 10.60555/cyt1-kh64
+  in_psi: true
+- source_id: PSI-69
+  kind: psi_record
+  title: "FLEX (Flame Extinguishment Experiment) — PSI investigation record"
+  url: https://psi.nasa.gov/physci/repo/data/investigations/PSI-69
+  doi: 10.60555/mbq8-0451
+  in_psi: true
+- source_id: PSI-101
+  kind: psi_record
+  title: "SAME-R (Smoke Aerosol Measurement Experiment Reflight) — PSI investigation record"
+  url: https://psi.nasa.gov/physci/repo/data/investigations/PSI-101
+  doi: 10.60555/2np7-jv14
+  in_psi: true
+- source_id: PSI-102
+  kind: psi_record
+  title: "SAME (Smoke Aerosol Measurement Experiment) — PSI investigation record"
+  url: https://psi.nasa.gov/physci/repo/data/investigations/PSI-102
+  doi: 10.60555/gd4k-8h62
+  in_psi: true
+- source_id: PSI-47
+  kind: psi_record
+  title: "DAFT / DAFT-2 (Dust and Aerosol Measurement Feasibility Test) — PSI investigation record"
+  url: https://psi.nasa.gov/physci/repo/data/investigations/PSI-47
+  doi: 10.60555/ztgj-d202
+  in_psi: true
+- source_id: NTRS-20240002981
+  kind: ntrs
+  title: "Preliminary Results from the Saffire VI Experiment (ICES-2024-365)"
+  year: 2024
+  url: https://ntrs.nasa.gov/citations/20240002981
+  in_psi: false
+- source_id: NTRS-20250010653
+  kind: ntrs
+  title: "LUCI: extended simulated-lunar-gravity burns on Blue Origin New Shepard"
+  year: 2025
+  url: https://ntrs.nasa.gov/citations/20250010653
+  in_psi: false
+- source_id: NTRS-20240015307
+  kind: ntrs
+  title: "Flammability of Materials on the Moon (FM2) — abstract"
+  year: 2024
+  url: https://ntrs.nasa.gov/citations/20240015307
+  in_psi: false
+- source_id: NTRS-20210021318
+  kind: ntrs
+  title: "Ruff, G. — Technology Development for Spacecraft Fire Safety"
+  year: 2021
+  url: https://ntrs.nasa.gov/citations/20210021318
+  in_psi: false
+- source_id: NASA-TP-2010-216134
+  kind: other
+  title: "Recommendations for Exploration Spacecraft Internal Atmospheres (Exploration Atmospheres Working Group), NASA/TP-2010-216134"
+  year: 2010
+  url: https://www.nasa.gov/wp-content/uploads/2023/03/henninger-8.2-34-atm-tp216134-2010.pdf
+  in_psi: false
+- source_id: "DOI:10.1038/s41598-017-18398-4"
+  kind: journal
+  title: "Link et al. — The effect of gravity on flame spread over PMMA cylinders, Scientific Reports 8:120"
+  year: 2018
+  url: https://doi.org/10.1038/s41598-017-18398-4
+  doi: 10.1038/s41598-017-18398-4
+  in_psi: false
+- source_id: "DOI:10.1007/s12217-014-9372-2"
+  kind: journal
+  title: "Nayagam et al. — Effects of ambient oxygen and diluents on droplet extinction, Microgravity Sci. Technol. 26:65–76"
+  year: 2014
+  url: https://doi.org/10.1007/s12217-014-9372-2
+  doi: 10.1007/s12217-014-9372-2
+  in_psi: false
+- source_id: PMC7918997
+  kind: journal
+  title: "Meyer et al. — Smoke particle size from spacecraft materials (Fire Safety Journal)"
+  url: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7918997/
+  in_psi: false
+- source_id: NASA-DAFT-FACTSHEET-2025
+  kind: other
+  title: "NASA fact sheet — Dust and Aerosol Measurement Feasibility Test (DAFT)"
+  year: 2025
+  url: https://www.nasa.gov/wp-content/uploads/2025/07/dust-and-aerosol-measurement-feasibility-test-daft.pdf
+  in_psi: false
+- source_id: CHALLENGE-2026
+  kind: challenge
+  title: "NASA Space Apps 2026 challenge text — Flame in Freefall"
+  year: 2026
+  url: https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/
+  in_psi: false

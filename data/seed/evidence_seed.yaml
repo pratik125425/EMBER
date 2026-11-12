@@ -1,0 +1,229 @@
+# EMBER seed evidence (spec Appendix A). Campaign-level envelopes only, until per-test PSI
+# tables are parsed (T11). Values not listed stay unknown. Locators marked "TODO" are
+# collected into data/curated/review_todo.csv and must be filled from the opened document.
+#
+# Deviations from Appendix A (listed in the T05 summary):
+#  - SAFFIRE6:PMMA_SIBAL split into SAFFIRE6:SIBAL (thin_solid) and SAFFIRE6:PMMA (thick_solid)
+#    because fuel_class is a single enum. Same conditions and source for both.
+#  - BASS-II:LOC_1g added as the 1-g counterpart row (Link et al. 2018, LOC ≈ 0.18 at 1-g).
+#  - Source id "NASA DAFT fact sheet 2025" written as NASA-DAFT-FACTSHEET-2025 (no spaces in ids).
+
+- evidence_id: BASS-II:campaign
+  investigation: BASS-II
+  psi_id: PSI-25
+  hardware_family: MSG+SPICE-duct
+  fuel_class: thick_solid
+  fuel_name: PMMA rods/slabs (also thin fuels)
+  phenomena: [spread_opposed, spread_concurrent, extinction, limiting_oxygen]
+  gravity: microgravity
+  x_o2: {min: 0.136, max: 0.222, status: known, source_id: PSI-25, source_locator: "PSI-25_Experimental table_BASS-II.csv · col 'Calibrated initial O2 % by vol' · min–max over 129 data rows (13.6–22.2%)"}
+  o2_context: ambient
+  p_kpa: {status: unknown}          # fill from matrix
+  u_cms: {min: 0.0, max: 40.0, status: known, source_id: PSI-25, source_locator: "PSI-25 record (PSI web service JSON) · Approach: 'airflow speeds up to 40 cm/s'"}
+  flow_direction: unknown
+  granularity: per_test_table       # downgrade to campaign_summary if matrix not obtained
+  tensions: []
+  sources: [PSI-25, "DOI:10.1038/s41598-017-18398-4"]
+
+- evidence_id: BASS-II:LOC
+  investigation: BASS-II
+  psi_id: PSI-25
+  hardware_family: MSG+SPICE-duct
+  fuel_class: thick_solid
+  fuel_name: PMMA rod
+  phenomena: [limiting_oxygen]
+  gravity: microgravity
+  x_o2: {min: 0.17, max: 0.17, status: known, source_id: "DOI:10.1038/s41598-017-18398-4", source_locator: "TODO"}
+  o2_context: ambient
+  p_kpa: {status: unknown}
+  u_cms: {status: unknown}
+  granularity: paper_only
+  measurements: [loc_x_o2]
+  sources: ["DOI:10.1038/s41598-017-18398-4"]
+
+- evidence_id: BASS-II:LOC_1g
+  investigation: BASS-II (1-g comparison)
+  psi_id: PSI-25
+  hardware_family: ground lab (1-g comparison)
+  fuel_class: thick_solid
+  fuel_name: PMMA rod
+  phenomena: [limiting_oxygen]
+  gravity: 1g
+  x_o2: {min: 0.18, max: 0.18, status: known, source_id: "DOI:10.1038/s41598-017-18398-4", source_locator: "TODO"}
+  o2_context: ambient
+  p_kpa: {status: unknown}
+  u_cms: {status: unknown}
+  granularity: paper_only
+  measurements: [loc_x_o2]
+  sources: ["DOI:10.1038/s41598-017-18398-4"]
+
+- evidence_id: BASS:campaign
+  investigation: BASS
+  psi_id: PSI-26
+  hardware_family: MSG+SPICE-duct
+  fuel_class: thin_solid            # mixed; refine per test
+  phenomena: [ignition, spread_opposed, spread_concurrent, extinction]
+  gravity: microgravity
+  x_o2: {min: null, max: 0.21, status: unknown}   # "≤21%": set min once matrix parsed
+  o2_context: ambient
+  p_kpa: {status: unknown}
+  u_cms: {status: unknown}
+  granularity: per_test_table
+  sources: [PSI-26]
+
+- evidence_id: SAFFIRE6:SIBAL
+  investigation: Saffire-VI
+  psi_id: null                      # TODO-VERIFY presence in PSI
+  hardware_family: Saffire Flow Unit/Cygnus
+  fuel_class: thin_solid
+  fuel_name: SIBAL fabric
+  phenomena: [spread_concurrent, spread_opposed]
+  gravity: microgravity
+  x_o2: {min: 0.288, max: 0.310, status: known, source_id: NTRS-20240002981, source_locator: "TODO"}
+  o2_context: ambient
+  p_kpa: {min: 54.1, max: 55.2, status: known, source_id: NTRS-20240002981, source_locator: "TODO"}
+  u_cms: {status: unknown}
+  enclosure_note: "Duct half-height 15 cm (vs 25 cm in Saffire I–III)"
+  granularity: paper_only
+  tensions: ["Flame spread higher than in Saffire IV although prior model predicted lower"]
+  sources: [NTRS-20240002981]
+
+- evidence_id: SAFFIRE6:PMMA
+  investigation: Saffire-VI
+  psi_id: null                      # TODO-VERIFY presence in PSI
+  hardware_family: Saffire Flow Unit/Cygnus
+  fuel_class: thick_solid
+  fuel_name: PMMA
+  phenomena: [spread_concurrent, spread_opposed]
+  gravity: microgravity
+  x_o2: {min: 0.288, max: 0.310, status: known, source_id: NTRS-20240002981, source_locator: "TODO"}
+  o2_context: ambient
+  p_kpa: {min: 54.1, max: 55.2, status: known, source_id: NTRS-20240002981, source_locator: "TODO"}
+  u_cms: {status: unknown}
+  enclosure_note: "Duct half-height 15 cm (vs 25 cm in Saffire I–III)"
+  granularity: paper_only
+  tensions: ["Flame spread higher than in Saffire IV although prior model predicted lower"]
+  sources: [NTRS-20240002981]
+
+- evidence_id: SAFFIRE1:SIBAL
+  investigation: Saffire-I
+  psi_id: PSI-98
+  hardware_family: Saffire Flow Unit/Cygnus
+  fuel_class: thin_solid
+  fuel_name: SIBAL fabric 94 x 40.6 cm
+  phenomena: [spread_concurrent]
+  gravity: microgravity
+  x_o2: {status: unknown}           # [A] likely Cygnus cabin air — DO NOT seed until sourced
+  p_kpa: {status: unknown}
+  u_cms: {status: unknown}
+  enclosure_note: "Duct half-height 25 cm"
+  granularity: campaign_summary
+  sources: [PSI-98]
+
+- evidence_id: CFIG:campaign
+  investigation: ACME CFI-G
+  psi_id: PSI-159
+  hardware_family: ACME/CIR
+  fuel_class: gas_jet
+  fuel_name: ethane, propane, n-butane (normal and inverse flames)
+  phenomena: [cool_flame, extinction, flame_structure]
+  gravity: microgravity
+  x_o2: {status: unknown}           # ambient values per test from table
+  o2_context: unknown
+  p_kpa: {min: null, max: 200, status: unknown}   # "up to ~2 bar": confirm
+  u_cms: {status: unknown}
+  granularity: per_test_table
+  tensions: []
+  sources: [PSI-159]
+
+- evidence_id: CFIG:coolflame_2bar
+  investigation: ACME CFI-G
+  psi_id: PSI-159
+  hardware_family: ACME/CIR
+  fuel_class: gas_jet
+  fuel_name: ethane, propane, n-butane
+  phenomena: [cool_flame]
+  gravity: microgravity
+  # Spec Appendix A gave 0.39 / 200 kPa (rounded). Replaced by the exact envelope of the 7 rows in the
+  # normal-flame table where 'Cool flame?' = yes (data rows 159–162, 164, 168, 169).
+  x_o2: {min: 0.385474447, max: 0.3993, status: known, source_id: PSI-159, source_locator: "PSI-159_Experimental table_CFI-G_Normal Flames.csv · data rows 159–162, 164, 168, 169 (Cool flame? = yes) · cols 'XO2 before test', 'XO2 after test'"}
+  o2_context: ambient
+  p_kpa: {min: 202.66, max: 202.66, status: known, source_id: PSI-159, source_locator: "PSI-159_Experimental table_CFI-G_Normal Flames.csv · same rows · col 'approx p (bar)' = 2.0266 bar"}
+  u_cms: {status: unknown}
+  granularity: per_test_table
+  sources: [PSI-159]
+
+- evidence_id: CFIG:burner85
+  investigation: ACME CFI-G
+  psi_id: PSI-159
+  hardware_family: ACME/CIR
+  fuel_class: gas_jet
+  fuel_name: ethane, propane, n-butane (inverse flames)
+  phenomena: [cool_flame, flame_structure]
+  gravity: microgravity
+  x_o2: {min: null, max: 0.85, status: unknown, source_id: PSI-159, source_locator: "TODO"}
+  o2_context: burner_oxidizer_flow   # NEVER ambient
+  p_kpa: {status: unknown}
+  u_cms: {status: unknown}
+  granularity: per_test_table
+  sources: [PSI-159]
+
+- evidence_id: FLEX:table
+  investigation: FLEX
+  psi_id: PSI-69
+  hardware_family: MDCA/CIR
+  fuel_class: liquid_droplet
+  fuel_name: heptane, methanol, others
+  phenomena: [extinction, suppression, burning_rate, cool_flame]
+  gravity: microgravity
+  x_o2: {status: unknown}           # per-row from 274-row table
+  p_kpa: {status: unknown}
+  u_cms: {min: 0, max: 0, status: known, source_id: PSI-69, source_locator: "quiescent droplet (verify)"}
+  flow_direction: quiescent
+  diluent: "N2/CO2/He/Xe"
+  granularity: per_test_table
+  sources: [PSI-69, "DOI:10.1007/s12217-014-9372-2"]
+
+- evidence_id: SAMER:runs
+  investigation: SAME-R
+  psi_id: PSI-101
+  hardware_family: MSG
+  fuel_class: pyrolysis_source
+  phenomena: [smoke_particles, detector_response]
+  gravity: microgravity
+  x_o2: {status: not_applicable}
+  p_kpa: {status: unknown}
+  u_cms: {status: unknown}
+  granularity: per_test_table
+  measurements: [particle_count_per_cc, mass_conc_mg_m3, detector_signal_V]
+  sources: [PSI-101, PSI-102, PMC7918997]
+
+- evidence_id: DAFT:ISS_ambient
+  investigation: DAFT
+  psi_id: PSI-47
+  hardware_family: P-Trak/DustTrak
+  fuel_class: ambient_dust
+  phenomena: [smoke_particles]
+  gravity: microgravity
+  x_o2: {status: not_applicable}
+  p_kpa: {status: unknown}
+  u_cms: {status: unknown}
+  granularity: campaign_summary
+  measurements: [particle_count_per_cc, mass_conc_mg_m3]
+  sources: [PSI-47, NASA-DAFT-FACTSHEET-2025]
+  # values from fact sheet (<0.005 mg/m3; ~15 particles/cm3) are in measurements_seed.yaml
+
+- evidence_id: LUCI:overlay
+  investigation: LUCI (non-PSI)
+  psi_id: null
+  hardware_family: New Shepard centrifuge
+  fuel_class: thin_solid
+  fuel_name: SIBAL; 4 mm PMMA
+  phenomena: [spread_concurrent]
+  gravity: simulated_partial
+  x_o2: {min: 0.209, max: 0.209, status: unknown}   # "air": confirm before marking known
+  p_kpa: {status: unknown}                           # "normal pressure": confirm
+  u_cms: {status: unknown}
+  granularity: paper_only
+  sources: [NTRS-20250010653]
+  # OVERLAY ONLY. Excluded from ranking pool by default (gravity != µg/1g).

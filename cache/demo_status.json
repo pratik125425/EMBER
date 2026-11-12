@@ -1,0 +1,40 @@
+{
+ "created": "2026-11-12T00:43:41+00:00",
+ "question": "Which NASA experiments best inform fabric and plastic flammability in a lunar habitat at 34% oxygen and 8.2 psi?",
+ "parser": {
+  "mode": "rules",
+  "llm_error": "no ANTHROPIC_API_KEY / ANTHROPIC_AUTH_TOKEN set",
+  "fields": {
+   "x_o2": 0.34,
+   "p_kpa": 56.54,
+   "u_cms": null,
+   "gravity_g0": 0.166,
+   "phenomenon": "spread_opposed",
+   "fuel_class": "thin_solid",
+   "fuel_name": null,
+   "flow_direction": null,
+   "notes": null
+  }
+ },
+ "stability": {
+  "lunar": "cached",
+  "lunar_per_test": "cached",
+  "air": "cached",
+  "air_per_test": "cached"
+ },
+ "narration": {
+  "lunar": {
+   "mode": "template",
+   "llm_error": "no ANTHROPIC_API_KEY / ANTHROPIC_AUTH_TOKEN set",
+   "kept": 5,
+   "dropped": 0
+  },
+  "air": {
+   "mode": "template",
+   "llm_error": "no ANTHROPIC_API_KEY / ANTHROPIC_AUTH_TOKEN set",
+   "kept": 5,
+   "dropped": 0
+  }
+ },
+ "llm_answers_cached": false
+}

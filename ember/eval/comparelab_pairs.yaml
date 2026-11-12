@@ -1,0 +1,63 @@
+# CompareLab validation pairs (spec §10.7: 60 hand-labeled pairs, primary metric false-"comparable" rate).
+# STATUS: starter set of 10 pairs labeled from statements in the spec/NASA documents. The team must
+# extend to 60 and have a second annotator label them before quoting a rate. Each label cites why.
+- a: CFIG:burner85
+  b: BASS-II:campaign
+  kind: evidence
+  label: not_comparable
+  why: "CFI-G 85% is burner/oxidizer-side oxygen, not cabin atmosphere (challenge text)"
+- a: CFIG:burner85
+  b: SAFFIRE6:SIBAL
+  kind: evidence
+  label: not_comparable
+  why: "burner-side vs ambient O2; also different phenomena"
+- a: SAFFIRE1:SIBAL
+  b: SAFFIRE6:SIBAL
+  kind: evidence
+  label: comparable_with_caveats
+  why: "duct half-height 25 cm vs 15 cm; enclosure size mattered more than anticipated (NTRS 20240002981); VI is non-PSI"
+- a: BASS-II:campaign
+  b: SAFFIRE6:SIBAL
+  kind: evidence
+  label: comparable_with_caveats
+  why: "both microgravity spread, but MSG duct vs Saffire Flow Unit scale; thick vs thin fuel"
+- a: BASS:campaign
+  b: BASS-II:campaign
+  kind: evidence
+  label: comparable_with_caveats
+  why: "same MSG+SPICE duct and phenomena; fuel class differs (thin vs thick) in the seed"
+- a: FLEX:table
+  b: BASS-II:campaign
+  kind: evidence
+  label: comparable_with_caveats
+  why: "share 'extinction' as a phenomenon but droplet vs solid, MDCA vs MSG duct"
+- a: SAMER:runs
+  b: BASS-II:campaign
+  kind: evidence
+  label: not_comparable
+  why: "no shared phenomenon (smoke particles vs flame spread)"
+- a: SAMER:runs
+  b: DAFT:ISS_ambient
+  kind: evidence
+  label: comparable_with_caveats
+  why: "both particle counts in ISS air; pyrolysis smoke vs ambient dust; different hardware/instrument setups"
+- a: M-BASS2-LOC-ug
+  b: M-BASS2-LOC-1g
+  kind: measurement
+  label: comparable_with_caveats
+  why: "same LOC quantity and material; gravity regime differs (17% µg vs 18% 1-g, Link 2018)"
+- a: M-DAFT-mass
+  b: M-DAFT-count
+  kind: measurement
+  label: not_comparable
+  why: "different quantities (mass concentration vs number count)"
+- a: CFIG:burner85
+  b: CFIG:coolflame_2bar
+  kind: evidence
+  label: not_comparable
+  why: "same investigation and phenomenon, but burner/oxidizer-side O2 vs ambient 0.39 (challenge text; CFI-G papers)"
+- a: SAFFIRE6:SIBAL
+  b: SAFFIRE6:PMMA
+  kind: evidence
+  label: comparable_with_caveats
+  why: "same flight and atmosphere; thin fabric vs thick PMMA; non-PSI source"

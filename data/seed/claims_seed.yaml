@@ -1,0 +1,61 @@
+# Seed claims for the narrator (spec §11.3). Each sentence carries a claim_type and provenance.
+- claim_id: C-SAFFIRE6-TENSION
+  evidence_id: SAFFIRE6:SIBAL
+  text: "Flame spread in Saffire VI was higher than in Saffire IV although a prior model predicted lower."
+  claim_type: author_interpretation
+  source_id: NTRS-20240002981
+  source_locator: "TODO"
+- claim_id: C-SAFFIRE-ENCLOSURE
+  evidence_id: SAFFIRE6:SIBAL
+  text: "Enclosure size has more impact on the flame spread than anticipated; the Saffire duct half-height changed from 25 cm (I–III) to 15 cm (IV–VI)."
+  claim_type: author_interpretation
+  source_id: NTRS-20240002981
+  source_locator: "TODO"
+- claim_id: C-BASS2-LOC
+  evidence_id: BASS-II:LOC
+  text: "The limiting oxygen concentration for PMMA rods was about 17% in microgravity versus about 18% at 1-g."
+  claim_type: measured
+  source_id: "DOI:10.1038/s41598-017-18398-4"
+  source_locator: "TODO"
+- claim_id: C-BASS2-FLOW
+  evidence_id: BASS-II:campaign
+  text: "PMMA opposed-flow spread first rose then fell as flow increased, with no spread below about 0.6 cm/s."
+  claim_type: measured
+  source_id: "DOI:10.1038/s41598-017-18398-4"
+  source_locator: "TODO"
+- claim_id: C-RUFF-O2-VS-P
+  evidence_id: null
+  text: "Increasing oxygen has a significantly greater effect on microgravity flame spread than increasing pressure."
+  claim_type: author_interpretation
+  source_id: NTRS-20210021318
+  source_locator: "TODO"
+- claim_id: C-RUFF-LUNAR-LOC
+  evidence_id: null
+  text: "Oxygen flammability limits in lunar gravity are lower than those measured in 1-g."
+  claim_type: author_interpretation
+  source_id: NTRS-20210021318
+  source_locator: "TODO"
+- claim_id: C-FM2-GOLDILOCKS
+  evidence_id: null
+  text: "Lunar gravity may be a goldilocks zone of reduced convective heat loss while generating enough buoyant flow to replenish fresh oxygen."
+  claim_type: author_interpretation
+  source_id: NTRS-20240015307
+  source_locator: "abstract"
+- claim_id: C-CHALLENGE-NO-PARTIAL-G
+  evidence_id: null
+  text: "PSI holds no partial-gravity combustion data."
+  claim_type: author_interpretation
+  source_id: CHALLENGE-2026
+  source_locator: "challenge text, partial-gravity paragraph"
+- claim_id: C-CHALLENGE-CFIG-BURNER
+  evidence_id: CFIG:burner85
+  text: "The 85% oxygen in CFI-G refers to burner/oxidizer-side flow in inverse flames, not the cabin atmosphere."
+  claim_type: author_interpretation
+  source_id: CHALLENGE-2026
+  source_locator: "challenge text, CFI-G paragraph"
+- claim_id: C-TP216134-EXPATM
+  evidence_id: null
+  text: "The Exploration Atmosphere is 8.2 psia with 34% oxygen; an earlier 32% cap was chosen for flammability concerns."
+  claim_type: author_interpretation
+  source_id: NASA-TP-2010-216134
+  source_locator: "TODO"

@@ -1,0 +1,20 @@
+table,id,field,status,source_id,source_locator
+evidence,BASS-II:LOC,x_o2,known,DOI:10.1038/s41598-017-18398-4,TODO
+evidence,BASS-II:LOC_1g,x_o2,known,DOI:10.1038/s41598-017-18398-4,TODO
+evidence,SAFFIRE6:SIBAL,x_o2,known,NTRS-20240002981,TODO
+evidence,SAFFIRE6:SIBAL,p_kpa,known,NTRS-20240002981,TODO
+evidence,SAFFIRE6:PMMA,x_o2,known,NTRS-20240002981,TODO
+evidence,SAFFIRE6:PMMA,p_kpa,known,NTRS-20240002981,TODO
+evidence,CFIG:burner85,x_o2,unknown,PSI-159,TODO
+evidence,FLEX:table,u_cms,known,PSI-69,quiescent droplet (verify)
+measurements,M-BASS2-LOC-ug,loc_x_o2,measured,DOI:10.1038/s41598-017-18398-4,TODO
+measurements,M-BASS2-LOC-1g,loc_x_o2,measured,DOI:10.1038/s41598-017-18398-4,TODO
+measurements,M-DAFT-mass,mass_conc_mg_m3,range,NASA-DAFT-FACTSHEET-2025,TODO paragraph
+measurements,M-DAFT-count,particle_count_per_cc,measured,NASA-DAFT-FACTSHEET-2025,TODO paragraph
+claims,C-SAFFIRE6-TENSION,text,author_interpretation,NTRS-20240002981,TODO
+claims,C-SAFFIRE-ENCLOSURE,text,author_interpretation,NTRS-20240002981,TODO
+claims,C-BASS2-LOC,text,measured,DOI:10.1038/s41598-017-18398-4,TODO
+claims,C-BASS2-FLOW,text,measured,DOI:10.1038/s41598-017-18398-4,TODO
+claims,C-RUFF-O2-VS-P,text,author_interpretation,NTRS-20210021318,TODO
+claims,C-RUFF-LUNAR-LOC,text,author_interpretation,NTRS-20210021318,TODO
+claims,C-TP216134-EXPATM,text,author_interpretation,NASA-TP-2010-216134,TODO

@@ -1,0 +1,92 @@
+# EMBER gold-set queries (spec §12.1, Appendix B). STATUS: DRAFT — confirm every scenario, then freeze.
+#
+# Each query is the natural-language question plus the Scenario a user would confirm. Scenarios
+# follow the parser rules of spec §11.2: % → fraction, psia → kPa (×6.89476), Moon → 0.166 g,
+# Mars → 0.38 g, ISS/orbit → 0 g, "exploration atmosphere"/"lunar habitat" with no numbers →
+# 0.34 / 56.5 kPa; anything not stated is null (airflow is never guessed).
+# Phenomenon policy (needed because a Scenario must name one):
+#   - "flammability"/"flame spread" with fabric or thin materials → spread_concurrent;
+#     otherwise unspecified flame spread → spread_opposed.
+#   - Where the question names no phenomenon, the closest one is chosen and noted.
+# scenario: null marks a text-only question (dataset/meta questions). Those are scored for the text
+# systems and reported separately; they are excluded from the paired EMBER-vs-baseline comparison.
+# expected: "gap" marks questions the spec expects no PSI investigation to answer.
+
+- {qid: Q01, group: exploration, text: "Fabric flammability in a lunar habitat at 34% O2, 8.2 psia.",
+   scenario: {phenomenon: spread_concurrent, x_o2: 0.34, p_kpa: 56.5, gravity_g0: 0.166, fuel_class: thin_solid}}
+- {qid: Q02, group: exploration, text: "PMMA flame spread at 34% O2 with 10 cm/s ventilation.",
+   scenario: {phenomenon: spread_opposed, x_o2: 0.34, u_cms: 10.0, fuel_class: thick_solid, fuel_name: PMMA},
+   notes: "direction not stated → opposed (policy); pressure and gravity not stated"}
+- {qid: Q03, group: exploration, text: "Which tests are closest to the 10.2 psia / 26.5% option?",
+   scenario: {phenomenon: spread_opposed, x_o2: 0.265, p_kpa: 70.3}, notes: "phenomenon not stated → flame spread (policy)"}
+- {qid: Q04, group: exploration, text: "Pressurized rover cabin fire, thin materials, low airflow.",
+   scenario: {phenomenon: spread_concurrent, x_o2: 0.34, p_kpa: 56.5, gravity_g0: 0.166, fuel_class: thin_solid},
+   notes: "rover preset = Exploration Atmosphere [A]; 'low airflow' not numeric → null"}
+- {qid: Q05, group: exploration, text: "Elevated-oxygen limiting oxygen concentration for plastics.",
+   scenario: {phenomenon: limiting_oxygen, fuel_class: thick_solid}, notes: "'elevated' not numeric → x_o2 null"}
+- {qid: Q06, group: exploration, text: "What evidence exists for flame spread at reduced pressure?",
+   scenario: {phenomenon: spread_opposed}, notes: "'reduced' not numeric → p_kpa null"}
+- {qid: Q07, group: exploration, text: "Concurrent-flow spread over fabric in microgravity at about 30% O2.",
+   scenario: {phenomenon: spread_concurrent, x_o2: 0.30, gravity_g0: 0.0, fuel_class: thin_solid}}
+- {qid: Q08, group: exploration, text: "Are there any tests above 30% ambient oxygen?",
+   scenario: {phenomenon: flame_structure, x_o2: 0.30}, notes: "tests the CFI-G burner trap; 30% used as the stated threshold; phenomenon not stated"}
+- {qid: Q09, group: exploration, expected: gap, text: "Lunar gravity flame spread for PMMA.",
+   scenario: {phenomenon: spread_opposed, gravity_g0: 0.166, fuel_class: thick_solid, fuel_name: PMMA}}
+- {qid: Q10, group: exploration, expected: gap, text: "Mars habitat material flammability.",
+   scenario: {phenomenon: spread_concurrent, gravity_g0: 0.38}}
+- {qid: Q11, group: iss, text: "Flame spread over PMMA rods in low opposed flow on ISS.",
+   scenario: {phenomenon: spread_opposed, gravity_g0: 0.0, fuel_class: thick_solid, fuel_name: PMMA}, notes: "'low' flow not numeric → null"}
+- {qid: Q12, group: iss, text: "Can turning off ventilation extinguish a fire?",
+   scenario: {phenomenon: extinction, u_cms: 0.0}, notes: "'turning off' = 0 cm/s, stated"}
+- {qid: Q13, group: iss, text: "Large-scale fire growth in a spacecraft cabin.",
+   scenario: {phenomenon: spread_concurrent, gravity_g0: 0.0}}
+- {qid: Q14, group: iss, text: "Effect of enclosure size on flame spread.",
+   scenario: {phenomenon: spread_concurrent}}
+- {qid: Q15, group: iss, text: "Toxic combustion products from spacecraft materials.",
+   scenario: {phenomenon: smoke_particles, gravity_g0: 0.0}, notes: "no 'combustion products' phenomenon → smoke_particles"}
+- {qid: Q16, group: iss, text: "Ignition of thin solids in microgravity.",
+   scenario: {phenomenon: ignition, gravity_g0: 0.0, fuel_class: thin_solid}}
+- {qid: Q17, group: suppression, text: "CO2 vs helium as droplet flame suppressants.",
+   scenario: {phenomenon: suppression, fuel_class: liquid_droplet}}
+- {qid: Q18, group: suppression, text: "Radiative vs diffusive extinction of fuel droplets.",
+   scenario: {phenomenon: extinction, fuel_class: liquid_droplet}}
+- {qid: Q19, group: suppression, text: "Do flames really go out when the visible flame disappears?",
+   scenario: {phenomenon: cool_flame}}
+- {qid: Q20, group: suppression, text: "Droplet extinction at reduced oxygen.",
+   scenario: {phenomenon: extinction, fuel_class: liquid_droplet}, notes: "'reduced' not numeric → x_o2 null"}
+- {qid: Q21, group: suppression, text: "Xenon-diluted droplet combustion.",
+   scenario: {phenomenon: extinction, fuel_class: liquid_droplet}}
+- {qid: Q22, group: suppression, text: "Heat of gasification and flammability of condensed fuels (BRE).",
+   scenario: {phenomenon: burning_rate, fuel_class: gaseous_emulator}, notes: "ACME BRE is not in the registry yet"}
+- {qid: Q23, group: suppression, expected: gap, text: "Water-mist suppression in microgravity.",
+   scenario: {phenomenon: suppression, gravity_g0: 0.0}}
+- {qid: Q24, group: detection, text: "Smoke particle size from Kapton or Teflon pyrolysis.",
+   scenario: {phenomenon: smoke_particles, fuel_class: pyrolysis_source}}
+- {qid: Q25, group: detection, text: "Why spacecraft smoke detectors miss small particles.",
+   scenario: {phenomenon: detector_response}}
+- {qid: Q26, group: detection, text: "How does smoke aging change particle size?",
+   scenario: {phenomenon: smoke_particles}}
+- {qid: Q27, group: detection, text: "Distinguishing smoke from cabin dust.",
+   scenario: {phenomenon: smoke_particles}}
+- {qid: Q28, group: detection, text: "ISS ambient particulate levels.",
+   scenario: {phenomenon: smoke_particles, gravity_g0: 0.0, fuel_class: ambient_dust}}
+- {qid: Q29, group: detection, text: "Detector response during a large-scale fire (Saffire-III telemetry).",
+   scenario: {phenomenon: detector_response, gravity_g0: 0.0}}
+- {qid: Q30, group: detection, expected: gap, text: "Smoke detection at 8.2 psia.",
+   scenario: {phenomenon: detector_response, p_kpa: 56.5}}
+- {qid: Q31, group: soot, text: "Soot production in microgravity vs 1-g.",
+   scenario: {phenomenon: soot_smoke_point}}
+- {qid: Q32, group: soot, text: "Smoke point of gas jet flames in microgravity.",
+   scenario: {phenomenon: soot_smoke_point, gravity_g0: 0.0, fuel_class: gas_jet}, notes: "SPICE is not in the registry yet"}
+- {qid: Q33, group: soot, text: "Lifted flame behavior in coflow.",
+   scenario: {phenomenon: flame_structure, fuel_class: gas_jet}, notes: "SLICE is not in the registry yet"}
+- {qid: Q34, group: soot, text: "Electric-field control of flames as a gravity analog.",
+   scenario: {phenomenon: flame_structure, fuel_class: gas_jet}, notes: "ACME E-FIELD is not in the registry yet"}
+- {qid: Q35, group: soot, text: "Soot-free flame design.",
+   scenario: {phenomenon: soot_smoke_point, fuel_class: gas_jet}}
+- {qid: Q36, group: data, text: "Which datasets have per-test tables suitable for modeling?", scenario: null}
+- {qid: Q37, group: data, text: "Droplet burning-rate constants by fuel.",
+   scenario: {phenomenon: burning_rate, fuel_class: liquid_droplet}}
+- {qid: Q38, group: data, text: "Which investigations share the same hardware?", scenario: null}
+- {qid: Q39, group: data, text: "Tests varying oxygen concentration systematically.", scenario: null}
+- {qid: Q40, group: data, text: "Tests varying flow velocity systematically.", scenario: null}

@@ -1,0 +1,88 @@
+{
+ "p_topk": {
+  "BASS-II": 1.0,
+  "FLEX": 1.0,
+  "ACME CFI-G": 1.0,
+  "Saffire-VI": 1.0,
+  "BASS-II (1-g comparison)": 1.0,
+  "BASS": 0.0,
+  "Saffire-III": 0.0,
+  "Saffire-I": 0.0,
+  "SAME-R": 0.0,
+  "DAFT": 0.0
+ },
+ "stable": {
+  "BASS-II": true,
+  "FLEX": true,
+  "ACME CFI-G": true,
+  "Saffire-VI": true,
+  "BASS-II (1-g comparison)": true,
+  "BASS": false,
+  "Saffire-III": false,
+  "Saffire-I": false,
+  "SAME-R": false,
+  "DAFT": false
+ },
+ "rank_median": {
+  "BASS-II": 1.0,
+  "FLEX": 2.0,
+  "ACME CFI-G": 3.0,
+  "Saffire-VI": 4.0,
+  "BASS-II (1-g comparison)": 5.0,
+  "BASS": 6.0,
+  "Saffire-III": 7.0,
+  "Saffire-I": 8.0,
+  "SAME-R": 9.0,
+  "DAFT": 10.0
+ },
+ "rank_min": {
+  "BASS-II": 1,
+  "FLEX": 2,
+  "ACME CFI-G": 3,
+  "Saffire-VI": 2,
+  "BASS-II (1-g comparison)": 5,
+  "BASS": 6,
+  "Saffire-III": 7,
+  "Saffire-I": 8,
+  "SAME-R": 8,
+  "DAFT": 10
+ },
+ "rank_max": {
+  "BASS-II": 1,
+  "FLEX": 3,
+  "ACME CFI-G": 4,
+  "Saffire-VI": 4,
+  "BASS-II (1-g comparison)": 5,
+  "BASS": 6,
+  "Saffire-III": 7,
+  "Saffire-I": 9,
+  "SAME-R": 9,
+  "DAFT": 10
+ },
+ "kendall_tau_median": 0.9999999999999999,
+ "kendall_tau_ci": [
+  0.911111111111111,
+  0.9999999999999999
+ ],
+ "base_order": [
+  "BASS-II",
+  "FLEX",
+  "ACME CFI-G",
+  "Saffire-VI",
+  "BASS-II (1-g comparison)",
+  "BASS",
+  "Saffire-III",
+  "Saffire-I",
+  "SAME-R",
+  "DAFT"
+ ],
+ "n": 1000,
+ "k": 5,
+ "params": {
+  "prior_pct": 0.5,
+  "eps_pct": 0.3,
+  "seed": 0,
+  "stable_threshold": 0.8,
+  "group_by": "investigation"
+ }
+}

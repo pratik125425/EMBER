@@ -1,0 +1,114 @@
+[
+ {
+  "psi_id": "PSI-25",
+  "file": "PSI-25_Experimental table_BASS-II.csv",
+  "rows_in": 129,
+  "evidence_out": 129,
+  "measurements_out": 0,
+  "skipped": {},
+  "left_unknown": {
+   "p_kpa": 129,
+   "u_cms": 129
+  },
+  "notes": [
+   "pressure: no column in table → unknown",
+   "flow: fan/air display only (uncalibrated) → unknown",
+   "gravity: PSI-25 record projectType 'Microgravity Investigation', platform ISS"
+  ]
+ },
+ {
+  "psi_id": "PSI-26",
+  "file": "PSI-26_Experimental table_BASS.csv",
+  "rows_in": 122,
+  "evidence_out": 121,
+  "measurements_out": 0,
+  "skipped": {
+   "not a burn test (soot cleaning)": 1
+  },
+  "left_unknown": {},
+  "notes": [
+   "no O2/pressure/flow columns → all conditions unknown (as-run test matrix xlsx not yet mapped)",
+   "flow direction taken from the material note only when it says 'opposed'"
+  ]
+ },
+ {
+  "psi_id": "PSI-69",
+  "file": "PSI-69_Experimental table_FLEX.csv",
+  "rows_in": 274,
+  "evidence_out": 274,
+  "measurements_out": 417,
+  "skipped": {
+   "extinction diameter present but test end ≠ Extinction (not stored)": 38
+  },
+  "left_unknown": {
+   "p_kpa": 1
+  },
+  "notes": [
+   "header 'CO' read as CO2 and 'Burning rate; mm' as mm^2/s (subscripts/superscripts lost in CSV)",
+   "ambient pressure 0 mmHg treated as missing",
+   "flow: not stated in table or record → unknown",
+   "gravity: PSI-69 record projectType 'Microgravity Investigation', platform ISS; table has no space/ground column",
+   "extinction diameter is the VISIBLE-flame extinction diameter; cool flames can persist (not true extinction)"
+  ]
+ },
+ {
+  "psi_id": "PSI-100",
+  "file": "PSI-100_Experimental table_SAFFIRE-3.csv",
+  "rows_in": 2,
+  "evidence_out": 2,
+  "measurements_out": 0,
+  "skipped": {},
+  "left_unknown": {},
+  "notes": [
+   "O2 and pressure not in table → unknown",
+   "enclosure note from the Saffire VI paper (NTRS-20240002981)"
+  ]
+ },
+ {
+  "psi_id": "PSI-101",
+  "file": "PSI-101_Experimental table_SAME-R.csv",
+  "rows_in": 109,
+  "evidence_out": 109,
+  "measurements_out": 0,
+  "skipped": {},
+  "left_unknown": {},
+  "notes": [
+   "x_o2 not applicable (pyrolysis smoke source; seed convention)",
+   "pressure unknown"
+  ]
+ },
+ {
+  "psi_id": "PSI-159",
+  "file": "PSI-159_Experimental table_CFI-G_Normal Flames.csv",
+  "rows_in": 179,
+  "evidence_out": 179,
+  "measurements_out": 0,
+  "skipped": {},
+  "left_unknown": {
+   "u_cms": 179
+  },
+  "notes": [
+   "x_o2 = [after, before] ambient mole fraction (o2_context ambient)",
+   "pressure 'approx p (bar)' → kPa",
+   "flow: fuel mass flow only (mg/s), no velocity → unknown",
+   "cool_flame only where 'Cool flame?' starts with 'yes'",
+   "extinction where 'Self-ext or flow term' = SE (self-extinguished)"
+  ]
+ },
+ {
+  "psi_id": "PSI-159",
+  "file": "PSI-159_Experimental table_CFI-G_Inverse Flames.csv",
+  "rows_in": 1015,
+  "evidence_out": 154,
+  "measurements_out": 0,
+  "skipped": {
+   "blank spreadsheet row": 861
+  },
+  "left_unknown": {},
+  "notes": [
+   "XO2 = burner/oxidizer-side oxygen (o2_context burner_oxidizer_flow), never ambient",
+   "blank spreadsheet rows skipped",
+   "flow: mass flows only → unknown"
+  ]
+ }
+]

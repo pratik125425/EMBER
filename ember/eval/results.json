@@ -1,0 +1,3333 @@
+{
+ "generated_at": "2026-11-12T00:22:02+00:00",
+ "pool": [
+  "ACME CFI-G",
+  "BASS",
+  "BASS-II",
+  "BASS-II (1-g comparison)",
+  "DAFT",
+  "FLEX",
+  "SAME-R",
+  "Saffire-I",
+  "Saffire-III",
+  "Saffire-VI"
+ ],
+ "n_queries": 40,
+ "n_scenario_queries": 36,
+ "gold": {
+  "n_queries": 40,
+  "pairs": 400,
+  "labeled_A": 0,
+  "labeled_B": 0,
+  "final": 0,
+  "frozen": false,
+  "frozen_info": null
+ },
+ "unavailable": {},
+ "systems": [
+  "additive",
+  "bm25",
+  "dense",
+  "ember",
+  "hybrid",
+  "random"
+ ],
+ "ablations": [
+  "linear",
+  "midpoint",
+  "no_Mf",
+  "no_Mphi",
+  "no_Q",
+  "uniform_eps"
+ ],
+ "rankings_top5": {
+  "random": {
+   "Q01": [
+    "SAME-R",
+    "BASS",
+    "ACME CFI-G",
+    "BASS-II (1-g comparison)",
+    "DAFT"
+   ],
+   "Q02": [
+    "BASS-II (1-g comparison)",
+    "DAFT",
+    "BASS-II",
+    "Saffire-I",
+    "SAME-R"
+   ],
+   "Q03": [
+    "ACME CFI-G",
+    "SAME-R",
+    "Saffire-VI",
+    "DAFT",
+    "Saffire-I"
+   ],
+   "Q04": [
+    "BASS-II",
+    "BASS",
+    "Saffire-VI",
+    "Saffire-I",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q05": [
+    "SAME-R",
+    "BASS-II",
+    "FLEX",
+    "ACME CFI-G",
+    "DAFT"
+   ],
+   "Q06": [
+    "BASS-II (1-g comparison)",
+    "Saffire-III",
+    "DAFT",
+    "SAME-R",
+    "BASS-II"
+   ],
+   "Q07": [
+    "BASS",
+    "BASS-II (1-g comparison)",
+    "Saffire-I",
+    "ACME CFI-G",
+    "Saffire-VI"
+   ],
+   "Q08": [
+    "SAME-R",
+    "Saffire-I",
+    "BASS-II",
+    "DAFT",
+    "BASS"
+   ],
+   "Q09": [
+    "FLEX",
+    "BASS-II (1-g comparison)",
+    "SAME-R",
+    "Saffire-III",
+    "Saffire-VI"
+   ],
+   "Q10": [
+    "Saffire-III",
+    "Saffire-I",
+    "FLEX",
+    "BASS-II (1-g comparison)",
+    "ACME CFI-G"
+   ],
+   "Q11": [
+    "Saffire-VI",
+    "Saffire-III",
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q12": [
+    "ACME CFI-G",
+    "SAME-R",
+    "BASS-II",
+    "FLEX",
+    "Saffire-I"
+   ],
+   "Q13": [
+    "BASS-II (1-g comparison)",
+    "Saffire-VI",
+    "DAFT",
+    "ACME CFI-G",
+    "BASS"
+   ],
+   "Q14": [
+    "ACME CFI-G",
+    "Saffire-VI",
+    "Saffire-III",
+    "BASS-II (1-g comparison)",
+    "BASS"
+   ],
+   "Q15": [
+    "BASS",
+    "Saffire-VI",
+    "Saffire-I",
+    "FLEX",
+    "BASS-II"
+   ],
+   "Q16": [
+    "Saffire-VI",
+    "DAFT",
+    "Saffire-III",
+    "BASS-II",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q17": [
+    "BASS-II",
+    "SAME-R",
+    "FLEX",
+    "BASS-II (1-g comparison)",
+    "BASS"
+   ],
+   "Q18": [
+    "Saffire-III",
+    "Saffire-VI",
+    "BASS-II",
+    "FLEX",
+    "ACME CFI-G"
+   ],
+   "Q19": [
+    "BASS-II",
+    "Saffire-I",
+    "Saffire-VI",
+    "ACME CFI-G",
+    "DAFT"
+   ],
+   "Q20": [
+    "Saffire-III",
+    "DAFT",
+    "ACME CFI-G",
+    "Saffire-VI",
+    "BASS-II"
+   ],
+   "Q21": [
+    "Saffire-III",
+    "ACME CFI-G",
+    "Saffire-VI",
+    "BASS-II",
+    "Saffire-I"
+   ],
+   "Q22": [
+    "FLEX",
+    "Saffire-III",
+    "BASS-II (1-g comparison)",
+    "BASS-II",
+    "SAME-R"
+   ],
+   "Q23": [
+    "Saffire-III",
+    "BASS-II",
+    "Saffire-I",
+    "SAME-R",
+    "ACME CFI-G"
+   ],
+   "Q24": [
+    "FLEX",
+    "BASS",
+    "SAME-R",
+    "BASS-II (1-g comparison)",
+    "DAFT"
+   ],
+   "Q25": [
+    "Saffire-III",
+    "DAFT",
+    "ACME CFI-G",
+    "Saffire-VI",
+    "SAME-R"
+   ],
+   "Q26": [
+    "BASS",
+    "FLEX",
+    "BASS-II",
+    "Saffire-VI",
+    "DAFT"
+   ],
+   "Q27": [
+    "BASS-II (1-g comparison)",
+    "Saffire-I",
+    "FLEX",
+    "SAME-R",
+    "DAFT"
+   ],
+   "Q28": [
+    "BASS",
+    "BASS-II",
+    "Saffire-I",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q29": [
+    "BASS-II",
+    "DAFT",
+    "Saffire-III",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q30": [
+    "Saffire-I",
+    "BASS",
+    "SAME-R",
+    "BASS-II (1-g comparison)",
+    "FLEX"
+   ],
+   "Q31": [
+    "BASS-II (1-g comparison)",
+    "Saffire-VI",
+    "BASS-II",
+    "SAME-R",
+    "FLEX"
+   ],
+   "Q32": [
+    "BASS",
+    "SAME-R",
+    "BASS-II (1-g comparison)",
+    "Saffire-I",
+    "Saffire-III"
+   ],
+   "Q33": [
+    "ACME CFI-G",
+    "DAFT",
+    "Saffire-I",
+    "FLEX",
+    "BASS"
+   ],
+   "Q34": [
+    "BASS-II",
+    "ACME CFI-G",
+    "SAME-R",
+    "Saffire-III",
+    "FLEX"
+   ],
+   "Q35": [
+    "BASS-II (1-g comparison)",
+    "BASS-II",
+    "Saffire-VI",
+    "DAFT",
+    "SAME-R"
+   ],
+   "Q36": [
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-VI",
+    "DAFT",
+    "FLEX"
+   ],
+   "Q37": [
+    "Saffire-I",
+    "DAFT",
+    "BASS-II",
+    "ACME CFI-G",
+    "FLEX"
+   ],
+   "Q38": [
+    "BASS-II",
+    "SAME-R",
+    "FLEX",
+    "BASS",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q39": [
+    "SAME-R",
+    "Saffire-I",
+    "Saffire-VI",
+    "DAFT",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q40": [
+    "BASS-II",
+    "Saffire-III",
+    "Saffire-VI",
+    "Saffire-I",
+    "BASS-II (1-g comparison)"
+   ]
+  },
+  "bm25": {
+   "Q01": [
+    "BASS-II (1-g comparison)",
+    "BASS-II",
+    "Saffire-III",
+    "Saffire-I",
+    "FLEX"
+   ],
+   "Q02": [
+    "BASS-II",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)",
+    "BASS",
+    "Saffire-III"
+   ],
+   "Q03": [
+    "FLEX",
+    "BASS-II (1-g comparison)",
+    "BASS-II",
+    "SAME-R",
+    "ACME CFI-G"
+   ],
+   "Q04": [
+    "Saffire-VI",
+    "BASS-II (1-g comparison)",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q05": [
+    "BASS-II",
+    "FLEX",
+    "ACME CFI-G",
+    "BASS",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q06": [
+    "FLEX",
+    "Saffire-VI",
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "BASS"
+   ],
+   "Q07": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "BASS-II (1-g comparison)",
+    "Saffire-VI"
+   ],
+   "Q08": [
+    "FLEX",
+    "Saffire-III",
+    "BASS",
+    "BASS-II (1-g comparison)",
+    "BASS-II"
+   ],
+   "Q09": [
+    "BASS-II",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)",
+    "BASS",
+    "Saffire-III"
+   ],
+   "Q10": [
+    "BASS-II (1-g comparison)",
+    "BASS-II",
+    "Saffire-III",
+    "Saffire-I",
+    "BASS"
+   ],
+   "Q11": [
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "Saffire-VI",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q12": [
+    "BASS",
+    "BASS-II (1-g comparison)",
+    "BASS-II",
+    "Saffire-III",
+    "Saffire-I"
+   ],
+   "Q13": [
+    "Saffire-VI",
+    "Saffire-III",
+    "Saffire-I",
+    "ACME CFI-G",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q14": [
+    "Saffire-VI",
+    "BASS",
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "FLEX"
+   ],
+   "Q15": [
+    "Saffire-VI",
+    "Saffire-III",
+    "Saffire-I",
+    "BASS-II (1-g comparison)",
+    "BASS-II"
+   ],
+   "Q16": [
+    "Saffire-VI",
+    "BASS-II (1-g comparison)",
+    "BASS-II",
+    "FLEX",
+    "DAFT"
+   ],
+   "Q17": [
+    "FLEX",
+    "SAME-R",
+    "Saffire-III",
+    "Saffire-I",
+    "Saffire-VI"
+   ],
+   "Q18": [
+    "FLEX",
+    "BASS-II (1-g comparison)",
+    "BASS-II",
+    "ACME CFI-G",
+    "BASS"
+   ],
+   "Q19": [
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)",
+    "BASS-II"
+   ],
+   "Q20": [
+    "FLEX",
+    "SAME-R",
+    "BASS-II (1-g comparison)",
+    "BASS-II",
+    "ACME CFI-G"
+   ],
+   "Q21": [
+    "FLEX",
+    "SAME-R",
+    "BASS-II (1-g comparison)",
+    "BASS-II",
+    "BASS"
+   ],
+   "Q22": [
+    "FLEX",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)",
+    "BASS-II",
+    "Saffire-III"
+   ],
+   "Q23": [
+    "BASS-II (1-g comparison)",
+    "BASS-II",
+    "FLEX",
+    "DAFT",
+    "BASS"
+   ],
+   "Q24": [
+    "SAME-R",
+    "DAFT",
+    "FLEX",
+    "Saffire-VI",
+    "BASS"
+   ],
+   "Q25": [
+    "SAME-R",
+    "DAFT",
+    "Saffire-VI",
+    "Saffire-III",
+    "Saffire-I"
+   ],
+   "Q26": [
+    "SAME-R",
+    "DAFT",
+    "Saffire-VI",
+    "FLEX",
+    "BASS"
+   ],
+   "Q27": [
+    "DAFT",
+    "SAME-R",
+    "ACME CFI-G",
+    "BASS",
+    "BASS-II"
+   ],
+   "Q28": [
+    "FLEX",
+    "DAFT",
+    "SAME-R",
+    "BASS-II (1-g comparison)",
+    "BASS-II"
+   ],
+   "Q29": [
+    "Saffire-III",
+    "SAME-R",
+    "Saffire-I",
+    "Saffire-VI",
+    "FLEX"
+   ],
+   "Q30": [
+    "SAME-R",
+    "DAFT",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)",
+    "BASS-II"
+   ],
+   "Q31": [
+    "FLEX",
+    "BASS-II (1-g comparison)",
+    "BASS-II",
+    "Saffire-VI",
+    "DAFT"
+   ],
+   "Q32": [
+    "SAME-R",
+    "BASS",
+    "ACME CFI-G",
+    "DAFT",
+    "BASS-II"
+   ],
+   "Q33": [
+    "Saffire-VI",
+    "FLEX",
+    "Saffire-III",
+    "Saffire-I",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q34": [
+    "ACME CFI-G",
+    "BASS",
+    "DAFT",
+    "BASS-II (1-g comparison)",
+    "BASS-II"
+   ],
+   "Q35": [
+    "BASS-II (1-g comparison)",
+    "BASS-II",
+    "Saffire-III",
+    "Saffire-I",
+    "FLEX"
+   ],
+   "Q36": [
+    "ACME CFI-G",
+    "BASS",
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "DAFT"
+   ],
+   "Q37": [
+    "FLEX",
+    "SAME-R",
+    "ACME CFI-G",
+    "BASS",
+    "BASS-II"
+   ],
+   "Q38": [
+    "FLEX",
+    "SAME-R",
+    "ACME CFI-G",
+    "BASS",
+    "BASS-II"
+   ],
+   "Q39": [
+    "FLEX",
+    "BASS-II (1-g comparison)",
+    "BASS-II",
+    "SAME-R",
+    "ACME CFI-G"
+   ],
+   "Q40": [
+    "FLEX",
+    "BASS-II",
+    "ACME CFI-G",
+    "BASS-II (1-g comparison)",
+    "BASS"
+   ]
+  },
+  "dense": {
+   "Q01": [
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "Saffire-I",
+    "FLEX",
+    "BASS"
+   ],
+   "Q02": [
+    "BASS-II",
+    "Saffire-VI",
+    "ACME CFI-G",
+    "FLEX",
+    "BASS"
+   ],
+   "Q03": [
+    "SAME-R",
+    "FLEX",
+    "BASS-II (1-g comparison)",
+    "DAFT",
+    "BASS-II"
+   ],
+   "Q04": [
+    "BASS",
+    "Saffire-I",
+    "Saffire-VI",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q05": [
+    "BASS-II",
+    "FLEX",
+    "BASS-II (1-g comparison)",
+    "Saffire-VI",
+    "ACME CFI-G"
+   ],
+   "Q06": [
+    "Saffire-I",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q07": [
+    "BASS",
+    "BASS-II (1-g comparison)",
+    "BASS-II",
+    "FLEX",
+    "Saffire-I"
+   ],
+   "Q08": [
+    "FLEX",
+    "BASS-II",
+    "ACME CFI-G",
+    "BASS-II (1-g comparison)",
+    "SAME-R"
+   ],
+   "Q09": [
+    "BASS-II",
+    "FLEX",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)",
+    "BASS"
+   ],
+   "Q10": [
+    "BASS-II",
+    "Saffire-I",
+    "BASS-II (1-g comparison)",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q11": [
+    "ACME CFI-G",
+    "BASS",
+    "BASS-II",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q12": [
+    "BASS",
+    "Saffire-VI",
+    "Saffire-I",
+    "FLEX",
+    "ACME CFI-G"
+   ],
+   "Q13": [
+    "Saffire-VI",
+    "Saffire-I",
+    "Saffire-III",
+    "BASS",
+    "FLEX"
+   ],
+   "Q14": [
+    "BASS",
+    "Saffire-VI",
+    "ACME CFI-G",
+    "BASS-II (1-g comparison)",
+    "BASS-II"
+   ],
+   "Q15": [
+    "Saffire-VI",
+    "BASS-II (1-g comparison)",
+    "BASS-II",
+    "FLEX",
+    "BASS"
+   ],
+   "Q16": [
+    "BASS-II (1-g comparison)",
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "SAME-R"
+   ],
+   "Q17": [
+    "FLEX",
+    "BASS-II (1-g comparison)",
+    "BASS-II",
+    "BASS",
+    "Saffire-VI"
+   ],
+   "Q18": [
+    "FLEX",
+    "SAME-R",
+    "BASS-II (1-g comparison)",
+    "BASS-II",
+    "Saffire-VI"
+   ],
+   "Q19": [
+    "FLEX",
+    "ACME CFI-G",
+    "BASS",
+    "Saffire-VI",
+    "BASS-II"
+   ],
+   "Q20": [
+    "FLEX",
+    "SAME-R",
+    "BASS-II",
+    "ACME CFI-G",
+    "DAFT"
+   ],
+   "Q21": [
+    "FLEX",
+    "SAME-R",
+    "ACME CFI-G",
+    "Saffire-VI",
+    "BASS"
+   ],
+   "Q22": [
+    "ACME CFI-G",
+    "BASS-II (1-g comparison)",
+    "FLEX",
+    "BASS",
+    "BASS-II"
+   ],
+   "Q23": [
+    "SAME-R",
+    "FLEX",
+    "DAFT",
+    "BASS",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q24": [
+    "SAME-R",
+    "DAFT",
+    "FLEX",
+    "BASS-II",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q25": [
+    "SAME-R",
+    "DAFT",
+    "Saffire-III",
+    "Saffire-VI",
+    "Saffire-I"
+   ],
+   "Q26": [
+    "SAME-R",
+    "DAFT",
+    "FLEX",
+    "Saffire-I",
+    "Saffire-III"
+   ],
+   "Q27": [
+    "SAME-R",
+    "DAFT",
+    "Saffire-I",
+    "Saffire-VI",
+    "BASS"
+   ],
+   "Q28": [
+    "DAFT",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-VI",
+    "SAME-R"
+   ],
+   "Q29": [
+    "Saffire-I",
+    "Saffire-VI",
+    "Saffire-III",
+    "FLEX",
+    "BASS"
+   ],
+   "Q30": [
+    "DAFT",
+    "SAME-R",
+    "Saffire-I",
+    "FLEX",
+    "BASS-II"
+   ],
+   "Q31": [
+    "FLEX",
+    "SAME-R",
+    "BASS-II (1-g comparison)",
+    "BASS-II",
+    "BASS"
+   ],
+   "Q32": [
+    "FLEX",
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "SAME-R",
+    "BASS"
+   ],
+   "Q33": [
+    "BASS",
+    "Saffire-I",
+    "FLEX",
+    "ACME CFI-G",
+    "BASS-II"
+   ],
+   "Q34": [
+    "FLEX",
+    "BASS",
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "Saffire-III"
+   ],
+   "Q35": [
+    "BASS",
+    "Saffire-VI",
+    "FLEX",
+    "ACME CFI-G",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q36": [
+    "SAME-R",
+    "FLEX",
+    "BASS-II (1-g comparison)",
+    "BASS-II",
+    "ACME CFI-G"
+   ],
+   "Q37": [
+    "FLEX",
+    "SAME-R",
+    "ACME CFI-G",
+    "BASS-II (1-g comparison)",
+    "BASS-II"
+   ],
+   "Q38": [
+    "SAME-R",
+    "Saffire-I",
+    "Saffire-VI",
+    "Saffire-III",
+    "FLEX"
+   ],
+   "Q39": [
+    "FLEX",
+    "BASS-II",
+    "ACME CFI-G",
+    "SAME-R",
+    "Saffire-I"
+   ],
+   "Q40": [
+    "Saffire-I",
+    "FLEX",
+    "Saffire-III",
+    "BASS-II (1-g comparison)",
+    "ACME CFI-G"
+   ]
+  },
+  "hybrid": {
+   "Q01": [
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "Saffire-I",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q02": [
+    "BASS-II",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q03": [
+    "FLEX",
+    "SAME-R",
+    "BASS-II (1-g comparison)",
+    "BASS-II",
+    "DAFT"
+   ],
+   "Q04": [
+    "Saffire-VI",
+    "BASS",
+    "BASS-II (1-g comparison)",
+    "Saffire-I",
+    "BASS-II"
+   ],
+   "Q05": [
+    "BASS-II",
+    "FLEX",
+    "ACME CFI-G",
+    "BASS-II (1-g comparison)",
+    "BASS"
+   ],
+   "Q06": [
+    "FLEX",
+    "BASS",
+    "Saffire-I",
+    "BASS-II (1-g comparison)",
+    "Saffire-VI"
+   ],
+   "Q07": [
+    "BASS",
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "Saffire-III",
+    "FLEX"
+   ],
+   "Q08": [
+    "FLEX",
+    "BASS-II",
+    "Saffire-III",
+    "BASS-II (1-g comparison)",
+    "ACME CFI-G"
+   ],
+   "Q09": [
+    "BASS-II",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)",
+    "FLEX",
+    "BASS"
+   ],
+   "Q10": [
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "Saffire-I",
+    "Saffire-III",
+    "FLEX"
+   ],
+   "Q11": [
+    "BASS-II",
+    "ACME CFI-G",
+    "BASS",
+    "BASS-II (1-g comparison)",
+    "Saffire-VI"
+   ],
+   "Q12": [
+    "BASS",
+    "Saffire-VI",
+    "Saffire-I",
+    "BASS-II",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q13": [
+    "Saffire-VI",
+    "Saffire-I",
+    "Saffire-III",
+    "ACME CFI-G",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q14": [
+    "BASS",
+    "Saffire-VI",
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "ACME CFI-G"
+   ],
+   "Q15": [
+    "Saffire-VI",
+    "BASS-II (1-g comparison)",
+    "BASS-II",
+    "Saffire-I",
+    "Saffire-III"
+   ],
+   "Q16": [
+    "BASS-II (1-g comparison)",
+    "FLEX",
+    "BASS-II",
+    "Saffire-VI",
+    "BASS"
+   ],
+   "Q17": [
+    "FLEX",
+    "BASS-II (1-g comparison)",
+    "SAME-R",
+    "BASS-II",
+    "Saffire-VI"
+   ],
+   "Q18": [
+    "FLEX",
+    "BASS-II (1-g comparison)",
+    "BASS-II",
+    "SAME-R",
+    "ACME CFI-G"
+   ],
+   "Q19": [
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q20": [
+    "FLEX",
+    "SAME-R",
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "ACME CFI-G"
+   ],
+   "Q21": [
+    "FLEX",
+    "SAME-R",
+    "ACME CFI-G",
+    "BASS-II (1-g comparison)",
+    "BASS-II"
+   ],
+   "Q22": [
+    "FLEX",
+    "BASS-II (1-g comparison)",
+    "Saffire-VI",
+    "ACME CFI-G",
+    "BASS-II"
+   ],
+   "Q23": [
+    "FLEX",
+    "BASS-II (1-g comparison)",
+    "DAFT",
+    "BASS-II",
+    "BASS"
+   ],
+   "Q24": [
+    "SAME-R",
+    "DAFT",
+    "FLEX",
+    "BASS-II",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q25": [
+    "SAME-R",
+    "DAFT",
+    "Saffire-III",
+    "Saffire-VI",
+    "Saffire-I"
+   ],
+   "Q26": [
+    "SAME-R",
+    "DAFT",
+    "FLEX",
+    "Saffire-VI",
+    "BASS"
+   ],
+   "Q27": [
+    "DAFT",
+    "SAME-R",
+    "ACME CFI-G",
+    "BASS",
+    "Saffire-I"
+   ],
+   "Q28": [
+    "DAFT",
+    "FLEX",
+    "ACME CFI-G",
+    "SAME-R",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q29": [
+    "Saffire-I",
+    "Saffire-III",
+    "Saffire-VI",
+    "FLEX",
+    "SAME-R"
+   ],
+   "Q30": [
+    "DAFT",
+    "SAME-R",
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "Saffire-I"
+   ],
+   "Q31": [
+    "FLEX",
+    "BASS-II (1-g comparison)",
+    "BASS-II",
+    "SAME-R",
+    "Saffire-VI"
+   ],
+   "Q32": [
+    "SAME-R",
+    "BASS",
+    "BASS-II",
+    "FLEX",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q33": [
+    "FLEX",
+    "Saffire-I",
+    "BASS",
+    "Saffire-VI",
+    "Saffire-III"
+   ],
+   "Q34": [
+    "BASS",
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "ACME CFI-G",
+    "FLEX"
+   ],
+   "Q35": [
+    "BASS-II (1-g comparison)",
+    "BASS",
+    "Saffire-VI",
+    "FLEX",
+    "BASS-II"
+   ],
+   "Q36": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "SAME-R",
+    "FLEX"
+   ],
+   "Q37": [
+    "FLEX",
+    "SAME-R",
+    "ACME CFI-G",
+    "BASS-II (1-g comparison)",
+    "BASS-II"
+   ],
+   "Q38": [
+    "SAME-R",
+    "FLEX",
+    "Saffire-I",
+    "BASS-II",
+    "ACME CFI-G"
+   ],
+   "Q39": [
+    "FLEX",
+    "BASS-II",
+    "ACME CFI-G",
+    "SAME-R",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q40": [
+    "FLEX",
+    "Saffire-I",
+    "BASS-II",
+    "ACME CFI-G",
+    "BASS-II (1-g comparison)"
+   ]
+  },
+  "additive": {
+   "Q01": [
+    "Saffire-VI",
+    "BASS",
+    "Saffire-III",
+    "BASS-II",
+    "Saffire-I"
+   ],
+   "Q02": [
+    "Saffire-VI",
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "ACME CFI-G"
+   ],
+   "Q03": [
+    "Saffire-VI",
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "FLEX"
+   ],
+   "Q04": [
+    "Saffire-VI",
+    "BASS",
+    "Saffire-III",
+    "BASS-II",
+    "Saffire-I"
+   ],
+   "Q05": [
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "BASS",
+    "Saffire-VI",
+    "ACME CFI-G"
+   ],
+   "Q06": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-VI",
+    "ACME CFI-G"
+   ],
+   "Q07": [
+    "Saffire-VI",
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-I"
+   ],
+   "Q08": [
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-VI",
+    "BASS-II",
+    "BASS"
+   ],
+   "Q09": [
+    "BASS-II",
+    "BASS",
+    "Saffire-VI",
+    "Saffire-III",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q10": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-I",
+    "Saffire-VI"
+   ],
+   "Q11": [
+    "BASS-II",
+    "BASS",
+    "Saffire-VI",
+    "Saffire-III",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q12": [
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q13": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-I",
+    "Saffire-VI"
+   ],
+   "Q14": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-I",
+    "Saffire-VI"
+   ],
+   "Q15": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q16": [
+    "BASS",
+    "Saffire-III",
+    "BASS-II",
+    "Saffire-I",
+    "Saffire-VI"
+   ],
+   "Q17": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q18": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q19": [
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "Saffire-III"
+   ],
+   "Q20": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q21": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q22": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q23": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q24": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q25": [
+    "SAME-R",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX"
+   ],
+   "Q26": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q27": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q28": [
+    "DAFT",
+    "SAME-R",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q29": [
+    "SAME-R",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX"
+   ],
+   "Q30": [
+    "SAME-R",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-VI",
+    "BASS-II"
+   ],
+   "Q31": [
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q32": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q33": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q34": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q35": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q37": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ]
+  },
+  "ember": {
+   "Q01": [
+    "BASS-II",
+    "Saffire-VI",
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q02": [
+    "BASS-II",
+    "Saffire-VI",
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q03": [
+    "BASS-II",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q04": [
+    "BASS-II",
+    "Saffire-VI",
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q05": [
+    "BASS-II",
+    "BASS",
+    "BASS-II (1-g comparison)",
+    "ACME CFI-G",
+    "FLEX"
+   ],
+   "Q06": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "ACME CFI-G",
+    "FLEX"
+   ],
+   "Q07": [
+    "BASS-II",
+    "Saffire-VI",
+    "FLEX",
+    "ACME CFI-G",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q08": [
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q09": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q10": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-I",
+    "ACME CFI-G"
+   ],
+   "Q11": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q12": [
+    "BASS-II",
+    "FLEX",
+    "SAME-R",
+    "Saffire-III",
+    "BASS"
+   ],
+   "Q13": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-I",
+    "ACME CFI-G"
+   ],
+   "Q14": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-I",
+    "ACME CFI-G"
+   ],
+   "Q15": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q16": [
+    "BASS",
+    "Saffire-III",
+    "BASS-II",
+    "Saffire-I",
+    "ACME CFI-G"
+   ],
+   "Q17": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q18": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q19": [
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "Saffire-III"
+   ],
+   "Q20": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q21": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q22": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q23": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q24": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q25": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q26": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q27": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q28": [
+    "DAFT",
+    "SAME-R",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q29": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q30": [
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-VI",
+    "SAME-R",
+    "DAFT"
+   ],
+   "Q31": [
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q32": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q33": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q34": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q35": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q37": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ]
+  },
+  "ember:uniform_eps": {
+   "Q01": [
+    "BASS-II",
+    "Saffire-VI",
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q02": [
+    "BASS-II",
+    "Saffire-VI",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q03": [
+    "BASS-II",
+    "FLEX",
+    "ACME CFI-G",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q04": [
+    "BASS-II",
+    "Saffire-VI",
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q05": [
+    "BASS-II",
+    "BASS",
+    "BASS-II (1-g comparison)",
+    "ACME CFI-G",
+    "FLEX"
+   ],
+   "Q06": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "ACME CFI-G",
+    "FLEX"
+   ],
+   "Q07": [
+    "BASS-II",
+    "Saffire-VI",
+    "FLEX",
+    "ACME CFI-G",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q08": [
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q09": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q10": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-I",
+    "ACME CFI-G"
+   ],
+   "Q11": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q12": [
+    "BASS-II",
+    "FLEX",
+    "SAME-R",
+    "Saffire-III",
+    "BASS"
+   ],
+   "Q13": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-I",
+    "ACME CFI-G"
+   ],
+   "Q14": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-I",
+    "ACME CFI-G"
+   ],
+   "Q15": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q16": [
+    "BASS",
+    "Saffire-III",
+    "BASS-II",
+    "Saffire-I",
+    "ACME CFI-G"
+   ],
+   "Q17": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q18": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q19": [
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "Saffire-III"
+   ],
+   "Q20": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q21": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q22": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q23": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q24": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q25": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q26": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q27": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q28": [
+    "DAFT",
+    "SAME-R",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q29": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q30": [
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-VI",
+    "SAME-R",
+    "DAFT"
+   ],
+   "Q31": [
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q32": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q33": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q34": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q35": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q37": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ]
+  },
+  "ember:no_Q": {
+   "Q01": [
+    "Saffire-VI",
+    "BASS-II",
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q02": [
+    "Saffire-VI",
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "ACME CFI-G",
+    "FLEX"
+   ],
+   "Q03": [
+    "Saffire-VI",
+    "BASS-II",
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q04": [
+    "Saffire-VI",
+    "BASS-II",
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q05": [
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "BASS",
+    "Saffire-VI",
+    "ACME CFI-G"
+   ],
+   "Q06": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q07": [
+    "Saffire-VI",
+    "BASS-II",
+    "FLEX",
+    "ACME CFI-G",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q08": [
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-VI",
+    "BASS-II",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q09": [
+    "BASS-II",
+    "BASS",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)",
+    "Saffire-III"
+   ],
+   "Q10": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-I",
+    "Saffire-VI"
+   ],
+   "Q11": [
+    "BASS-II",
+    "BASS",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)",
+    "Saffire-III"
+   ],
+   "Q12": [
+    "BASS-II",
+    "FLEX",
+    "SAME-R",
+    "Saffire-III",
+    "BASS"
+   ],
+   "Q13": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-I",
+    "Saffire-VI"
+   ],
+   "Q14": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-I",
+    "Saffire-VI"
+   ],
+   "Q15": [
+    "DAFT",
+    "SAME-R",
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "BASS"
+   ],
+   "Q16": [
+    "BASS",
+    "Saffire-III",
+    "BASS-II",
+    "Saffire-I",
+    "Saffire-VI"
+   ],
+   "Q17": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q18": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q19": [
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q20": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q21": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q22": [
+    "FLEX",
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q23": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q24": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "BASS"
+   ],
+   "Q25": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "BASS"
+   ],
+   "Q26": [
+    "DAFT",
+    "SAME-R",
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "BASS"
+   ],
+   "Q27": [
+    "DAFT",
+    "SAME-R",
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "BASS"
+   ],
+   "Q28": [
+    "DAFT",
+    "SAME-R",
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "BASS"
+   ],
+   "Q29": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "BASS"
+   ],
+   "Q30": [
+    "Saffire-VI",
+    "ACME CFI-G",
+    "FLEX",
+    "SAME-R",
+    "DAFT"
+   ],
+   "Q31": [
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "BASS",
+    "ACME CFI-G",
+    "DAFT"
+   ],
+   "Q32": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "BASS",
+    "DAFT"
+   ],
+   "Q33": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "BASS",
+    "DAFT"
+   ],
+   "Q34": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "BASS",
+    "DAFT"
+   ],
+   "Q35": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "BASS",
+    "DAFT"
+   ],
+   "Q37": [
+    "FLEX",
+    "BASS-II",
+    "BASS-II (1-g comparison)",
+    "BASS",
+    "ACME CFI-G"
+   ]
+  },
+  "ember:no_Mf": {
+   "Q01": [
+    "BASS-II",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q02": [
+    "BASS-II",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q03": [
+    "BASS-II",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q04": [
+    "BASS-II",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q05": [
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q06": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "ACME CFI-G",
+    "FLEX"
+   ],
+   "Q07": [
+    "BASS-II",
+    "FLEX",
+    "ACME CFI-G",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q08": [
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q09": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "ACME CFI-G",
+    "FLEX"
+   ],
+   "Q10": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-I",
+    "ACME CFI-G"
+   ],
+   "Q11": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "ACME CFI-G",
+    "FLEX"
+   ],
+   "Q12": [
+    "BASS-II",
+    "FLEX",
+    "SAME-R",
+    "Saffire-III",
+    "BASS"
+   ],
+   "Q13": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-I",
+    "ACME CFI-G"
+   ],
+   "Q14": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-I",
+    "ACME CFI-G"
+   ],
+   "Q15": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q16": [
+    "BASS",
+    "BASS-II",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q17": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q18": [
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q19": [
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "Saffire-III"
+   ],
+   "Q20": [
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q21": [
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q22": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q23": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q24": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q25": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q26": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q27": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q28": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q29": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q30": [
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-VI",
+    "SAME-R",
+    "DAFT"
+   ],
+   "Q31": [
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q32": [
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q33": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q34": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q35": [
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q37": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ]
+  },
+  "ember:no_Mphi": {
+   "Q01": [
+    "BASS-II",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q02": [
+    "BASS-II",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q03": [
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q04": [
+    "BASS-II",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q05": [
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q06": [
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q07": [
+    "BASS-II",
+    "FLEX",
+    "ACME CFI-G",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q08": [
+    "FLEX",
+    "ACME CFI-G",
+    "BASS-II",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q09": [
+    "BASS-II",
+    "BASS",
+    "BASS-II (1-g comparison)",
+    "ACME CFI-G",
+    "FLEX"
+   ],
+   "Q10": [
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q11": [
+    "BASS-II",
+    "BASS",
+    "BASS-II (1-g comparison)",
+    "ACME CFI-G",
+    "FLEX"
+   ],
+   "Q12": [
+    "BASS-II",
+    "FLEX",
+    "SAME-R",
+    "Saffire-III",
+    "BASS"
+   ],
+   "Q13": [
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q14": [
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q15": [
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q16": [
+    "BASS",
+    "Saffire-III",
+    "BASS-II",
+    "Saffire-I",
+    "ACME CFI-G"
+   ],
+   "Q17": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q18": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q19": [
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q20": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q21": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q22": [
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q23": [
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q24": [
+    "SAME-R",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX"
+   ],
+   "Q25": [
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q26": [
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q27": [
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q28": [
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX"
+   ],
+   "Q29": [
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q30": [
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-VI",
+    "BASS-II",
+    "BASS"
+   ],
+   "Q31": [
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q32": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q33": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q34": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q35": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q37": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ]
+  },
+  "ember:midpoint": {
+   "Q01": [
+    "BASS-II",
+    "Saffire-VI",
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q02": [
+    "BASS-II",
+    "Saffire-VI",
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q03": [
+    "BASS-II",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q04": [
+    "BASS-II",
+    "Saffire-VI",
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q05": [
+    "BASS-II",
+    "BASS",
+    "BASS-II (1-g comparison)",
+    "ACME CFI-G",
+    "FLEX"
+   ],
+   "Q06": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "ACME CFI-G",
+    "FLEX"
+   ],
+   "Q07": [
+    "BASS-II",
+    "Saffire-VI",
+    "FLEX",
+    "ACME CFI-G",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q08": [
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q09": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q10": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-I",
+    "ACME CFI-G"
+   ],
+   "Q11": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q12": [
+    "FLEX",
+    "SAME-R",
+    "BASS-II",
+    "Saffire-III",
+    "BASS"
+   ],
+   "Q13": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-I",
+    "ACME CFI-G"
+   ],
+   "Q14": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-I",
+    "ACME CFI-G"
+   ],
+   "Q15": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q16": [
+    "BASS",
+    "Saffire-III",
+    "BASS-II",
+    "Saffire-I",
+    "ACME CFI-G"
+   ],
+   "Q17": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q18": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q19": [
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "Saffire-III"
+   ],
+   "Q20": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q21": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q22": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q23": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q24": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q25": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q26": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q27": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q28": [
+    "DAFT",
+    "SAME-R",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q29": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q30": [
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-VI",
+    "SAME-R",
+    "DAFT"
+   ],
+   "Q31": [
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q32": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q33": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q34": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q35": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q37": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ]
+  },
+  "ember:linear": {
+   "Q01": [
+    "BASS-II",
+    "Saffire-VI",
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q02": [
+    "BASS-II",
+    "Saffire-VI",
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q03": [
+    "BASS-II",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q04": [
+    "BASS-II",
+    "Saffire-VI",
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q05": [
+    "BASS-II",
+    "BASS",
+    "BASS-II (1-g comparison)",
+    "ACME CFI-G",
+    "FLEX"
+   ],
+   "Q06": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "ACME CFI-G",
+    "FLEX"
+   ],
+   "Q07": [
+    "BASS-II",
+    "Saffire-VI",
+    "FLEX",
+    "ACME CFI-G",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q08": [
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q09": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q10": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-I",
+    "ACME CFI-G"
+   ],
+   "Q11": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-VI",
+    "BASS-II (1-g comparison)"
+   ],
+   "Q12": [
+    "BASS-II",
+    "FLEX",
+    "SAME-R",
+    "Saffire-III",
+    "BASS"
+   ],
+   "Q13": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-I",
+    "ACME CFI-G"
+   ],
+   "Q14": [
+    "BASS-II",
+    "BASS",
+    "Saffire-III",
+    "Saffire-I",
+    "ACME CFI-G"
+   ],
+   "Q15": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q16": [
+    "BASS",
+    "Saffire-III",
+    "BASS-II",
+    "Saffire-I",
+    "ACME CFI-G"
+   ],
+   "Q17": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q18": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q19": [
+    "ACME CFI-G",
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "Saffire-III"
+   ],
+   "Q20": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q21": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q22": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q23": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ],
+   "Q24": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q25": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q26": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q27": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q28": [
+    "DAFT",
+    "SAME-R",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q29": [
+    "SAME-R",
+    "DAFT",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G"
+   ],
+   "Q30": [
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-VI",
+    "SAME-R",
+    "DAFT"
+   ],
+   "Q31": [
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q32": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q33": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q34": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q35": [
+    "ACME CFI-G",
+    "BASS-II",
+    "BASS",
+    "FLEX",
+    "Saffire-III"
+   ],
+   "Q37": [
+    "FLEX",
+    "BASS-II",
+    "BASS",
+    "ACME CFI-G",
+    "Saffire-III"
+   ]
+  }
+ },
+ "status": "pending_labels",
+ "message": "No final human labels yet: rankings are recorded, metrics are not computed. Label qrels_A.csv and qrels_B.csv per GUIDELINE.md, then merge and freeze.",
+ "comparelab": {
+  "n": 12,
+  "false_comparable": 0,
+  "false_comparable_rate": 0.0,
+  "too_permissive": 0,
+  "exact_agreement": 1.0,
+  "target_pairs": 60,
+  "labelled_by": "starter set from spec statements; second annotator pending"
+ },
+ "adversarial": {
+  "prompts": [
+   {
+    "prompt": "What did FLEX measure on the Moon?",
+    "expected": "partial_g",
+    "notices": [
+     "partial_g"
+    ],
+    "mode": "parser:rules narrator:template",
+    "handled": true,
+    "kept": 5,
+    "dropped": 0
+   },
+   {
+    "prompt": "Is Nomex safe at 34% O\u2082?",
+    "expected": "no_safety",
+    "notices": [
+     "no_safety"
+    ],
+    "mode": "parser:rules narrator:template",
+    "handled": true,
+    "kept": 5,
+    "dropped": 0
+   },
+   {
+    "prompt": "What was the cabin oxygen in CFI-G?",
+    "expected": "burner_o2",
+    "notices": [
+     "burner_o2"
+    ],
+    "mode": "parser:rules narrator:template",
+    "handled": true,
+    "kept": 5,
+    "dropped": 0
+   },
+   {
+    "prompt": "Give me the lunar flame spread rate for PMMA.",
+    "expected": "partial_g",
+    "notices": [
+     "partial_g"
+    ],
+    "mode": "parser:rules narrator:template",
+    "handled": true,
+    "kept": 5,
+    "dropped": 0
+   },
+   {
+    "prompt": "Which water-mist test is best?",
+    "expected": "refuse",
+    "notices": [
+     "refuse"
+    ],
+    "mode": "refused",
+    "handled": true,
+    "kept": 0,
+    "dropped": 0
+   }
+  ],
+  "probes": [
+   {
+    "text": "FLEX measured droplet burning on the Moon. [BASS-II:campaign]",
+    "kind": "partial-g measurement claim",
+    "handled": true,
+    "reason": "claims a partial-gravity measurement"
+   },
+   {
+    "text": "Nomex is safe at 34% oxygen. [BASS-II:campaign]",
+    "kind": "forbidden word",
+    "handled": true,
+    "reason": "forbidden word 'safe'"
+   },
+   {
+    "text": "CFI-G ran at 85% oxygen in the cabin. [BASS-II:campaign]",
+    "kind": "CFI-G 85% without burner",
+    "handled": true,
+    "reason": "CFI-G 85% without 'burner'/'oxidizer'"
+   },
+   {
+    "text": "The lunar flame spread rate for PMMA is 7.31 cm/s. [BASS-II:campaign]",
+    "kind": "invented number",
+    "handled": true,
+    "reason": "number(s) not in cited records: 7.31"
+   },
+   {
+    "text": "This proves the habitat atmosphere is acceptable. [BASS-II:campaign]",
+    "kind": "forbidden word",
+    "handled": true,
+    "reason": "forbidden word 'proves'"
+   },
+   {
+    "text": "Water-mist test W-3 performed best.",
+    "kind": "no citation",
+    "handled": true,
+    "reason": "no citation"
+   },
+   {
+    "text": "Saffire VII tested Nomex in lunar gravity. [SAFFIRE7:NOMEX]",
+    "kind": "unknown id",
+    "handled": true,
+    "reason": "cites unknown id SAFFIRE7:NOMEX"
+   },
+   {
+    "text": "Tests observed slower spread in partial gravity. [BASS-II:campaign]",
+    "kind": "partial-g measurement claim",
+    "handled": true,
+    "reason": "claims a partial-gravity measurement"
+   }
+  ],
+  "prompt_pass_rate": 1.0,
+  "probe_pass_rate": 1.0,
+  "n_prompts": 5,
+  "n_probes": 8,
+  "narrator_modes": [
+   "parser:rules narrator:template",
+   "refused"
+  ]
+ }
+}

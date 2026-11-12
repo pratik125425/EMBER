@@ -1,0 +1,36 @@
+# What the manifest-driven downloader fetches (spec §4.3, ticket T11). Every item lands in
+# data/raw/<source_id>/ with a sha256 and HTTP status in data/manifest.csv. 404s are logged, not hidden.
+# kinds: psi_record (investigation JSON) · psi_file (file by name+version) · ntrs_meta · ntrs_pdf · url
+# Priority: P0 experimental tables for PSI-25, 26, 69, 100, 101, 159 + Saffire VI paper (non-PSI).
+
+- {source_id: PSI-25, kind: psi_record}
+- {source_id: PSI-25, kind: psi_file, file: "PSI-25_Experimental table_BASS-II.csv", version: 1, tag: table}
+- {source_id: PSI-25, kind: psi_file, file: "PSI-25_Reference Data_Fan calibration data.xlsx", version: 2, tag: table}
+- {source_id: PSI-25, kind: psi_file, file: "PSI-25_Science Documents_BASS-II_Test.Matrices.xlsx", version: 2, tag: matrix}
+- {source_id: PSI-26, kind: psi_record}
+- {source_id: PSI-26, kind: psi_file, file: "PSI-26_Experimental table_BASS.csv", version: 1, tag: table}
+- {source_id: PSI-26, kind: psi_file, file: "PSI-26_Science Documents_As Run_Test Matrix.xlsx", version: 2, tag: matrix}
+- {source_id: PSI-69, kind: psi_record}
+- {source_id: PSI-69, kind: psi_file, file: "PSI-69_Experimental table_FLEX.csv", version: 1, tag: table}
+- {source_id: PSI-100, kind: psi_record}
+- {source_id: PSI-100, kind: psi_file, file: "PSI-100_Experimental table_SAFFIRE-3.csv", version: 1, tag: table}
+- {source_id: PSI-101, kind: psi_record}
+- {source_id: PSI-101, kind: psi_file, file: "PSI-101_Experimental table_SAME-R.csv", version: 1, tag: table}
+- {source_id: PSI-159, kind: psi_record}
+- {source_id: PSI-159, kind: psi_file, file: "PSI-159_Experimental table_CFI-G_Normal Flames.csv", version: 1, tag: table}
+- {source_id: PSI-159, kind: psi_file, file: "PSI-159_Experimental table_CFI-G_Inverse Flames.csv", version: 1, tag: table}
+# Should-have records (summaries only; files later)
+- {source_id: PSI-98, kind: psi_record}
+- {source_id: PSI-102, kind: psi_record}
+- {source_id: PSI-47, kind: psi_record}
+# NTRS papers
+- {source_id: NTRS-20240002981, kind: ntrs_meta, ntrs_id: 20240002981}
+- {source_id: NTRS-20240002981, kind: ntrs_pdf, ntrs_id: 20240002981}
+- {source_id: NTRS-20210021318, kind: ntrs_meta, ntrs_id: 20210021318}
+- {source_id: NTRS-20210021318, kind: ntrs_pdf, ntrs_id: 20210021318}
+- {source_id: NTRS-20250010653, kind: ntrs_meta, ntrs_id: 20250010653}
+- {source_id: NTRS-20250010653, kind: ntrs_pdf, ntrs_id: 20250010653}
+- {source_id: NTRS-20240015307, kind: ntrs_meta, ntrs_id: 20240015307}
+- {source_id: NTRS-20240015307, kind: ntrs_pdf, ntrs_id: 20240015307}
+- {source_id: NASA-TP-2010-216134, kind: url, url: "https://www.nasa.gov/wp-content/uploads/2023/03/henninger-8.2-34-atm-tp216134-2010.pdf", file: "NASA-TP-2010-216134.pdf", tag: document}
+- {source_id: NASA-DAFT-FACTSHEET-2025, kind: url, url: "https://www.nasa.gov/wp-content/uploads/2025/07/dust-and-aerosol-measurement-feasibility-test-daft.pdf", file: "daft-fact-sheet-2025.pdf", tag: document}

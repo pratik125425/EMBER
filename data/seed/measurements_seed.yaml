@@ -1,0 +1,42 @@
+# Seed measurements (spec §3, Appendix A notes). Each carries source + locator.
+- measurement_id: M-BASS2-LOC-ug
+  evidence_id: BASS-II:LOC
+  quantity: loc_x_o2
+  value: 0.17
+  unit: dimensionless
+  value_kind: measured
+  context: ambient
+  source_id: "DOI:10.1038/s41598-017-18398-4"
+  source_locator: "TODO"
+  note: "LOC about 17% in microgravity for PMMA rods"
+- measurement_id: M-BASS2-LOC-1g
+  evidence_id: BASS-II:LOC_1g
+  quantity: loc_x_o2
+  value: 0.18
+  unit: dimensionless
+  value_kind: measured
+  context: ambient
+  source_id: "DOI:10.1038/s41598-017-18398-4"
+  source_locator: "TODO"
+  note: "LOC about 18% at 1-g for PMMA rods"
+- measurement_id: M-DAFT-mass
+  evidence_id: DAFT:ISS_ambient
+  quantity: mass_conc_mg_m3
+  min: 0.0
+  max: 0.005
+  unit: mg/m3
+  value_kind: range
+  context: cabin
+  source_id: NASA-DAFT-FACTSHEET-2025
+  source_locator: "TODO paragraph"
+  note: "Reported as under 0.005 mg/m3 (upper bound; lower bound 0 is a physical floor, not a reading)"
+- measurement_id: M-DAFT-count
+  evidence_id: DAFT:ISS_ambient
+  quantity: particle_count_per_cc
+  value: 15
+  unit: 1/cm3
+  value_kind: measured
+  context: cabin
+  source_id: NASA-DAFT-FACTSHEET-2025
+  source_locator: "TODO paragraph"
+  note: "Reported as about 15 particles/cm3"

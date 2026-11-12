@@ -1,0 +1,24 @@
+# Relationship edges (spec §2, §4.2). from_id/to_id are investigation names.
+- relation_id: REL-SAMER-DAFT
+  from_id: SAME-R
+  to_id: DAFT
+  kind: instrument_link
+  source_id: CHALLENGE-2026
+  note: "SAME-R used P-Trak / DustTrak reference instruments validated by DAFT"
+- relation_id: REL-SAME-SAMER
+  from_id: SAME
+  to_id: SAME-R
+  kind: reflight
+  source_id: PSI-101
+- relation_id: REL-BASS-BASS2
+  from_id: BASS
+  to_id: BASS-II
+  kind: related_study
+  source_id: CHALLENGE-2026
+  note: "Same MSG + SPICE flow duct hardware"
+- relation_id: REL-SAFFIRE1-SAFFIRE6
+  from_id: Saffire-I
+  to_id: Saffire-VI
+  kind: related_study
+  source_id: NTRS-20240002981
+  note: "Same Saffire Flow Unit on Cygnus; duct half-height changed 25 cm → 15 cm"
