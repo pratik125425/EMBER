@@ -111,7 +111,7 @@ window.record = async () => {
     ac.createMediaElementSource(audio).connect(dest);
     dest.stream.getAudioTracks().forEach(t => stream.addTrack(t));
   }
-  const rec = new MediaRecorder(stream, { mimeType: mime, videoBitsPerSecond: 10_000_000 });
+  const rec = new MediaRecorder(stream, { mimeType: mime, videoBitsPerSecond: Number(q.get("vbr") || 10_000_000) });
   const chunks = []; rec.ondataavailable = e => e.data.size && chunks.push(e.data);
   const done = new Promise(r => rec.onstop = r);
   frame(0); rec.start(250);
