@@ -22,11 +22,19 @@ const CUES = [
   { slide: 6, start: 21.5, end: 25.5, text: "Unknowns stay unknown, and nothing is ever called safe." },
   { slide: 7, start: 25.5, end: 29.5, text: "Next: aim the next fire experiments right at those gaps." },
 ];
-const TOTAL = 29.5, FADE = 0.45;
+let TOTAL = 29.5; const FADE = 0.45;
 const q = new URLSearchParams(location.search);
 const team = q.get("team");
 if (team) CUES[0].text = CUES[0].text.replace("TEAM NAME", team);
 const subs = q.get("subs") !== "0";
+// Voice track: ?audio=assets/voice.mov&offset=0.45 starts the audio that many seconds in.
+// ?cuts=3.25,8.48,... moves the slide changes to the speaker's pauses; the last value is the end.
+const AUDIO = q.get("audio"), OFFSET = parseFloat(q.get("offset") || "0");
+if (q.get("cuts")) {
+  const cuts = q.get("cuts").split(",").map(Number);
+  CUES.forEach((cu, i) => { cu.start = i ? cuts[i - 1] : 0; cu.end = cuts[i]; });
+  TOTAL = cuts[cuts.length - 1];
+}
 
 const c = document.getElementById("c"), g = c.getContext("2d");
 const imgs = {};
@@ -88,21 +96,36 @@ function frame(t) {
 window.preview = t => frame(t);
 
 window.record = async () => {
-  const types = ["video/mp4;codecs=avc1.640028", "video/mp4", "video/webm;codecs=vp9", "video/webm"];
+  const types = AUDIO
+    ? ["video/mp4;codecs=avc1.640028,mp4a.40.2", "video/webm;codecs=vp9,opus"]
+    : ["video/mp4;codecs=avc1.640028", "video/mp4", "video/webm;codecs=vp9", "video/webm"];
   const mime = types.find(t => MediaRecorder.isTypeSupported(t));
   const stream = c.captureStream(30);
+  let audio = null;
+  if (AUDIO) {
+    audio = new Audio(AUDIO); audio.preload = "auto";
+    await new Promise(r => audio.readyState >= 3 ? r() : audio.oncanplaythrough = r);
+    audio.currentTime = OFFSET;
+    await new Promise(r => audio.onseeked = r);
+    const ac = new AudioContext(), dest = ac.createMediaStreamDestination();
+    ac.createMediaElementSource(audio).connect(dest);
+    dest.stream.getAudioTracks().forEach(t => stream.addTrack(t));
+  }
   const rec = new MediaRecorder(stream, { mimeType: mime, videoBitsPerSecond: 10_000_000 });
   const chunks = []; rec.ondataavailable = e => e.data.size && chunks.push(e.data);
   const done = new Promise(r => rec.onstop = r);
   frame(0); rec.start(250);
+  if (audio) await audio.play();
   const t0 = performance.now();
   await new Promise(res => {
     (function tick() {
-      const t = (performance.now() - t0) / 1000;
+      // when there is a voice track, the audio clock drives the slides so they stay in sync
+      const t = audio ? audio.currentTime - OFFSET : (performance.now() - t0) / 1000;
       frame(Math.min(t, TOTAL));
       if (t < TOTAL) requestAnimationFrame(tick); else res();
     })();
   });
+  if (audio) audio.pause();
   rec.stop(); await done;
   const blob = new Blob(chunks, { type: mime });
   const a = document.createElement("a");

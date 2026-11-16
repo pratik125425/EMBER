@@ -61,3 +61,14 @@ node tools/film.js film.html out "team=Blaze"
 
 `render.js` writes the slide PNGs and PDF; `film.js` plays `film.html` in Chrome and records the
 canvas to MP4 (no ffmpeg needed).
+
+## Final cut with voice
+
+`out/EMBER-demo.mp4` now carries the team's narration (`assets/voice.mov`, recorded on a phone). The
+slide changes were moved to the pauses in the narration, so it was rebuilt with:
+
+```bash
+node tools/film.js film.html out "team=Mustangs&audio=assets/voice.mov&offset=0.45&cuts=3.25,8.48,13.80,18.38,22.40,25.45,29.65"
+```
+
+Length 29.7 s (limit 30 s). `out/EMBER-demo.srt` uses the same timings.

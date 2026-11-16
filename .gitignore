@@ -20,3 +20,6 @@ greenhours_plus/
 # Large rendered demo video (share it by link instead)
 submission/out/*.mp4
 submission/out/still-*.png
+
+# Raw phone recordings
+IMG_*.mov

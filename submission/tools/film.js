@@ -2,7 +2,7 @@ const { chromium } = require('playwright');
 const path = require('path');
 const [,, html, outDir, qs=''] = process.argv;
 (async () => {
-  const b = await chromium.launch({ channel: 'chrome', args: ['--allow-file-access-from-files'] });
+  const b = await chromium.launch({ channel: 'chrome', args: ['--allow-file-access-from-files','--autoplay-policy=no-user-gesture-required'] });
   const ctx = await b.newContext({ viewport:{width:1920,height:1080}, acceptDownloads: true });
   const p = await ctx.newPage();
   p.on('console', m => console.log('page:', m.text()));

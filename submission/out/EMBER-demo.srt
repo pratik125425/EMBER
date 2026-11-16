@@ -1,27 +1,27 @@
 1
-00:00:00,000 --> 00:00:03,000
+00:00:00,000 --> 00:00:03,250
 Hi, we're team Mustangs, and this is EMBER.
 
 2
-00:00:03,000 --> 00:00:07,500
+00:00:03,250 --> 00:00:08,480
 Moon habitats will breathe richer, thinner air. Does NASA's fire data still apply?
 
 3
-00:00:07,500 --> 00:00:12,000
+00:00:08,480 --> 00:00:13,800
 EMBER maps 982 records from NASA's PSI and technical reports.
 
 4
-00:00:12,000 --> 00:00:17,000
+00:00:13,800 --> 00:00:18,380
 Describe a habitat. It ranks which experiments apply, and how far you're stretching them.
 
 5
-00:00:17,000 --> 00:00:21,500
+00:00:18,380 --> 00:00:22,400
 And it shows the gap: no fire data at lunar or Mars gravity.
 
 6
-00:00:21,500 --> 00:00:25,500
+00:00:22,400 --> 00:00:25,450
 Unknowns stay unknown, and nothing is ever called safe.
 
 7
-00:00:25,500 --> 00:00:29,500
+00:00:25,450 --> 00:00:29,650
 Next: aim the next fire experiments right at those gaps.
