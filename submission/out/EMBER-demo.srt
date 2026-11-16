@@ -1,6 +1,6 @@
 1
 00:00:00,000 --> 00:00:03,000
-Hi, we're team TEAM NAME, and this is EMBER.
+Hi, we're team Mustangs, and this is EMBER.
 
 2
 00:00:03,000 --> 00:00:07,500

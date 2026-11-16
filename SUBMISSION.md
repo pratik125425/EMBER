@@ -146,8 +146,8 @@ bundled in `app/static/fonts` so the app works offline.
 Required on the slides: team name, team member names, the challenge, an image of the project, the
 user experience, and how NASA data makes it possible. Use your own app screenshots (no NASA logos).
 
-1. **Title.** EMBER: Evidence-Mapped Bounds for Exploration fire Risk. Team [name]; members
-   [names]. Challenge: *Flame in Freefall*, NASA Space Apps 2026. One Overview screenshot.
+1. **Title.** EMBER: Evidence-Mapped Bounds for Exploration fire Risk. Team Mustangs; members
+   Pratik Bhattiprolu and Mihir Patel. Challenge: *Flame in Freefall*, NASA Space Apps 2026. One Overview screenshot.
 2. **The problem.** Moon and Mars habitats will run at lower pressure and higher oxygen than the
    ISS. Which of NASA's fire experiments tell us anything about that atmosphere? Today there is no
    quick answer.
@@ -168,7 +168,7 @@ user experience, and how NASA data makes it possible. Use your own app screensho
 Over 30 seconds makes the project ineligible for Global Judging. Aim for 28. Speak in English (or
 add English subtitles). No one under 18 on screen. Record the screen with the Guided demo page.
 
-- **0:00–0:02 — Who.** "Hi, we're team [name]." *(Overview on screen.)*
+- **0:00–0:02 — Who.** "Hi, we're team Mustangs." *(Overview on screen.)*
 - **0:02–0:05 — Challenge.** "Flame in Freefall: will fire on the Moon behave like our tests?"
 - **0:05–0:10 — Name and tagline.** "This is EMBER: which NASA fire experiments apply to your
   habitat, and how far you're stretching them." *(Type the lunar question in Ask.)*

@@ -22,7 +22,7 @@ Each line is short enough to say calmly in its time slot. Speak in English.
 
 | Time | Slide on screen | Say this |
 |---|---|---|
-| 0:00 – 0:03 | 1 · Title: EMBER, team, members, challenge | "Hi, we're team **[name]**, and this is EMBER." |
+| 0:00 – 0:03 | 1 · Title: EMBER, team, members, challenge | "Hi, we're team **Mustangs**, and this is EMBER." |
 | 0:03 – 0:07.5 | 2 · ISS air (21% O₂) → exploration air (34% O₂, 8.2 psia) | "Moon habitats will breathe richer, thinner air. Does NASA's fire data still apply?" |
 | 0:07.5 – 0:12 | 3 · 982 records + evidence map | "EMBER maps 982 records from NASA's PSI and technical reports." |
 | 0:12 – 0:17 | 4 · Ask page: ranked experiments | "Describe a habitat. It ranks which experiments apply, and how far you're stretching them." |

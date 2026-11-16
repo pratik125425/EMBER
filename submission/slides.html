@@ -71,7 +71,7 @@ h2 em { font-style: normal; color: var(--ember); }
 .flame { position: absolute; right: 60px; top: 110px; width: 840px; height: 840px; overflow: hidden;
   -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 58%, transparent 71%); mask-image: radial-gradient(circle at 50% 50%, #000 58%, transparent 71%); }
 .flame img { position: absolute; transform-origin: 0 0; }
-.flame-cap { position: absolute; right: 250px; bottom: 150px; font-size: 15px; font-style: italic; color: var(--faint); }
+.flame-cap { position: absolute; right: 250px; bottom: 196px; font-size: 15px; font-style: italic; color: var(--faint); }
 
 /* slide 2 */
 .atmos { position: absolute; top: 330px; left: 0; right: 0; display: grid; grid-template-columns: 1fr 120px 1fr; align-items: end; }
@@ -119,8 +119,8 @@ h2 em { font-style: normal; color: var(--ember); }
     <h1 class="title-word">EMBER</h1>
     <div class="title-sub">Evidence-Mapped Bounds for Exploration fire Risk</div>
     <div class="team">
-      <div class="name" data-field="team">Team TEAM NAME</div>
-      <div class="members" data-field="members">Member One · Member Two · Member Three</div>
+      <div class="name" data-field="team">Team Mustangs</div>
+      <div class="members" data-field="members">Pratik Bhattiprolu · Mihir Patel</div>
     </div>
   </div>
   <div class="flame"><img src="assets/overview.png" data-crop="1035,170,1130,1130" alt=""></div>
@@ -235,7 +235,7 @@ h2 em { font-style: normal; color: var(--ember); }
 
 <script>
 // Team details: edit here, then re-render.
-const TEAM = { team: "Team TEAM NAME", members: "Member One · Member Two · Member Three", repo: "Code: <b>github.com/your-team/ember</b> · runs fully offline" };
+const TEAM = { team: "Team Mustangs", members: "Pratik Bhattiprolu · Mihir Patel", repo: "Open source · runs fully offline on a laptop" };
 const q = new URLSearchParams(location.search);
 for (const k of ["team", "members", "repo"]) {
   const v = q.get(k) ?? TEAM[k];
