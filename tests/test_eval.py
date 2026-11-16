@@ -248,5 +248,7 @@ def test_validation_page_shows_pending_not_numbers():
     assert not at.exception, at.exception
     assert at.title[0].value == "Validation"
     assert any("Pending" in w.value for w in at.warning)
-    abl = at.dataframe[0].value
+    abl = next(d.value for d in at.dataframe if "nDCG@5" in d.value.columns)
     assert set(abl["nDCG@5"]) == {"pending"}
+    heads = [h.value for h in at.subheader]
+    assert heads.index("Measured now") < heads.index("Ranking benchmark: built, waiting for labels")

@@ -8,8 +8,10 @@ import streamlit as st
 import yaml
 
 from ember import config
+from ember.demo import air_fields, lunar_fields, ranked, scenario_dict
 from ember.eval.run_eval import RESULTS
 from ember.paths import ROOT
+from ember.registry import load_registry
 from ember.ui.badges import sidebar_legend
 from ember.ui.layout import page_header
 from ember.ui.theme import show_chart
@@ -18,7 +20,7 @@ st.set_page_config(page_title="EMBER · Validation", layout="wide")
 sidebar_legend()
 page_header(
     "Validation",
-    "Does EMBER rank NASA evidence better than text search and an additive score? Only measured numbers appear here.",
+    "What has been measured so far, and what is built but still waiting for human relevance labels. Only measured numbers appear here; nothing is estimated or filled in.",
     section="Trust",
 )
 
@@ -33,6 +35,145 @@ queries = {
     for q in yaml.safe_load((ROOT / "ember" / "eval" / "gold" / "queries.yaml").read_text())
 }
 
+
+# ------------------------------------------------------------------ measured now (top of page)
+@st.cache_data(show_spinner=False)
+def _stability() -> dict:
+    """Monte Carlo rank stability for the two demo scenarios, from the same cache the Ask page uses."""
+    reg = load_registry()
+    lunar = lunar_fields()
+    out = {}
+    for name, fields in (("Lunar habitat", lunar), ("Earth air", air_fields(lunar))):
+        res, stab, _ = ranked(scenario_dict(fields), reg)
+        out[name] = {
+            "stable": sum(1 for x in res[: stab["k"]] if x["stable"]),
+            "k": stab["k"],
+            "n": stab["n"],
+            "tau": stab["kendall_tau_median"],
+            "tau_ci": stab["kendall_tau_ci"],
+        }
+    return out
+
+
+adv = r.get("adversarial")
+cl = r.get("comparelab")
+stab = _stability()
+
+st.subheader("Measured now")
+m = st.columns(4)
+if adv:
+    m[0].metric(
+        "Trick prompts handled",
+        f"{sum(p['handled'] for p in adv['prompts'])} of {adv['n_prompts']}",
+        help="Spec §12.4 prompts (e.g. 'is this material safe on the Moon?') that must be refused or flagged.",
+    )
+    m[1].metric(
+        "Hostile sentences dropped",
+        f"{sum(p['handled'] for p in adv['probes'])} of {adv['n_probes']}",
+        help="Sentences with invented numbers, fake citations or 'safe' claims fed to the cite-or-drop verifier.",
+    )
+if cl:
+    m[2].metric(
+        "False 'comparable' verdicts",
+        f"{cl['false_comparable']} of {cl['n']}",
+        help="CompareLab starter pairs labelled from spec statements. A smoke test, not a rate.",
+    )
+lunar_s = stab["Lunar habitat"]
+m[3].metric(
+    "Top-5 stable (lunar demo)",
+    f"{lunar_s['stable']} of {lunar_s['k']}",
+    help=f"Stays in the top {lunar_s['k']} in ≥{config.STABLE_P_TOPK:.0%} of {lunar_s['n']} runs with "
+    f"elasticities ±{config.MC_EPS_PCT:.0%} and priors ±{config.MC_PRIOR_PCT:.0%}.",
+)
+st.caption(
+    "Each number is recomputed from the evaluation run or the rank-stability cache; hover a tile for its definition."
+)
+
+st.subheader("Rank stability")
+st.markdown(
+    f"EMBER's weights come from published correlations, so the ranking should not hinge on their exact values. "
+    f"Each scenario is re-ranked {lunar_s['n']} times with every elasticity perturbed by up to "
+    f"±{config.MC_EPS_PCT:.0%} and every prior by up to ±{config.MC_PRIOR_PCT:.0%}. This tests sensitivity to "
+    "EMBER's own weights, not the underlying NASA data."
+)
+st.dataframe(
+    pd.DataFrame(
+        [
+            {
+                "Scenario": name,
+                f"Stable in top {v['k']}": f"{v['stable']} of {v['k']}",
+                "Median Kendall τ vs. base order": f"{v['tau']:.3f}",
+                "95% interval of τ": f"{v['tau_ci'][0]:.3f}–{v['tau_ci'][1]:.3f}",
+                "Runs": v["n"],
+            }
+            for name, v in stab.items()
+        ]
+    ),
+    hide_index=True,
+    width="stretch",
+)
+st.caption("Open Ask to run the same test on any scenario you set in the sidebar.")
+
+st.subheader("Trick prompts and hostile sentences")
+if adv:
+    st.dataframe(
+        pd.DataFrame(
+            [
+                {
+                    "Prompt": p["prompt"],
+                    "Expected": p["expected"],
+                    "Shown": ", ".join(p["notices"]) or "—",
+                    "Handled": "yes" if p["handled"] else "NO",
+                    "Path": p["mode"],
+                }
+                for p in adv["prompts"]
+            ]
+        ),
+        hide_index=True,
+        width="stretch",
+    )
+    with st.expander("Hostile sentences fed to the verifier"):
+        st.dataframe(
+            pd.DataFrame(
+                [
+                    {
+                        "Sentence": p["text"],
+                        "Dropped": "yes" if p["handled"] else "NO",
+                        "Reason": p["reason"] or "—",
+                    }
+                    for p in adv["probes"]
+                ]
+            ),
+            hide_index=True,
+            width="stretch",
+        )
+    if any("template" in m for m in adv["narrator_modes"]):
+        st.caption(
+            "These runs used the rule-based parser and template narration because no LLM answer was cached "
+            "or callable. The guards and verifier are the same in LLM mode, but LLM-mode results are not yet measured."
+        )
+else:
+    st.write("Pending.")
+
+st.subheader("CompareLab")
+if cl:
+    st.markdown(
+        f"False-'comparable' verdicts: **{cl['false_comparable']} of {cl['n']}** labelled pairs "
+        f"(exact agreement {cl['exact_agreement']:.0%}). This is a starter set labelled from spec statements; "
+        f"the target is {cl['target_pairs']} pairs with a second annotator, so treat it as a smoke test, not a rate."
+    )
+else:
+    st.write("Pending.")
+
+st.divider()
+st.subheader("Ranking benchmark: built, waiting for labels")
+st.markdown(
+    "The benchmark that answers *does EMBER rank better than text search and an additive score?* is fully built: "
+    f"{r['n_queries']} questions, a pool of {len(r['pool'])} investigations, and baselines "
+    f"({', '.join(s for s in r['systems'] if s != 'ember')}). Its rankings are already recorded below. "
+    "Scores need two independent human relevance labellers; until both finish, EMBER reports no ranking metric "
+    "rather than a self-graded one."
+)
 c1, c2, c3, c4 = st.columns(4)
 c1.metric(
     "Gold queries",
@@ -47,12 +188,11 @@ st.caption(
     + (f" · unavailable: {', '.join(r['unavailable'])}" if r.get("unavailable") else "")
 )
 
-st.subheader("Gold-set ranking quality")
 if r["status"] == "error":
     st.error(r["error"])
 elif r["status"] != "complete":
     st.warning(
-        "**Pending.** No final human relevance labels exist yet, so no ranking metric is reported. "
+        "**Pending human labels.** No ranking metric is reported yet. "
         "Two annotators label `ember/eval/gold/qrels_A.csv` and `qrels_B.csv` from NASA documents per "
         "`GUIDELINE.md`; `gold_tools merge` computes agreement (weighted κ) and `gold_tools freeze` locks the set "
         "before any tuning (spec §12.1)."
@@ -115,7 +255,7 @@ else:
             hide_index=True,
         )
 
-st.subheader("Ablations")
+st.markdown("**Ablations** (scored once labels are frozen)")
 abl_desc = {
     "uniform_eps": "uniform weights instead of Ruff 2021 elasticities",
     "no_Q": "granularity prior Q = 1",
@@ -151,67 +291,6 @@ else:
         hide_index=True,
         width="stretch",
     )
-
-st.subheader("CompareLab")
-cl = r.get("comparelab")
-if cl:
-    st.markdown(
-        f"False-'comparable' verdicts: **{cl['false_comparable']} of {cl['n']}** labelled pairs "
-        f"(exact agreement {cl['exact_agreement']:.0%}). This is a starter set labelled from spec statements; "
-        f"the target is {cl['target_pairs']} pairs with a second annotator, so treat it as a smoke test, not a rate."
-    )
-else:
-    st.write("Pending.")
-
-st.subheader("Adversarial prompts")
-adv = r.get("adversarial")
-if adv:
-    c1, c2 = st.columns(2)
-    c1.metric(
-        "Spec prompts handled", f"{sum(p['handled'] for p in adv['prompts'])} of {adv['n_prompts']}"
-    )
-    c2.metric(
-        "Hostile sentences dropped",
-        f"{sum(p['handled'] for p in adv['probes'])} of {adv['n_probes']}",
-    )
-    st.dataframe(
-        pd.DataFrame(
-            [
-                {
-                    "Prompt": p["prompt"],
-                    "Expected": p["expected"],
-                    "Shown": ", ".join(p["notices"]) or "—",
-                    "Handled": "yes" if p["handled"] else "NO",
-                    "Path": p["mode"],
-                }
-                for p in adv["prompts"]
-            ]
-        ),
-        hide_index=True,
-        width="stretch",
-    )
-    with st.expander("Hostile sentences fed to the verifier"):
-        st.dataframe(
-            pd.DataFrame(
-                [
-                    {
-                        "Sentence": p["text"],
-                        "Dropped": "yes" if p["handled"] else "NO",
-                        "Reason": p["reason"] or "—",
-                    }
-                    for p in adv["probes"]
-                ]
-            ),
-            hide_index=True,
-            width="stretch",
-        )
-    if any("template" in m for m in adv["narrator_modes"]):
-        st.caption(
-            "These runs used the rule-based parser and template narration because no LLM answer was cached "
-            "or callable. The guards and verifier are the same in LLM mode, but LLM-mode results are not yet measured."
-        )
-else:
-    st.write("Pending.")
 
 st.subheader("Not yet run")
 st.markdown(
