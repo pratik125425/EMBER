@@ -16,3 +16,7 @@ data/parsed/
 greenhours_plus/
 .arena/
 .playwright-mcp/
+
+# Large rendered demo video (share it by link instead)
+submission/out/*.mp4
+submission/out/still-*.png

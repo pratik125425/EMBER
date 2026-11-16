@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>EMBER film</title>
+<style>
+@font-face { font-family: "Libre Franklin"; src: url(../app/static/fonts/LibreFranklin-VF.ttf); font-weight: 100 900; }
+html, body { margin: 0; background: #000; }
+canvas { display: block; }
+</style>
+</head>
+<body>
+<canvas id="c" width="1920" height="1080"></canvas>
+<script>
+// One cue per slide. Times in seconds. Total must stay at or under 30 s.
+const CUES = [
+  { slide: 1, start: 0.0,  end: 3.0,  text: "Hi, we're team TEAM NAME, and this is EMBER." },
+  { slide: 2, start: 3.0,  end: 7.5,  text: "Moon habitats will breathe richer, thinner air. Does NASA's fire data still apply?" },
+  { slide: 3, start: 7.5,  end: 12.0, text: "EMBER maps 982 records from NASA's PSI and technical reports." },
+  { slide: 4, start: 12.0, end: 17.0, text: "Describe a habitat. It ranks which experiments apply, and how far you're stretching them." },
+  { slide: 5, start: 17.0, end: 21.5, text: "And it shows the gap: no fire data at lunar or Mars gravity." },
+  { slide: 6, start: 21.5, end: 25.5, text: "Unknowns stay unknown, and nothing is ever called safe." },
+  { slide: 7, start: 25.5, end: 29.5, text: "Next: aim the next fire experiments right at those gaps." },
+];
+const TOTAL = 29.5, FADE = 0.45;
+const q = new URLSearchParams(location.search);
+const team = q.get("team");
+if (team) CUES[0].text = CUES[0].text.replace("TEAM NAME", team);
+const subs = q.get("subs") !== "0";
+
+const c = document.getElementById("c"), g = c.getContext("2d");
+const imgs = {};
+
+function load(src) { return new Promise((ok, err) => { const i = new Image(); i.onload = () => ok(i); i.onerror = err; i.src = src; }); }
+
+function drawSlide(n, alpha, local) {
+  const img = imgs[n]; if (!img) return;
+  // gentle push-in, 1.000 -> 1.025 across the slide
+  const k = 1 + 0.025 * Math.min(1, Math.max(0, local));
+  const w = 1920 * k, h = 1080 * k;
+  g.globalAlpha = alpha;
+  g.drawImage(img, (1920 - w) / 2, (1080 - h) / 2, w, h);
+  g.globalAlpha = 1;
+}
+
+function wrap(text, maxW) {
+  const words = text.split(" "), lines = []; let line = "";
+  for (const w of words) {
+    const t = line ? line + " " + w : w;
+    if (g.measureText(t).width > maxW && line) { lines.push(line); line = w; } else line = t;
+  }
+  if (line) lines.push(line); return lines;
+}
+
+function drawSub(text, alpha) {
+  g.font = '500 38px "Libre Franklin"';
+  const full = g.measureText(text).width, nl = Math.ceil(full / 1500);
+  const lines = wrap(text, full / nl + 60), lh = 50;
+  const widths = lines.map(l => g.measureText(l).width);
+  const boxW = Math.max(...widths) + 64, boxH = lines.length * lh + 30;
+  const x = (1920 - boxW) / 2, y = 1080 - 74 - boxH;
+  g.globalAlpha = alpha;
+  g.fillStyle = "rgba(5, 8, 16, 0.82)";
+  g.beginPath(); g.roundRect(x, y, boxW, boxH, 12); g.fill();
+  g.fillStyle = "#f3f5fa"; g.textAlign = "center"; g.textBaseline = "middle";
+  lines.forEach((l, i) => g.fillText(l, 960, y + 15 + lh / 2 + i * lh));
+  g.globalAlpha = 1;
+}
+
+function frame(t) {
+  g.fillStyle = "#0a0f1c"; g.fillRect(0, 0, 1920, 1080);
+  const i = CUES.findIndex(cu => t >= cu.start && t < cu.end);
+  const cue = CUES[i === -1 ? CUES.length - 1 : i];
+  const local = (t - cue.start) / (cue.end - cue.start);
+  drawSlide(cue.slide, 1, local);
+  // crossfade into the next slide over the last FADE seconds
+  const next = CUES[i + 1];
+  if (next && t > cue.end - FADE) drawSlide(next.slide, (t - (cue.end - FADE)) / FADE, 0);
+  // opening fade from black, closing fade to black
+  if (t < 0.35) { g.fillStyle = `rgba(0,0,0,${1 - t / 0.35})`; g.fillRect(0, 0, 1920, 1080); }
+  if (subs) {
+    const a = Math.min(1, (t - cue.start) / 0.15, (cue.end - t) / 0.15);
+    drawSub(cue.text, Math.max(0, a));
+  }
+  if (t > TOTAL - 0.4) { g.fillStyle = `rgba(0,0,0,${(t - (TOTAL - 0.4)) / 0.4})`; g.fillRect(0, 0, 1920, 1080); }
+}
+
+window.preview = t => frame(t);
+
+window.record = async () => {
+  const types = ["video/mp4;codecs=avc1.640028", "video/mp4", "video/webm;codecs=vp9", "video/webm"];
+  const mime = types.find(t => MediaRecorder.isTypeSupported(t));
+  const stream = c.captureStream(30);
+  const rec = new MediaRecorder(stream, { mimeType: mime, videoBitsPerSecond: 10_000_000 });
+  const chunks = []; rec.ondataavailable = e => e.data.size && chunks.push(e.data);
+  const done = new Promise(r => rec.onstop = r);
+  frame(0); rec.start(250);
+  const t0 = performance.now();
+  await new Promise(res => {
+    (function tick() {
+      const t = (performance.now() - t0) / 1000;
+      frame(Math.min(t, TOTAL));
+      if (t < TOTAL) requestAnimationFrame(tick); else res();
+    })();
+  });
+  rec.stop(); await done;
+  const blob = new Blob(chunks, { type: mime });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "EMBER-demo" + (mime.includes("mp4") ? ".mp4" : ".webm");
+  document.body.appendChild(a); a.click();
+  return mime;
+};
+
+window.ready = (async () => {
+  await document.fonts.load('500 38px "Libre Franklin"');
+  for (const cu of CUES) imgs[cu.slide] = await load(`out/slide-${cu.slide}.png`);
+  frame(0); return true;
+})();
+</script>
+</body>
+</html>
