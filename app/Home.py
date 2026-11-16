@@ -40,6 +40,7 @@ nav = st.navigation(
     }
 )
 nav.run()
-next_steps(nav.url_path)
-sidebar_glossary()
-footer()
+if nav.title != "Overview":  # the overview is one full-window story with its own ending
+    next_steps(nav.url_path)
+    sidebar_glossary()
+    footer()

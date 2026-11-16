@@ -1,17 +1,17 @@
-# Atlas-plate world: a deep navy plate, ivory engraving ink, steel-blue graticule hairlines and one
-# ember-orange mark reserved for the scenario (sliders, reticle, primary action). Libre Caslon sets
-# the plate titling, Libre Franklin the margin text and controls. Both are bundled under
-# app/static/fonts (SIL OFL) and served by Streamlit itself, so nothing is fetched from the network.
-# The plate is the default; Streamlit's built-in Light theme (⋮ → Settings) gives a white-sky print.
+# Charcoal instrument: a #090c13 canvas, blue-grey #111a29 data surfaces, frosted glass for the
+# sidebar and floating chrome, one ember-orange mark for the scenario (sliders, reticle, primary
+# action) and gold for NASA reference atmospheres. The values repeat ember/ui/palette.py (DARK);
+# tests/test_palette.py keeps them in step. Libre Caslon sets titles, Libre Franklin the text and
+# controls; both are bundled under app/static/fonts (SIL OFL), so nothing is fetched.
 [theme]
 base = "dark"
 primaryColor = "#ff8a4c"
-backgroundColor = "#12213f"
-secondaryBackgroundColor = "#192b52"
-textColor = "#efe9da"
-linkColor = "#a9c6ff"
-borderColor = "#2c406c"
-dataframeHeaderBackgroundColor = "#0d1830"
+backgroundColor = "#090c13"
+secondaryBackgroundColor = "#162133"
+textColor = "#f2f4f8"
+linkColor = "#a9c2ee"
+borderColor = "#263247"
+dataframeHeaderBackgroundColor = "#162133"
 chartCategoricalColors = ["#86b1f2", "#e7a0b4", "#6fd0a8", "#e3c46e", "#c9a3e8", "#b7d77a", "#a99cf0", "#ff8f8f"]
 font = "Libre Franklin"
 headingFont = "Libre Caslon Text"
@@ -21,8 +21,8 @@ headingFontSizes = ["2.6rem", "1.6rem", "1.25rem", "1.05rem", "1rem", "0.9rem"]
 baseFontSize = 15
 metricValueFontWeight = 500
 showWidgetBorder = true
-baseRadius = "2px"
-buttonRadius = "2px"
+baseRadius = "11px"
+buttonRadius = "11px"
 
 [[theme.fontFaces]]
 family = "Libre Franklin"
@@ -55,8 +55,8 @@ weight = "400"
 style = "normal"
 
 [theme.sidebar]
-backgroundColor = "#0d1830"
-secondaryBackgroundColor = "#152447"
+backgroundColor = "#0d131e"
+secondaryBackgroundColor = "#162133"
 
 [client]
 toolbarMode = "minimal"

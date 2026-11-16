@@ -13,8 +13,8 @@ from ember.llm.templates import format_range, partial_g_disclaimer
 from ember.registry import load_registry
 from ember.ui.badges import badges_for
 from ember.ui.charts import stability_bars, why_bars
-from ember.ui.layout import page_header
-from ember.ui.scenario import PARSE_LABELS, apply_parsed, scenario_chip, scenario_sidebar
+from ember.ui.layout import callout, page_header, panel_title
+from ember.ui.scenario import PARSE_LABELS, apply_parsed, scenario_chips_html, scenario_sidebar
 from ember.ui.theme import show_chart
 
 st.set_page_config(page_title="EMBER · Ask", layout="wide")
@@ -38,66 +38,75 @@ page_header(
     "Which NASA fire experiments apply to this scenario, and how far are you extrapolating?",
     section="Analyse",
 )
-st.markdown("**Scenario:** " + scenario_chip(scenario))
+ask_panel = st.container(border=True, key="panel_ask")
+ask_panel.markdown(
+    '<div class="ember-panel-title"><h3>Active scenario</h3><span>set in the sidebar</span></div>'
+    + scenario_chips_html(scenario),
+    unsafe_allow_html=True,
+)
 
-question = st.text_input(
+question = ask_panel.text_input(
     "Ask in plain language (optional)",
     placeholder="e.g. Fabric flammability in a lunar habitat at 34% O₂ and 8.2 psi",
     help="The question is turned into a proposed scenario. Nothing changes until you press 'Use this scenario'.",
 )
-if question:
-    notices = question_guards(question)
-    for n in notices:
-        if n.kind == "refuse":
-            st.error(n.text)
-        elif n.kind != "partial_g":  # the partial-g disclaimer is shown with the results below
-            st.warning(n.text)
-    if not refused(notices):
-        parsed = _parse(question)
-        rows = []
-        for key, label in PARSE_LABELS.items():
-            v = parsed.fields.get(key)
-            rows.append(
-                {
-                    "Field": label,
-                    "Proposed": "—" if v is None else str(v),
-                    "Origin": "from your question"
-                    if v is not None
-                    else (
-                        "not stated: stays unspecified"
-                        if key == "u_cms"
-                        else "not stated: sidebar value kept"
-                    ),
-                }
-            )
-        with st.container(border=True):
-            st.markdown("**Proposed scenario** (check it, then confirm)")
-            st.dataframe(pd.DataFrame(rows), hide_index=True, width="stretch")
-            for note in (
-                [parsed.fields["notes"]] if parsed.fields.get("notes") else []
-            ) + parsed.notes:
-                st.caption(note)
-            for d in parsed.dropped:
-                st.caption(f"Dropped from the LLM proposal: {d}")
-            if parsed.fields.get("u_cms") is None:
-                st.caption(
-                    "Airflow was not stated, so it stays unspecified. EMBER never guesses airflow."
+with ask_panel:
+    if question:
+        notices = question_guards(question)
+        for n in notices:
+            if n.kind == "refuse":
+                st.error(n.text)
+            elif n.kind != "partial_g":  # the partial-g disclaimer is shown with the results below
+                st.warning(n.text)
+        if not refused(notices):
+            parsed = _parse(question)
+            rows = []
+            for key, label in PARSE_LABELS.items():
+                v = parsed.fields.get(key)
+                rows.append(
+                    {
+                        "Field": label,
+                        "Proposed": "—" if v is None else str(v),
+                        "Origin": "from your question"
+                        if v is not None
+                        else (
+                            "not stated: stays unspecified"
+                            if key == "u_cms"
+                            else "not stated: sidebar value kept"
+                        ),
+                    }
                 )
-            st.button(
-                "Use this scenario", type="primary", on_click=apply_parsed, args=(parsed.fields,)
-            )
-            mode = "LLM (cached)" if parsed.mode == "llm" else "rule-based parser"
-            why = f" LLM unavailable: {parsed.error}." if parsed.error else ""
-            st.caption(f"Parsed by: {mode}.{why}")
-    if st.session_state.get("parse_warning"):
-        st.warning(st.session_state.pop("parse_warning"))
+            with st.container(border=True):
+                st.markdown("**Proposed scenario** (check it, then confirm)")
+                st.dataframe(pd.DataFrame(rows), hide_index=True, width="stretch")
+                for note in (
+                    [parsed.fields["notes"]] if parsed.fields.get("notes") else []
+                ) + parsed.notes:
+                    st.caption(note)
+                for d in parsed.dropped:
+                    st.caption(f"Dropped from the LLM proposal: {d}")
+                if parsed.fields.get("u_cms") is None:
+                    st.caption(
+                        "Airflow was not stated, so it stays unspecified. EMBER never guesses airflow."
+                    )
+                st.button(
+                    "Use this scenario",
+                    type="primary",
+                    on_click=apply_parsed,
+                    args=(parsed.fields,),
+                )
+                mode = "LLM (cached)" if parsed.mode == "llm" else "rule-based parser"
+                why = f" LLM unavailable: {parsed.error}." if parsed.error else ""
+                st.caption(f"Parsed by: {mode}.{why}")
+        if st.session_state.get("parse_warning"):
+            st.warning(st.session_state.pop("parse_warning"))
 
-grouped = st.toggle(
-    "One row per investigation (best-ranked test)",
-    value=True,
-    help="Per-test PSI tables add hundreds of near-identical rows. When on, each investigation shows its best-ranked "
-    "record and how many records it stands for; rank stability is computed on the same grouping.",
-)
+    grouped = st.toggle(
+        "One row per investigation (best-ranked test)",
+        value=True,
+        help="Per-test PSI tables add hundreds of near-identical rows. When on, each investigation shows its best-ranked "
+        "record and how many records it stands for; rank stability is computed on the same grouping.",
+    )
 
 s = scenario_to_dict(scenario)
 evidence_dicts = reg.evidence_dicts()
@@ -119,64 +128,75 @@ top = results[:10]
 by_id = reg.evidence_by_id()
 
 if scenario.gravity_g0 not in config.BRACKET_GRAVITIES:
-    st.warning(partial_g_disclaimer())
+    text = partial_g_disclaimer()
+    body, sep, cite = text.partition(" (")
+    callout(
+        "No PSI fire test at this gravity",
+        body + "." if sep else text,
+        "(" + cite if sep else None,
+    )
 if any(r["D"] > config.D_ENVELOPE_THRESHOLD for r in top):
-    st.warning(
-        "Beyond tested envelope: at least one top-10 record implies a response factor above 2.7×."
+    callout(
+        "Beyond tested envelope",
+        "At least one top-10 record implies a response factor above 2.7×.",
     )
 
-st.subheader("Ranked evidence (top 10)")
-table = pd.DataFrame(
-    [
-        {
-            "#": r["rank"],
-            "Investigation": r["investigation"],
-            "Evidence": r["evidence_id"],
-            "Records": r.get("n_group", 1),
-            "R": round(r["R"], 3),
-            "D": round(r["D"], 3),
-            "exp(D)": round(r["expD"], 2),
-            "P(top-5)": round(r["p_topk"], 2),
-            "Rank range": f"{stability['rank_min'].get(stab_key(r), '?')}–{stability['rank_max'].get(stab_key(r), '?')}",
-            "Tier": r["tier"].replace("_", " "),
-            "M_φ": r["priors"]["m_phi"],
-            "M_f": r["priors"]["m_f"],
-            "Q": r["priors"]["Q"],
-            "Badges": " · ".join(badges_for(r)),
-        }
-        for r in top
-    ]
-)
-st.dataframe(table, hide_index=True, width="stretch")
-st.caption(
-    "R = M_φ · M_f · Q · exp(−D). D is the elasticity-weighted log distance; exp(D) is the largest "
-    "response factor the published correlation implies. Priors M_φ, M_f, Q are disclosed ordinal choices. "
-    "Records with no known conditions are ranked below records with data (R unchanged)."
-)
-
-st.subheader("Rank stability (Monte Carlo)")
-tau_lo, tau_hi = stability["kendall_tau_ci"]
-c1, c2 = st.columns([3, 2])
-with c1:
-    show_chart(stability_bars(top, stability, key=stab_key), width="stretch")
-with c2:
-    st.metric(
-        "Kendall τ vs. base ranking (median)",
-        f"{stability['kendall_tau_median']:.3f}",
-        help="1.0 = identical order in every perturbed draw.",
+rank_panel = st.container(border=True, key="panel_rank")
+with rank_panel:
+    panel_title("Ranked evidence", "top 10 · scroll sideways on small screens")
+    table = pd.DataFrame(
+        [
+            {
+                "#": r["rank"],
+                "Investigation": r["investigation"],
+                "Evidence": r["evidence_id"],
+                "Records": r.get("n_group", 1),
+                "R": round(r["R"], 3),
+                "D": round(r["D"], 3),
+                "exp(D)": round(r["expD"], 2),
+                "P(top-5)": round(r["p_topk"], 2),
+                "Rank range": f"{stability['rank_min'].get(stab_key(r), '?')}–{stability['rank_max'].get(stab_key(r), '?')}",
+                "Tier": r["tier"].replace("_", " "),
+                "M_φ": r["priors"]["m_phi"],
+                "M_f": r["priors"]["m_f"],
+                "Q": r["priors"]["Q"],
+                "Badges": " · ".join(badges_for(r)),
+            }
+            for r in top
+        ]
     )
-    st.markdown(f"95% interval of τ across draws: **{tau_lo:.3f} – {tau_hi:.3f}**")
-    pr = stability["params"]
-    st.markdown(
-        f"{stability['n']} draws · elasticities ±{pr['eps_pct']:.0%} · priors ±{pr['prior_pct']:.0%} · "
-        f"seed {pr['seed']} · {'cached' if stability_cached else 'computed now'}"
-    )
+    st.dataframe(table, hide_index=True, width="stretch")
     st.caption(
-        "Each draw multiplies every non-zero elasticity and every non-anchor prior by an independent uniform "
-        "factor and re-ranks. Zero elasticities (flow for opposed spread) and the 1.0 anchors stay fixed. "
-        "A record is badged **stable** when it stays in the top-5 in ≥80% of draws. This tests sensitivity to "
-        "EMBER's own weights, not to the underlying NASA data."
+        "R = M_φ · M_f · Q · exp(−D). D is the elasticity-weighted log distance; exp(D) is the largest "
+        "response factor the published correlation implies. Priors M_φ, M_f, Q are disclosed ordinal choices. "
+        "Records with no known conditions are ranked below records with data (R unchanged)."
     )
+
+tau_lo, tau_hi = stability["kendall_tau_ci"]
+stab_panel = st.container(border=True, key="panel_stability")
+with stab_panel:
+    panel_title("Rank stability", "Monte Carlo")
+    c1, c2 = st.columns([3, 2])
+    with c1:
+        show_chart(stability_bars(top, stability, key=stab_key), width="stretch")
+    with c2:
+        st.metric(
+            "Kendall τ vs. base ranking (median)",
+            f"{stability['kendall_tau_median']:.3f}",
+            help="1.0 = identical order in every perturbed draw.",
+        )
+        st.markdown(f"95% interval of τ across draws: **{tau_lo:.3f} – {tau_hi:.3f}**")
+        pr = stability["params"]
+        st.markdown(
+            f"{stability['n']} draws · elasticities ±{pr['eps_pct']:.0%} · priors ±{pr['prior_pct']:.0%} · "
+            f"seed {pr['seed']} · {'cached' if stability_cached else 'computed now'}"
+        )
+        st.caption(
+            "Each draw multiplies every non-zero elasticity and every non-anchor prior by an independent uniform "
+            "factor and re-ranks. Zero elasticities (flow for opposed spread) and the 1.0 anchors stay fixed. "
+            "A record is badged **stable** when it stays in the top-5 in ≥80% of draws. This tests sensitivity to "
+            "EMBER's own weights, not to the underlying NASA data."
+        )
 
 st.subheader("Why: D by dimension")
 show_chart(why_bars(top), width="stretch")

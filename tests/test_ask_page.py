@@ -14,6 +14,14 @@ def _run():
     return at
 
 
+def _shows_partial_g(at) -> bool:
+    """The disclaimer is a high-contrast callout (markdown), cited in full."""
+    return any(
+        "Partial-gravity disclaimer" in m.value and "NTRS 20210021318" in m.value
+        for m in at.markdown
+    )
+
+
 def test_ask_page_renders_with_defaults():
     at = _run()
     assert at.title[0].value == "Ask"
@@ -21,7 +29,7 @@ def test_ask_page_renders_with_defaults():
     top = at.dataframe[0].value
     assert list(top["#"]) == list(range(1, min(10, len(top)) + 1))
     # Default scenario is the Exploration Atmosphere on the Moon → partial-g disclaimer shows.
-    assert any("Partial-gravity disclaimer" in w.value for w in at.warning)
+    assert _shows_partial_g(at)
     # Data-free records sit below records with data.
     tiers = list(top["Tier"])
     first_nc = tiers.index("no conditions") if "no conditions" in tiers else len(tiers)
@@ -38,7 +46,7 @@ def test_iss_preset_clears_gravity_warning_and_reranks():
     at.run()
     at.sidebar.selectbox(key="preset").select("ISS").run()
     assert not at.exception
-    assert not any("Partial-gravity disclaimer" in w.value for w in at.warning)
+    assert not _shows_partial_g(at)
     top = at.dataframe[0].value
     # At 21% / 101.3 kPa the BASS-II envelope (13.6–22.2% O2) sits inside on O2 → D from P only (unknown) → D=0.
     row = top[top["Evidence"] == "BASS-II:campaign"].iloc[0]

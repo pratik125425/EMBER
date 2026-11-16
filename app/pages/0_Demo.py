@@ -1,7 +1,11 @@
 """Guided demo (spec §17.1, T17): the live-demo script, one step at a time, every number computed now."""
 
+import html
+import math
+
 import pandas as pd
 import streamlit as st
+from streamlit.errors import StreamlitAPIException
 
 from ember import config
 from ember.demo import (
@@ -29,7 +33,13 @@ from ember.ui.badges import badges_for
 from ember.ui.charts import why_bars
 from ember.ui.gaps_chart import gap_panels
 from ember.ui.layout import page_header
-from ember.ui.scenario import PARSE_LABELS, apply_parsed, scenario_chip, scenario_sidebar
+from ember.ui.scenario import (
+    PARSE_LABELS,
+    PHENOMENON_LABELS,
+    apply_parsed,
+    scenario_chips_html,
+    scenario_sidebar,
+)
 from ember.ui.theme import show_chart
 
 st.set_page_config(page_title="EMBER · Demo", layout="wide")
@@ -57,6 +67,12 @@ LUNAR, AIR = fields, air_fields(fields)
 N = len(STEPS)
 
 
+# The fast path for a short live demo: scenario → ranked evidence → source → gap. Every step stays
+# reachable in the full walkthrough, which keeps the comparison, the cited summary and the method.
+FULL, FAST = "Full walkthrough", "Fast path (about 90 s)"
+FAST_STEPS = (1, 2, 4, 6)
+
+
 def _go(i: int) -> None:
     """Move to step i and set the shared sidebar scenario to what that step shows (runs before widgets)."""
     st.session_state["demo_step"] = i
@@ -64,9 +80,20 @@ def _go(i: int) -> None:
         apply_parsed(AIR if i == 7 else LUNAR)
 
 
+def _mode_changed() -> None:
+    """Switching to the fast path lands on its first stop unless the current step is already one."""
+    if (
+        st.session_state.get("demo_mode") == FAST
+        and st.session_state["demo_step"] not in FAST_STEPS
+    ):
+        _go(FAST_STEPS[0])
+
+
 st.session_state.setdefault("demo_step", 0)
+st.session_state.setdefault("demo_mode", FULL)
 scenario_sidebar()  # keeps the scenario chip on other pages in step with the demo
 step = st.session_state["demo_step"]
+fast = st.session_state["demo_mode"] == FAST
 
 
 def to_scenario(f: dict) -> Scenario:
@@ -100,20 +127,100 @@ def ranked_table(results: list[dict]) -> pd.DataFrame:
     )
 
 
+def gap_spotlight(f: dict) -> str:
+    """The lunar-gravity result brought into focus: GapScope coverage at the NASA target nearest the
+    scenario, in orbit and at the scenario's gravity, and the experiment nobody has run."""
+    tc = target_coverage(reg.evidence_dicts(), f["phenomenon"], f["fuel_class"], f["u_cms"])
+
+    def near(r: dict) -> float:
+        return abs(r["x_o2"] - f["x_o2"]) + abs(math.log(r["p_kpa"] / f["p_kpa"]))
+
+    name = min(tc, key=near)["target"]
+    here = next(r for r in tc if r["target"] == name and r["g"] == f["gravity_g0"])
+    orbit = next((r for r in tc if r["target"] == name and r["g"] == 0.0), None)
+    phen = PHENOMENON_LABELS.get(f["phenomenon"], f["phenomenon"]).lower()
+    fuel = (f.get("fuel_class") or "unspecified fuel").replace("_", " ")
+    o = (
+        f'<div><p class="k">Coverage C in orbit (0 g)</p><div class="v">{orbit["C"]:.2f}</div>'
+        f"<p>nearest record {html.escape(orbit['nearest'] or 'none')}</p></div>"
+        if orbit
+        else ""
+    )
+    flags = ", ".join(here["flags"]) or "none"
+    return (
+        f'<div class="ember-spot"><p class="k">GapScope at {html.escape(name)} '
+        f"({here['x_o2'] * 100:.1f}% O₂, {here['p_kpa']:.1f} kPa)</p>"
+        f'<div class="grid">{o}<div><p class="k">Coverage C at {f["gravity_g0"]:g} g</p>'
+        f'<div class="v">{here["C"]:.2f}</div><p>{here["n_pool"]} records in the pool · flag '
+        f"{html.escape(flags)}</p></div></div>"
+        f'<p class="miss">Missing experiment: {html.escape(phen)} on a {html.escape(fuel)} at '
+        f"{f['gravity_g0']:g} g, {f['x_o2'] * 100:.0f}% O₂, {f['p_kpa']:.1f} kPa.</p></div>"
+    )
+
+
+def rank_motion(before: list[dict], after: list[dict], n: int = 8) -> str:
+    """Ranking before → after as rows that slide from their old rank to their new one."""
+    b = {r["investigation"]: r for r in before}
+    rows = []
+    for i, r in enumerate(after[:n]):
+        old = b.get(r["investigation"])
+        shift = (old["rank"] - r["rank"]) if old else 0
+        mv = (
+            "new"
+            if not old
+            else ("held" if shift == 0 else (f"▲ up {shift}" if shift > 0 else f"▼ down {-shift}"))
+        )
+        cls = "up" if shift > 0 else ""
+
+        def dtxt(x: dict) -> str:
+            return f"{'≥ ' if x['D_lower_bound'] else ''}{x['D']:.2f}"
+
+        d = f"D {dtxt(old)} → {dtxt(r)}" if old else f"D {dtxt(r)}"
+        rows.append(
+            f'<li style="--from:{shift * 2.6:.1f}rem;--delay:{300 + i * 40}ms">'
+            f'<span class="n">{r["rank"]}</span><span class="inv">{html.escape(r["investigation"])}</span>'
+            f'<span class="mv {cls}">{mv}</span><span class="d">{d}</span></li>'
+        )
+    return f'<ol class="ember-move" aria-label="Ranking at the new atmosphere">{"".join(rows)}</ol>'
+
+
 # ------------------------------------------------------------------------------------- header
 page_header(
     "Guided demo",
     "The live-demo script, one step at a time. Every number on these steps is computed now from the registry.",
     section="Start",
 )
-st.progress((step + 1) / N, text=f"Step {step + 1} of {N} · {STEPS[step][0]}")
+st.segmented_control(
+    "Demo length",
+    [FAST, FULL],
+    key="demo_mode",
+    on_change=_mode_changed,
+    help="The fast path shows scenario, ranked evidence, its source and the gap. The full walkthrough adds every step.",
+)
+if fast:
+    later = [i for i in FAST_STEPS if i > step]
+    earlier = [i for i in FAST_STEPS if i < step]
+    nxt, prev, first_step = (
+        (later[0] if later else None),
+        (earlier[-1] if earlier else None),
+        FAST_STEPS[0],
+    )
+    k = sum(1 for i in FAST_STEPS if i <= step)
+    st.progress(
+        k / len(FAST_STEPS), text=f"Fast path · stop {k} of {len(FAST_STEPS)} · {STEPS[step][0]}"
+    )
+else:
+    nxt = step + 1 if step < N - 1 else None
+    prev = step - 1 if step > 0 else None
+    first_step = 0
+    st.progress((step + 1) / N, text=f"Step {step + 1} of {N} · {STEPS[step][0]}")
 nav = st.columns([1, 1, 1, 5])
 nav[0].button(
     "← Back",
     key="demo_back",
     on_click=_go,
-    args=(step - 1,),
-    disabled=step == 0,
+    args=(prev if prev is not None else step,),
+    disabled=prev is None,
     width="stretch",
 )
 nav[1].button(
@@ -121,11 +228,15 @@ nav[1].button(
     key="demo_next",
     type="primary",
     on_click=_go,
-    args=(step + 1,),
-    disabled=step == N - 1,
+    args=(nxt if nxt is not None else step,),
+    disabled=nxt is None,
     width="stretch",
 )
-nav[2].button("Restart", key="demo_restart", on_click=_go, args=(0,), width="stretch")
+nav[2].button("Restart", key="demo_restart", on_click=_go, args=(first_step,), width="stretch")
+if fast and nxt is None:
+    st.caption(
+        "End of the fast path. Switch to the full walkthrough for the comparison, the cited summary and the method."
+    )
 st.subheader(f"{step + 1}. {STEPS[step][0]}")
 st.caption(STEPS[step][1])
 
@@ -195,7 +306,7 @@ elif step == 1:
     )
 
 elif step == 2:
-    st.markdown("**Scenario:** " + scenario_chip(to_scenario(LUNAR)))
+    st.markdown(scenario_chips_html(to_scenario(LUNAR)), unsafe_allow_html=True)
     results, stability, _ = ranked(s_lunar, reg)
     top = results[:10]
     st.dataframe(ranked_table(top), hide_index=True, width="stretch")
@@ -304,6 +415,7 @@ elif step == 5:
 
 elif step == 6:
     sc = to_scenario(LUNAR)
+    st.markdown(gap_spotlight(s_lunar), unsafe_allow_html=True)
     grids = all_gravities(
         reg.evidence_dicts(), s_lunar["phenomenon"], s_lunar["fuel_class"], s_lunar["u_cms"]
     )
@@ -335,9 +447,19 @@ elif step == 6:
 elif step == 7:
     before, _, _ = ranked(s_lunar, reg)
     after, _, _ = ranked(s_air, reg)
-    st.markdown("**Scenario now:** " + scenario_chip(to_scenario(AIR)))
+    st.markdown("**Scenario now**")
+    st.markdown(scenario_chips_html(to_scenario(AIR)), unsafe_allow_html=True)
+    st.markdown(
+        f'<span class="ember-chip fixed">Gravity held at <b>{s_air["gravity_g0"]:g} g</b> (lunar)</span>'
+        f'<span class="ember-chip">Atmosphere <b>{s_lunar["x_o2"] * 100:.0f}% · {s_lunar["p_kpa"]:.1f} kPa</b>'
+        f" → <b>{s_air['x_o2'] * 100:.0f}% · {s_air['p_kpa']:.1f} kPa</b></span>"
+        '<span class="ember-chip">Earth-normal air is an atmosphere setting here, not Earth gravity</span>',
+        unsafe_allow_html=True,
+    )
+    st.markdown(rank_motion(before, after), unsafe_allow_html=True)
     df = reshuffle(before, after)
-    st.dataframe(df, hide_index=True, width="stretch")
+    with st.expander("Full before and after table, with flags"):
+        st.dataframe(df, hide_index=True, width="stretch")
     show_chart(why_bars(after[:10]), width="stretch")
     up = df[df["Move"].fillna(0) > 0]
     down = df[df["Move"].fillna(0) < 0]
@@ -403,6 +525,18 @@ elif step == 8:
     )
     with st.expander("Gap report", expanded=True):
         st.markdown(md)
+    st.markdown("**Now open the evidence yourself**")
+    end = st.columns(3)
+    links = [
+        ("pages/1_Ask.py", "Ask: the ranked evidence", ":material/search:"),
+        ("pages/2_Evidence_Map.py", "Evidence map: every record", ":material/scatter_plot:"),
+        ("views/overview.py", "Back to the atlas", ":material/home:"),
+    ]
+    for col, (path, label, icon) in zip(end, links, strict=True):
+        try:
+            col.page_link(path, label=label, icon=icon)
+        except StreamlitAPIException:  # page run on its own, outside the app's navigation
+            col.markdown(f"**{label}**")
     st.info(
         "**Say:** Here's exactly which test is missing: no combustion test at lunar gravity in a "
         f"{s_lunar['x_o2'] * 100:.0f}% / {s_lunar['p_kpa']:.1f} kPa atmosphere. EMBER shows the gap instead of hiding it."

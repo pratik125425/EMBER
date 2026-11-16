@@ -92,6 +92,25 @@ def test_demo_walks_every_step_offline():
     assert [s.split(". ", 1)[1] for s in seen] == [t for t, _ in demo.STEPS]
 
 
+def test_demo_fast_path_walks_scenario_rank_source_gap():
+    at = AppTest.from_file(PAGE, default_timeout=120).run()
+    at.session_state["demo_mode"] = "Fast path (about 90 s)"
+    at.run()
+    at.button(key="demo_restart").click().run()
+    stops = []
+    while True:
+        assert not at.exception
+        stops.append(at.session_state["demo_step"])
+        if at.button(key="demo_next").disabled:
+            break
+        at.button(key="demo_next").click().run()
+    assert stops == [1, 2, 4, 6]
+    at.button(key="demo_back").click().run()
+    assert at.session_state["demo_step"] == 4
+    at.button(key="demo_restart").click().run()
+    assert at.session_state["demo_step"] == 1
+
+
 def test_demo_confirm_sets_sidebar_scenario():
     at = AppTest.from_file(PAGE, default_timeout=120).run()
     at.button(key="demo_next").click().run()  # step 1: proposal shown, nothing applied yet

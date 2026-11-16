@@ -14,7 +14,7 @@ from ember.engine.gapscope import (
 from ember.registry import load_registry
 from ember.ui.gaps_chart import gap_panels
 from ember.ui.layout import page_header
-from ember.ui.scenario import PHENOMENON_LABELS, scenario_chip, scenario_sidebar
+from ember.ui.scenario import PHENOMENON_LABELS, scenario_chips_html, scenario_sidebar
 from ember.ui.theme import show_chart
 
 st.set_page_config(page_title="EMBER · Gaps", layout="wide")
@@ -39,7 +39,7 @@ page_header(
     "What has nobody tested? Coverage of oxygen–pressure space per gravity regime, for the scenario's phenomenon.",
     section="Analyse",
 )
-st.markdown("**Scenario:** " + scenario_chip(scenario))
+st.markdown(scenario_chips_html(scenario), unsafe_allow_html=True)
 
 c1, c2, c3, c4 = st.columns([1.2, 1, 1, 1])
 mode = c1.radio(

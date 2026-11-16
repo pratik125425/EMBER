@@ -2,7 +2,7 @@
 tokens for text, series colours only on marks, ember reserved for the scenario.
 
 Chart code is written once against the LIGHT ("white-sky print") tokens. ``show_chart`` renders
-with the template and, on the default navy plate (Streamlit's dark base), swaps every light token
+with the template and, on the default charcoal canvas (Streamlit's dark base), swaps every light token
 for its plate step in one pass (sequential ramps run plate→bright so "more" still reads as
 "stronger")."""
 
@@ -13,6 +13,8 @@ import re
 import plotly.graph_objects as go
 import plotly.io as pio
 import streamlit as st
+
+from ember.ui.palette import DARK
 
 SURFACE = "#fcfcfb"
 INK = "#0b0b0b"
@@ -44,32 +46,32 @@ CATEGORICAL_DARK = [
     "#ff8f8f",
 ]
 SCENARIO_LIGHT = "#c4501c"
-SCENARIO_PLATE = "#ff8a4c"
+SCENARIO_PLATE = DARK["accent"]
 
 # Light token → plate token. Matched case-insensitively in a single regex pass, so a plate value
 # that equals another light key is never re-mapped.
 DARK_MAP: dict[str, str] = {
-    SURFACE: "#12213f",
-    "#ffffff": "#192b52",
-    '"white"': '"#12213f"',  # quoted: only the bare colour value, never inside words
-    INK: "#efe9da",
-    INK_2: "#b9c3dc",
-    MUTED: "#8d9bbd",
-    GRID: "#22355c",
-    AXIS: "#4a5f8f",
-    "#b9b7b1": "#3b5080",
-    "rgba(82,81,78,0.07)": "rgba(239,233,218,0.05)",
-    "rgba(255,255,255,0.9)": "rgba(18,33,63,0.92)",
+    SURFACE: DARK["surface"],
+    "#ffffff": DARK["surface2"],
+    '"white"': f'"{DARK["surface"]}"',  # quoted: only the bare colour value, never inside words
+    INK: DARK["ink"],
+    INK_2: DARK["ink2"],
+    MUTED: DARK["muted"],
+    GRID: "#1e2a3d",
+    AXIS: "#3a4a63",
+    "#b9b7b1": "#33415a",
+    "rgba(82,81,78,0.07)": "rgba(242,244,248,0.05)",
+    "rgba(255,255,255,0.9)": "rgba(17,26,41,0.92)",
     "rgba(98,80,214,0.1)": "rgba(255,138,76,0.14)",
     "rgba(196,80,28,0.1)": "rgba(255,138,76,0.12)",
     SCENARIO_LIGHT: SCENARIO_PLATE,
-    "#8a6a1c": "#e3c46e",  # target gold
+    "#8a6a1c": DARK["gold"],  # target gold
     "rgba(138,106,28,0.1)": "rgba(227,196,110,0.1)",
     # Sequential ramps (Gaps heatmaps): low end sits on the plate, high end is bright ink.
-    "#f4f7fc": "#17284b",
+    "#f4f7fc": "#16233a",
     "#86b3e8": "#3d64a8",
     "#0f3f7a": "#b4cdfa",
-    "#fdf4ef": "#1b2645",
+    "#fdf4ef": "#1d2230",
     "#f3a37f": "#8a5a3a",
     "#8a2f0e": "#f0b45a",
     **dict(zip(CATEGORICAL, CATEGORICAL_DARK, strict=True)),
@@ -131,8 +133,16 @@ PLOTLY_CONFIG = {
 
 
 def is_dark() -> bool:
-    """True when the viewer is using the dark theme (Streamlit reruns the page when it changes)."""
+    """True when Streamlit is drawing the page dark.
+
+    A configured ``theme.base`` wins: Streamlit paints the configured theme whatever the viewer's
+    system setting, while ``st.context.theme.type`` follows that system setting. Trusting the latter
+    would put light page tokens under Streamlit's dark-theme text for a viewer on a light OS.
+    """
     try:
+        base = st.get_option("theme.base")
+        if base in ("dark", "light"):
+            return base == "dark"
         return getattr(st.context.theme, "type", None) == "dark"
     except Exception:  # noqa: BLE001 - no browser context (bare mode, AppTest)
         return False

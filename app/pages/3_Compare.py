@@ -1,5 +1,7 @@
 """Compare page (ticket T10): CompareLab rule-gated comparability verdicts."""
 
+import html
+
 import pandas as pd
 import streamlit as st
 
@@ -108,22 +110,35 @@ box(f"**{label}** — {r['a']} vs {r['b']}")
 c1, c2 = st.columns([1, 1])
 with c1:
     st.markdown("**Rule trace** (evaluated in order; gates stop evaluation)")
-    st.dataframe(
-        pd.DataFrame(
-            [
-                {
-                    "#": x["rule"],
-                    "Rule": x["name"],
-                    "Type": x["kind"],
-                    "Result": "pass" if x["passed"] else "FAIL",
-                    "Detail": x["detail"],
-                }
-                for x in r["rules"]
-            ]
-        ),
-        hide_index=True,
-        width="stretch",
+    # The rows that decide the verdict are the failing ones; they carry the emphasis.
+    trace = "".join(
+        f'<tr class="{"" if x["passed"] else "drives"}"><td>{x["rule"]}</td>'
+        f"<td>{html.escape(str(x['name']))}<br><small>{html.escape(str(x['kind']))}</small></td>"
+        f"<td>{'pass' if x['passed'] else '<b>FAIL</b>'}</td><td>{html.escape(str(x['detail']))}</td></tr>"
+        for x in r["rules"]
     )
+    st.markdown(
+        '<table class="ember-diff"><thead><tr><th>#</th><th>Rule</th><th>Result</th><th>Detail</th>'
+        f"</tr></thead><tbody>{trace}</tbody></table>",
+        unsafe_allow_html=True,
+    )
+    with st.expander("Rule trace as a sortable table"):
+        st.dataframe(
+            pd.DataFrame(
+                [
+                    {
+                        "#": x["rule"],
+                        "Rule": x["name"],
+                        "Type": x["kind"],
+                        "Result": "pass" if x["passed"] else "FAIL",
+                        "Detail": x["detail"],
+                    }
+                    for x in r["rules"]
+                ]
+            ),
+            hide_index=True,
+            width="stretch",
+        )
     st.markdown("**Confounders**")
     if r["confounders"]:
         for c in r["confounders"]:

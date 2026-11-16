@@ -19,13 +19,16 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 from ember import config
+from ember.demo import air_fields, lunar_fields, scenario_dict
+from ember.engine.gapscope import GRAVITY_NAME, target_coverage
 from ember.engine.score import collapse, rank, scenario_to_dict
 from ember.export import tables
+from ember.llm.templates import format_range
 from ember.registry import load_registry
 from ember.schemas import Scenario
 from ember.ui.evidence_map import P_RANGE, PPO2_ISOLINES_KPA, X_RANGE, classify
 from ember.ui.layout import tokens
-from ember.ui.scenario import GRAVITY_OPTIONS, PHENOMENON_LABELS
+from ember.ui.scenario import GRAVITY_OPTIONS, PHENOMENON_LABELS, apply_parsed
 from ember.units import kpa_to_psi
 
 _component = components.declare_component(
@@ -123,7 +126,31 @@ def sky() -> dict:
     }
     reasons = Counter(plain.get(r, r) for _, r in placement.not_plottable)
     files = t["files"]
+    # Records per gravity regime, for the dark-sky section. Moon and Mars stay at zero: PSI holds no
+    # partial-gravity fire test, and the one simulated partial-g record is outside PSI.
+    regime = Counter(e.gravity.value for e in ev)
+    sim = sorted({e.investigation for e in ev if e.gravity.value == "simulated_partial"})
+    gravity = [
+        {
+            "label": "Orbit (0 g)",
+            "n": regime["microgravity"],
+            "note": "Where NASA's fire tests were run.",
+        },
+        {
+            "label": "Moon (0.166 g)",
+            "n": 0,
+            "note": "No PSI test."
+            + (
+                f" {regime['simulated_partial']} simulated record outside PSI ({', '.join(sim)})."
+                if sim
+                else ""
+            ),
+        },
+        {"label": "Mars (0.38 g)", "n": 0, "note": "No PSI test."},
+        {"label": "Earth (1 g)", "n": regime["1g"], "note": "Ground comparison runs."},
+    ]
     return {
+        "gravity": gravity,
         "stars": list(stars.values()),
         "nebulae": list(nebulae.values()),
         "constellations": constellations,
@@ -154,8 +181,12 @@ def _registry():
 
 def ranked(scenario: Scenario, k: int = 5) -> list[dict]:
     """The engine's ranking, one row per investigation, with each row's plate position if charted."""
+    return _ranked_rows(scenario_to_dict(scenario), k)
+
+
+def _ranked_rows(s: dict, k: int) -> list[dict]:
     reg = _registry()
-    results = collapse(rank(scenario_to_dict(scenario), reg.evidence_dicts()), "investigation")
+    results = collapse(rank(s, reg.evidence_dicts()), "investigation")
     by_id = reg.evidence_by_id()
     out = []
     for r in results[:k]:
@@ -166,8 +197,35 @@ def ranked(scenario: Scenario, k: int = 5) -> list[dict]:
                 pos = list(_center(e))
             else:  # pressure not reported: a meridian at its O₂, never a guessed point
                 o2 = [e.x_o2.min, e.x_o2.max]
+        srcs = reg.source_by_id()
+        flags = r["flags"] if isinstance(r["flags"], list) else []
+        detail = {
+            "fuel": e.fuel_name or (e.fuel_class.value if e.fuel_class else "unknown"),
+            "gravity": e.gravity.value,
+            "o2_context": e.o2_context.value,
+            "conds": [
+                ["Oxygen, X_O₂", format_range(e.x_o2, "{:.3g}"), _loc(e.x_o2)],
+                ["Pressure, kPa", format_range(e.p_kpa, "{:.4g}"), _loc(e.p_kpa)],
+                ["Flow, cm/s", format_range(e.u_cms, "{:.3g}"), _loc(e.u_cms)],
+            ],
+            # each dimension's share of D; None means the record did not report it (D is a lower bound)
+            "parts": {k: (None if v is None else round(v, 4)) for k, v in r["parts"].items()},
+            "priors": r.get("priors", {}),
+            "flags": [str(f).split(":")[0] for f in flags],
+            "sources": [
+                {
+                    "id": sid,
+                    "title": srcs[sid].title if sid in srcs else "unknown",
+                    "doi": (srcs[sid].doi or "") if sid in srcs else "",
+                    "url": (srcs[sid].url or "") if sid in srcs else "",
+                    "psi": bool(srcs[sid].in_psi) if sid in srcs else False,
+                }
+                for sid in e.sources
+            ],
+        }
         out.append(
             {
+                "detail": detail,
                 "rank": r["rank"],
                 "inv": r["investigation"],
                 "id": r["evidence_id"],
@@ -183,12 +241,101 @@ def ranked(scenario: Scenario, k: int = 5) -> list[dict]:
     return out
 
 
+def _loc(rng) -> str:
+    """Where a reported condition comes from: source id and locator, or why there is none."""
+    if rng is None or rng.status != "known":
+        return "not reported"
+    return f"{rng.source_id or ''} · {rng.source_locator or ''}".strip(" ·") or "no locator"
+
+
+@st.cache_data(show_spinner=False)
+def atmosphere_pair() -> dict:
+    """The demo's two real endpoints, ranked by the engine with gravity held fixed: Earth-normal air
+    and the lunar habitat atmosphere of the demo question. Nothing between them is ranked."""
+    lunar = lunar_fields()
+    air = air_fields(lunar)
+
+    def side(name: str, f: dict) -> dict:
+        rows = _ranked_rows(scenario_dict(f), 8)
+        keep = ("rank", "inv", "id", "D", "expD", "lb", "n")
+        return {
+            "name": name,
+            "x": f["x_o2"],
+            "p": f["p_kpa"],
+            "ranked": [{k: r[k] for k in keep} | {"flags": r["detail"]["flags"]} for r in rows],
+        }
+
+    return {
+        "g": lunar["gravity_g0"],
+        "g_label": GRAVITY_NAME.get(lunar["gravity_g0"], f"{lunar['gravity_g0']:g} g"),
+        "phenomenon": PHENOMENON_LABELS.get(lunar["phenomenon"], lunar["phenomenon"]),
+        "fuel": (lunar.get("fuel_class") or "unspecified fuel").replace("_", " "),
+        "a": side("Earth-normal air", air),
+        "b": side("Lunar habitat atmosphere", lunar),
+    }
+
+
+@st.cache_data(show_spinner=False)
+def gap_chapter(phen: str, fuel: str | None, u: float | None) -> dict:
+    """GapScope coverage at every NASA target for every gravity regime EMBER supports, plus where
+    the charted tests sit in each regime (orbit and Earth only: PSI holds no partial-g fire test)."""
+    reg = _registry()
+    rows = target_coverage(reg.evidence_dicts(), phen, fuel, u)
+    regime_g = {"microgravity": config.G_MICRO, "1g": config.G_EARTH}
+    stars: dict[tuple, dict] = {}
+    for e in classify(reg.evidence).plotted:
+        g = regime_g.get(e.gravity.value)
+        if g is None:
+            continue
+        x, p = _center(e)
+        k = (g, round(x, 3), round(p, 1))
+        stars.setdefault(k, {"g": g, "x": x, "p": p, "n": 0})["n"] += 1
+    return {
+        "phenomenon": PHENOMENON_LABELS.get(phen, phen),
+        "fuel": (fuel or "any fuel").replace("_", " "),
+        "regimes": [
+            {
+                "g": g,
+                "label": GRAVITY_NAME[g],
+                "bracket": g in config.BRACKET_GRAVITIES,
+                "rows": [r for r in rows if r["g"] == g],
+            }
+            for g in config.GAP_G
+        ],
+        "stars": list(stars.values()),
+    }
+
+
+PAGES = {
+    "demo": "pages/0_Demo.py",
+    "ask": "pages/1_Ask.py",
+    "evidence-map": "pages/2_Evidence_Map.py",
+    "compare": "pages/3_Compare.py",
+    "gaps": "pages/4_Gaps.py",
+    "registry": "pages/5_Registry.py",
+    "sources": "pages/7_Sources.py",
+    "validation": "pages/6_Validation.py",
+}
+
+
 def _on_drop() -> None:
-    """Reticle dropped: copy it into the sidebar scenario before the widgets render."""
+    """The overview reported an action: copy it into the scenario before the widgets render."""
     v = st.session_state.get(KEY)
-    if not isinstance(v, dict) or "x_o2" not in v:
+    if not isinstance(v, dict):
         return
     ss = st.session_state
+    if v.get("preset") == "lunar":  # the demo question's scenario, as the parser reads it
+        apply_parsed(lunar_fields())
+        return
+    if v.get("nav") in PAGES:
+        ss["_atlas_nav"] = PAGES[v["nav"]]
+        return
+    if v.get("gravity") in GRAVITY_OPTIONS:
+        ss["preset"] = "Custom"
+        ss["gravity_label"] = v["gravity"]
+        return
+    if "x_o2" not in v:
+        return
     x_pct = min(max(round(float(v["x_o2"]) * 200) / 2, 10.0), 60.0)
     p = min(max(round(float(v["p_kpa"]) * 2) / 2, P_RANGE[0]), P_RANGE[1])
     ss["preset"] = "Custom"
@@ -197,8 +344,31 @@ def _on_drop() -> None:
     ss["p_psi"] = min(max(round(kpa_to_psi(p), 1), 3.0), 30.0)
 
 
-def atlas(scenario: Scenario) -> None:
+# The overview backdrop follows the scenario's explicit gravity setting (illustrative context only).
+# It is never inferred from oxygen or pressure; an unknown gravity shows a neutral starfield.
+BACKDROP = {
+    config.G_EARTH: "earth",
+    config.G_MICRO: "orbit",
+    config.G_MOON: "moon",
+    config.G_MARS: "mars",
+}
+
+
+def framing_key(scenario: Scenario) -> str:
+    """Names the habitat atmosphere for the backdrop's small framing change on the same body: the
+    chosen preset, or the NASA target the scenario sits on, or "custom"."""
+    preset = st.session_state.get("preset")
+    if preset and preset != "Custom":
+        return str(preset)
+    for name, x, p in config.TARGETS:
+        if abs(scenario.x_o2 - x) < 0.0026 and abs(scenario.p_kpa - p) < 0.6:
+            return name
+    return "custom"
+
+
+def atlas(scenario: Scenario, pages: list[dict]) -> None:
     g = next((k for k, v in GRAVITY_OPTIONS.items() if v == scenario.gravity_g0), "")
+    fc = scenario.fuel_class.value if scenario.fuel_class else None
     _component(
         sky=sky(),
         scenario={
@@ -208,9 +378,16 @@ def atlas(scenario: Scenario) -> None:
             "partial_g": scenario.gravity_g0 not in config.BRACKET_GRAVITIES,
             "phenomenon": PHENOMENON_LABELS.get(scenario.phenomenon.value, ""),
             "flow": scenario.u_cms,
+            "backdrop": BACKDROP.get(scenario.gravity_g0, "none"),
+            "framing": framing_key(scenario),
         },
+        gravity_backdrop={k: BACKDROP.get(v, "none") for k, v in GRAVITY_OPTIONS.items()},
         ranked=ranked(scenario),
+        pair=atmosphere_pair(),
+        gaps=gap_chapter(scenario.phenomenon.value, fc, scenario.u_cms),
         envelope=config.D_ENVELOPE_THRESHOLD,
+        gravity_options=list(GRAVITY_OPTIONS),
+        pages=pages,
         theme=tokens(),
         key=KEY,
         on_change=_on_drop,

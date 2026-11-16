@@ -11,3 +11,8 @@ exports/
 .DS_Store
 data/curated/ember.duckdb
 data/parsed/
+
+# Not part of EMBER: a separate hackathon project, and scratch output from tooling
+greenhours_plus/
+.arena/
+.playwright-mcp/

@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import html
+
 import streamlit as st
 
 from ember import config
@@ -64,8 +66,10 @@ def _init_state() -> None:
 
 def scenario_sidebar() -> Scenario:
     _init_state()
-    sb = st.sidebar
-    sb.header("Scenario")
+    side = st.sidebar
+    side.header("Scenario")
+    sb = side.container(border=True, key="sb_atmos")
+    sb.markdown('<p class="ember-sb-h">Cabin atmosphere</p>', unsafe_allow_html=True)
     sb.selectbox(
         "Preset",
         ["Custom", *config.PRESETS],
@@ -113,6 +117,8 @@ def scenario_sidebar() -> Scenario:
         f"= {p_kpa:.1f} kPa / {kpa_to_psi(p_kpa):.2f} psia · ppO₂ = {x_pct / 100 * p_kpa:.1f} kPa"
     )
 
+    sb = side.container(border=True, key="sb_cond")
+    sb.markdown('<p class="ember-sb-h">Conditions</p>', unsafe_allow_html=True)
     u_specified = sb.checkbox(
         "Airflow specified",
         key="u_specified",
@@ -132,6 +138,8 @@ def scenario_sidebar() -> Scenario:
     )
     gravity = GRAVITY_OPTIONS[g_label]
 
+    sb = side.container(border=True, key="sb_question")
+    sb.markdown('<p class="ember-sb-h">What you are asking about</p>', unsafe_allow_html=True)
     phen = sb.selectbox(
         "Phenomenon",
         list(PHENOMENON_LABELS),
@@ -164,6 +172,7 @@ def scenario_sidebar() -> Scenario:
         fuel_name=fuel_name.strip() or None,
     )
 
+    sb = side
     if gravity not in config.BRACKET_GRAVITIES:
         sb.warning(
             "Partial gravity: no PSI evidence exists at this gravity. Results are µg/1-g brackets, flagged."
@@ -186,6 +195,30 @@ def scenario_chip(s: Scenario) -> str:
         f"**X_O₂ {s.x_o2:.3f}** ({s.x_o2 * 100:.1f}%) · **P {s.p_kpa:.1f} kPa** ({kpa_to_psi(s.p_kpa):.2f} psia) · "
         f"**flow {u}** · **{g}** · {PHENOMENON_LABELS.get(s.phenomenon.value, s.phenomenon.value)} · {fuel}"
     )
+
+
+def scenario_chips_html(s: Scenario) -> str:
+    """The active scenario as scannable chips (same facts as ``scenario_chip``)."""
+    e = html.escape
+    g = next((k for k, v in GRAVITY_OPTIONS.items() if v == s.gravity_g0), str(s.gravity_g0))
+    partial = s.gravity_g0 not in config.BRACKET_GRAVITIES
+    chips = [
+        ("k", "O₂", f"<b>{s.x_o2 * 100:.1f}%</b> <i>X {s.x_o2:.3f}</i>"),
+        ("k", "P", f"<b>{s.p_kpa:.1f} kPa</b> <i>{kpa_to_psi(s.p_kpa):.2f} psia</i>"),
+        ("", "flow", "not specified" if s.u_cms is None else f"{s.u_cms:g} cm/s"),
+        ("g" if partial else "", "gravity", e(g)),
+        ("", "", e(PHENOMENON_LABELS.get(s.phenomenon.value, s.phenomenon.value))),
+        (
+            "",
+            "fuel",
+            e(s.fuel_class.value.replace("_", " ") if s.fuel_class else "any")
+            + (f" · {e(s.fuel_name)}" if s.fuel_name else ""),
+        ),
+    ]
+    spans = "".join(
+        f'<span class="{c}">' + (f"<i>{k}</i>" if k else "") + f"{v}</span>" for c, k, v in chips
+    )
+    return f'<div class="ember-scn" aria-label="Active scenario">{spans}</div>'
 
 
 PARSE_LABELS: dict[str, str] = {

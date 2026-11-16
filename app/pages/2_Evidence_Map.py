@@ -10,7 +10,7 @@ from ember.registry import load_registry
 from ember.ui.badges import badges_for
 from ember.ui.evidence_map import FAMILY_COLORS, evidence_map
 from ember.ui.layout import page_header
-from ember.ui.scenario import scenario_chip, scenario_sidebar
+from ember.ui.scenario import scenario_chips_html, scenario_sidebar
 from ember.ui.theme import show_chart
 
 st.set_page_config(page_title="EMBER · Evidence Map", layout="wide")
@@ -29,7 +29,7 @@ page_header(
     "Where NASA tests sit in oxygen–pressure space, and where your scenario sits relative to them. Moving the sidebar sliders re-ranks live.",
     section="Analyse",
 )
-st.markdown("**Scenario:** " + scenario_chip(scenario))
+st.markdown(scenario_chips_html(scenario), unsafe_allow_html=True)
 
 c1, c2, c3, c4 = st.columns([1, 1, 1, 2])
 show_ppo2 = c1.checkbox("ppO₂ isolines", value=True, help="ppO₂ = X_O₂ · P. Equal-ppO₂ curves.")
