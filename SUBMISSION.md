@@ -115,7 +115,7 @@ need a visible watermark.]
 
 - NASA Physical Science Informatics (PSI) investigation records and data tables: BASS (PSI-26),
   BASS-II (PSI-25), Saffire-I (PSI-98), Saffire-III (PSI-100), ACME CFI-G (PSI-159), FLEX (PSI-69),
-  SAME (PSI-102), SAME-R (PSI-101), DAFT / DAFT-2 (PSI-47). https://psi.ndc.nasa.gov
+  SAME (PSI-102), SAME-R (PSI-101), DAFT / DAFT-2 (PSI-47). https://psi.nasa.gov (record pages: https://psi.nasa.gov/physci/repo/data/investigations/PSI-159, and so on for each ID)
 - NASA Technical Reports Server (https://ntrs.nasa.gov): Saffire VI preliminary results
   (20240002981); LUCI simulated lunar gravity burns (20250010653); Flammability of Materials on the
   Moon, FM2 (20240015307); Ruff, Technology Development for Spacecraft Fire Safety (20210021318).
